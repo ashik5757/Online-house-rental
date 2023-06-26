@@ -1,2 +1,2 @@
-# Online-house-rental
+# Online House Rental System
 
