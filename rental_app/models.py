@@ -7,7 +7,7 @@ class User(models.Model):
     RENTER = 'R'
     ROLE_CHOICES = [
         (ADMIN,'Admin'),            # maybe no need
-        (LANDLORD, 'Landlord')
+        (LANDLORD, 'Landlord'),
         (RENTER, 'Renter')
     ]
 
@@ -75,7 +75,7 @@ class Rental_Property(models.Model):
     rental_status = models.CharField(max_length=3, choices=STATUS, default=AVAILABLE)
     post_date = models.DateField(auto_created=True)
     last_updated = models.DateTimeField(auto_now=True)
-    Landlord = models.ForeignKey(on_delete=models.CASCADE)
+    Landlord = models.ForeignKey(Landlord, on_delete=models.CASCADE, primary_key=False)
 
 
     def save(self, *args, **kwargs):
@@ -108,6 +108,7 @@ class Transaction(models.Model):
     Landlord = models.ForeignKey(Landlord, on_delete=models.CASCADE, primary_key=False)
     Rental_Property = models.ForeignKey(Rental_Property, on_delete=models.CASCADE, primary_key=False)
     amount = models.DecimalField(max_digits=10, decimal_places=2)
+    trxID = models.CharField(max_length=100)
     transaction_date = models.DateTimeField(auto_created=True)
 
 
@@ -118,4 +119,3 @@ class Review(models.Model):
     comment = models.TextField()
     review_date = models.DateTimeField(auto_created=True)
 
-    
