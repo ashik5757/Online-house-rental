@@ -1,5 +1,7 @@
 from django.db import models
 from django.utils.text import slugify
+from multiselectfield import MultiSelectField
+
 
 class User(models.Model):
     ADMIN = 'A'
@@ -60,21 +62,21 @@ class Rental_Property(models.Model):
     ]
 
     title = models.CharField(max_length=300)
-    slug = models.SlugField(default="", blank=True, null=False)
+    slug = models.SlugField(default="", blank=True, editable=False, null=False)
     description = models.TextField()
     street = models.CharField(max_length=255)
     area = models.CharField(max_length=200)
     city = models.CharField(max_length=200)
     zip = models.CharField(max_length=20, null=True)
-    rents_for = models.CharField(max_length=2, choices=RENTS_FOR, default=FAMILY)
+    rents_for = MultiSelectField(max_length=10, choices=RENTS_FOR, default=FAMILY)
     numbers_of_beds = models.PositiveSmallIntegerField()
     numbers_of_bath = models.PositiveSmallIntegerField()
     drawing_room_status = models.CharField(max_length=3, choices=STATUS, default=AVAILABLE)
     dining_room_status = models.CharField(max_length=3, choices=STATUS, default=AVAILABLE)
     kitchen_status = models.CharField(max_length=3, choices=STATUS, default=AVAILABLE)
     rental_status = models.CharField(max_length=3, choices=STATUS, default=AVAILABLE)
-    post_date = models.DateField(auto_created=True)
-    last_updated = models.DateTimeField(auto_now=True)
+    post_date = models.DateField(auto_created=True, editable=False)
+    last_updated = models.DateTimeField(auto_now=True, editable=False)
     Landlord = models.ForeignKey(Landlord, on_delete=models.CASCADE, primary_key=False)
 
 
