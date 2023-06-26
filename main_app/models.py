@@ -78,13 +78,44 @@ class Rental_Property(models.Model):
     Landlord = models.ForeignKey(on_delete=models.CASCADE)
 
 
-
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
         super().save(*args, **kwargs)
 
 
+class Property_Image(models.Model):
+    image = models.ImageField()
+    Rental_Property = models.ForeignKey(Rental_Property, on_delete=models.CASCADE, primary_key=False)
+
 class Services(models.Model):
     Rental_Property = models.ForeignKey(Rental_Property, on_delete=models.CASCADE, primary_key=False)
     service_type = models.CharField(max_length=100)
     service_charge = models.DecimalField(max_digits=10, decimal_places=2)
+
+
+class Renter_ProfileImage(models.Model):
+    image = models.ImageField()
+    Renter = models.OneToOneField(Renter, on_delete=models.CASCADE, primary_key=True)
+
+class Landlord_ProfileImage(models.Model):
+    image = models.ImageField()
+    Landlord = models.OneToOneField(Landlord, on_delete=models.CASCADE, primary_key=True)
+
+
+
+class Transaction(models.Model):
+    Renter = models.ForeignKey(Renter, on_delete=models.CASCADE, primary_key=False)
+    Landlord = models.ForeignKey(Landlord, on_delete=models.CASCADE, primary_key=False)
+    Rental_Property = models.ForeignKey(Rental_Property, on_delete=models.CASCADE, primary_key=False)
+    amount = models.DecimalField(max_digits=10, decimal_places=2)
+    transaction_date = models.DateTimeField(auto_created=True)
+
+
+class Review(models.Model):
+    Renter = models.OneToOneField(Renter, on_delete=models.CASCADE, primary_key=False)
+    Rental_Property = models.ForeignKey(Rental_Property, on_delete=models.CASCADE, primary_key=False)
+    rating = models.PositiveSmallIntegerField()
+    comment = models.TextField()
+    review_date = models.DateTimeField(auto_created=True)
+
+    
