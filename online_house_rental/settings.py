@@ -56,7 +56,9 @@ ROOT_URLCONF = 'online_house_rental.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            BASE_DIR / 'online_house_rental/templates'
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
