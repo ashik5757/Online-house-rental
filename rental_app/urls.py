@@ -10,5 +10,7 @@ urlpatterns = [
     path('notification/', views.Notification, name='notification'),
     path('bookmarks/', views.Bookmarks, name='bookmarks'),
     path('settings/', views.Settings, name='settings'),
-    path('', views.Logout, name='log_out')
+    path('', views.Logout, name='log_out'),
+    path('signin/', views.Signin, name='sign_in'),
+    path('signup/', views.SignUp, name='sign_up')
 ]

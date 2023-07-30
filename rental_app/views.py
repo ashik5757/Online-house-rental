@@ -27,3 +27,9 @@ def Settings(request):
 
 def Logout(request):
     return render(request, 'index.html')
+
+def Signin(request):
+    return render(request, 'Signin/login.html')
+
+def SignUp(request):
+    return render(request, 'Signup/signupLandlord1.html')
