@@ -10,7 +10,10 @@ urlpatterns = [
     path('notification/', views.Notification, name='notification'),
     path('bookmarks/', views.Bookmarks, name='bookmarks'),
     path('settings/', views.Settings, name='settings'),
-    path('', views.Logout, name='log_out'),
-    path('signin/', views.Signin, name='sign_in'),
-    path('signup/', views.SignUp, name='sign_up')
+    path('logout/', views.LogoutUser, name='log_out'),
+    path('sigin/', views.Signin, name='sign_in'),
+    # path('sigin_required/', views.Signin_hardlink, name='sign_in_hardlink'),
+    path('signup_landlord_1/', views.SignUp_landlord_1, name='sign_up_landlord_1'),
+    path('signup_landlord_2/', views.SignUp_landlord_2, name='sign_up_landlord_2')
+
 ]

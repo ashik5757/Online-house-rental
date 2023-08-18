@@ -1,39 +1,106 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="{% url 'home_page' %}">LOGO</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+  <div class="container-fluid">
+    <a class="navbar-brand" href="{% url 'home_page' %}">LOGO</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{% url 'home_page' %}">Home</a>
+        </li>
+        <li class="nav-item">
+          {% if request.user.is_authenticated %}
+          <a class="nav-link" href="{% url 'apartments' %}">Apartments</a>
+          {% else %}
+          <a class="nav-link" data-bs-toggle="modal" data-bs-target="#signinModal" href="{% url 'sign_in' %}">Apartments</a>
+          {% endif %}
+        </li>
+        <li class="nav-item">
+          {% if request.user.is_authenticated %}
+          <a class="nav-link" href="{% url 'trends' %}">Trends</a>
+          {% else %}
+          <a class="nav-link" data-bs-toggle="modal" data-bs-target="#signinModal" href="{% url 'sign_in' %}">Trends</a>
+          {% endif %}
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'about' %}">About</a>
+        </li>
+
+
+        <!-- User Profile Dropdown-->
+        {% if request.user.is_authenticated %}
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            {{user.username}}
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{% url 'profile' %}">Profile</a></li>
+            <li><a class="dropdown-item" href="{% url 'notification' %}">Notification</a></li>
+            <li><a class="dropdown-item" href="{% url 'bookmarks' %}">Bookmarks</a></li>
+            <li><a class="dropdown-item" href="{% url 'settings' %}">Settings</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="{% url 'log_out' %}">Log Out</a></li>
+          </ul>
+        </li>
+      {% endif %}
+      </ul>
+
+      
+      <!-- Notification Button-->
+      {% if request.user.is_authenticated %}
+      <button type="button" class="btn btn-primary position-relative" onclick="window.location.href='{% url 'notification'%}' ;">
+        Notification
+        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+          99+
+          <span class="visually-hidden">unread messages</span>
+        </span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="{% url 'home_page' %}">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'apartments' %}">Apartments</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'trends' %}">Trends</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'about' %}">About</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Ashikur Rahman
-            </a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="{% url 'profile' %}">Profile</a></li>
-              <li><a class="dropdown-item" href="{% url 'notification' %}">Notification</a></li>
-              <li><a class="dropdown-item" href="{% url 'bookmarks' %}">Bookmarks</a></li>
-              <li><a class="dropdown-item" href="{% url 'settings' %}">Settings</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="{% url 'log_out' %}">Log Out</a></li>
-            </ul>
-          </li>
-        </ul>
-          <a class="btn btn-outline-success" href="{% url 'sign_up' %}">SIGN UP</a>
-          <a href="{%url 'sign_in' %}"><button class="btn btn-outline-success" type="submit">SIGN IN</button></a>
+      <!-- Bookmarks Button-->
+      <button type="button" class="btn btn-primary" onclick="window.location.href='{% url 'bookmarks' %}' ;">
+        Bookmarks <span class="badge bg-secondary">4</span>
+      </button>
+      {% else %}
+      <!-- Sign up + Sign in-->
+      <a class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#signupModal11" href="{% url 'sign_up_landlord_1' %}">SIGN UP</a>
+      <a class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#signinModal" href="{% url 'sign_in' %}">SIGN IN</a>
+      {% endif %}
+
+    </div>
+  </div>
+</nav>
+
+
+  <!-- Modal Signin-->
+  <div class="modal fade" id="signinModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+          {% include 'Signin/login.html' %}
+        </div>
       </div>
     </div>
-  </nav>
+  </div>
+
+
+  <!-- Modal SignUp Landlord 1-->
+  <div class="modal fade" id="signupModal11" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+          {% include 'Signup/signupLandlord1.html' %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <!-- Modal SignUp Landlord 2-->
+    <div class="modal fade" id="signupModal12" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body">
+            {% include 'Signup/signupLandlord2.html' %}
+          </div>
+        </div>
+      </div>
+    </div>
