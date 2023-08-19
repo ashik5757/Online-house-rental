@@ -5,8 +5,8 @@
             <div class="col-md-10 mx-auto">
                 <div class="card card-body">
                     <h2>Sign Up</h2>
-                    <h6>As Landlord</h6>
-                    <form id="submitForm_signup_1" action="{%url 'sign_up_landlord' %}" method="post" class="row g-3 needs-validation-l" novalidate>
+                    <h6>As Renter</h6>
+                    <form id="submitForm_signup_1" action="{%url 'sign_up_renter' %}" method="post" class="row g-3 needs-validation-l" novalidate>
                         {% csrf_token %}
                         <div class="form-group required">
                             <lSabel for="firstname">First Name</lSabel>
@@ -31,10 +31,10 @@
                         </div>
 
                         <div class="form-group required">
-                            <lSabel for="address">Address</lSabel>
-                            <input type="text" class="form-control text-lowercase" id="address" name="address" pattern="[a-zA-Z\s,]{3,}" maxlength="40" value="" required>
+                            <lSabel for="address">Ocupation</lSabel>
+                            <input type="text" class="form-control text-lowercase" id="ocupation" name="ocupation" pattern="[a-zA-Z\s,]{3,}" maxlength="20" value="" required>
                             <div class="invalid-feedback">
-                                Invalid address.
+                                Invalid Ocupation.
                             </div>
                         </div>
 

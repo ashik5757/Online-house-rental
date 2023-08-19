@@ -128,9 +128,8 @@ def SignUp_landlord(request):
         return render(request, '404.html')
 
 
-def SignUp_landlord_2(request):
+def SignUp_renter(request):
     if request.method == 'POST':
-        # print(data)
         print(request.POST)
         return redirect('home_page')
     

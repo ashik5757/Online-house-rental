@@ -14,5 +14,8 @@ urlpatterns = [
     path('sigin/', views.Signin, name='sign_in'),
     path('sigup_base/', views.Signup_base, name='signup_base'),
     path('signup_landlord/', views.SignUp_landlord, name='sign_up_landlord'),
+    path('signup_renter/', views.SignUp_renter, name='sign_up_renter')
+
+    
 
 ]
