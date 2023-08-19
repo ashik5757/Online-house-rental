@@ -9,35 +9,35 @@ from .models import *
 def Homepage(request):
     return render(request, 'index.html')
 
-@login_required(login_url='sign_in_hardlink')
+@login_required(login_url='sign_in')
 def Apartments(request):
     return render(request, 'Apartments/apartments.html')
 
 
-@login_required(login_url="sign_in_hardlink")
+@login_required(login_url="sign_in")
 def Trends(request):
     return render(request, 'Trends/trends.html')
 
 def About(request):
     return render(request, 'About/about.html')
 
-@login_required(login_url="sign_in_hardlink")
+@login_required(login_url="sign_in")
 def Profile(request):
     return render(request, 'Profile/profile_page.html')
 
-@login_required(login_url="sign_in_hardlink")
+@login_required(login_url="sign_in")
 def Notification(request):
     return render(request, 'Profile/notification.html')
 
-@login_required(login_url="sign_in_hardlink")
+@login_required(login_url="sign_in")
 def Bookmarks(request):
     return render(request, 'Profile/bookmarks.html')
 
-@login_required(login_url="sign_in_hardlink")
+@login_required(login_url="sign_in")
 def Settings(request):
     return render(request, 'Profile/settings.html')
 
-@login_required(login_url="sign_in_hardlink")
+@login_required(login_url="sign_in")
 def LogoutUser(request):
     logout(request)
     messages.warning(request, 'Logged out')
@@ -106,22 +106,27 @@ def Signin(request):
             return redirect('home_page')
     
     else:
-        return HttpResponse('404 - Not Found')
+        return render(request, '404.html')
 
 
 
 
+def Signup_base(request):
+    return render('base_signup.html')
 
 
 
-def SignUp_landlord_1(request):
+
+def SignUp_landlord(request):
     if request.method == 'POST':
         print(request.POST)
+        return redirect('home_page')
 
         # return render(request, 'Signup/signupLandlord1.html')
 
     else:
-        return HttpResponse('404 - Not Found')
+        return render(request, '404.html')
+
 
 def SignUp_landlord_2(request):
     if request.method == 'POST':
@@ -130,4 +135,5 @@ def SignUp_landlord_2(request):
         return redirect('home_page')
     
     else:
-        return HttpResponse('404 - Not Found')
+        return render(request, '404.html')
+

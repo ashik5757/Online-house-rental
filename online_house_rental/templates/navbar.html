@@ -26,24 +26,6 @@
         <li class="nav-item">
           <a class="nav-link" href="{% url 'about' %}">About</a>
         </li>
-
-
-        <!-- User Profile Dropdown-->
-        {% if request.user.is_authenticated %}
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            {{user.username}}
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="{% url 'profile' %}">Profile</a></li>
-            <li><a class="dropdown-item" href="{% url 'notification' %}">Notification</a></li>
-            <li><a class="dropdown-item" href="{% url 'bookmarks' %}">Bookmarks</a></li>
-            <li><a class="dropdown-item" href="{% url 'settings' %}">Settings</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="{% url 'log_out' %}">Log Out</a></li>
-          </ul>
-        </li>
-      {% endif %}
       </ul>
 
       
@@ -60,9 +42,28 @@
       <button type="button" class="btn btn-primary" onclick="window.location.href='{% url 'bookmarks' %}' ;">
         Bookmarks <span class="badge bg-secondary">4</span>
       </button>
+
+      <!-- User Profile Dropdown-->
+      <ul class="navbar-nav ml-auto ">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            {{user.username}}
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{% url 'profile' %}">Profile</a></li>
+            <li><a class="dropdown-item" href="{% url 'notification' %}">Notification</a></li>
+            <li><a class="dropdown-item" href="{% url 'bookmarks' %}">Bookmarks</a></li>
+            <li><a class="dropdown-item" href="{% url 'settings' %}">Settings</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="{% url 'log_out' %}">Log Out</a></li>
+          </ul>
+        </li>
+      </ul>
+
+
       {% else %}
       <!-- Sign up + Sign in-->
-      <a class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#signupModal11" href="{% url 'sign_up_landlord_1' %}">SIGN UP</a>
+      <a class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#signupModal_base" href="{% url 'signup_base' %}">SIGN UP</a>
       <a class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#signinModal" href="{% url 'sign_in' %}">SIGN IN</a>
       {% endif %}
 
@@ -71,36 +72,43 @@
 </nav>
 
 
-  <!-- Modal Signin-->
-  <div class="modal fade" id="signinModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-body">
-          {% include 'Signin/login.html' %}
-        </div>
+<!-- Modal Signin-->
+<div class="modal fade" id="signinModal" tabindex="-1" aria-labelledby="signinModals" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        {% include 'Signin/login.html' %}
       </div>
     </div>
   </div>
+</div>
 
-
-  <!-- Modal SignUp Landlord 1-->
-  <div class="modal fade" id="signupModal11" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-body">
-          {% include 'Signup/signupLandlord1.html' %}
-        </div>
+<!-- Modal base Signup -->
+<div class="modal fade" id="signupModal_base" tabindex="-1" aria-labelledby="signupModal_base" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        {% include 'Signup/base_signup.html' %}
       </div>
     </div>
   </div>
+</div>
 
-    <!-- Modal SignUp Landlord 2-->
-    <div class="modal fade" id="signupModal12" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-body">
-            {% include 'Signup/signupLandlord2.html' %}
-          </div>
-        </div>
+<!-- Modal SignUp Landlord 1-->
+<div class="modal fade" id="signupModal1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="signupModal1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        {% include 'Signup/signupLandlord.html' %}
       </div>
     </div>
+  </div>
+</div>
+
+
+
+
+

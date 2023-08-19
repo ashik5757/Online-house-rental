@@ -12,8 +12,7 @@ urlpatterns = [
     path('settings/', views.Settings, name='settings'),
     path('logout/', views.LogoutUser, name='log_out'),
     path('sigin/', views.Signin, name='sign_in'),
-    # path('sigin_required/', views.Signin_hardlink, name='sign_in_hardlink'),
-    path('signup_landlord_1/', views.SignUp_landlord_1, name='sign_up_landlord_1'),
-    path('signup_landlord_2/', views.SignUp_landlord_2, name='sign_up_landlord_2')
+    path('sigup_base/', views.Signup_base, name='signup_base'),
+    path('signup_landlord/', views.SignUp_landlord, name='sign_up_landlord'),
 
 ]
