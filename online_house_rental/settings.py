@@ -130,14 +130,14 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'online_house_rental/static/'
-MEDIA_URL = 'online_house_rental/image/'
+MEDIA_URL = 'online_house_rental/images/'
 
 STATICFILES_DIRS = [
     BASE_DIR / 'online_house_rental/static','rental_app/static'
 ]
 
 # STATIC_ROOT = os.path.join(BASE_DIR, 'online_house_rental/static/')
-MEDIA_ROOT = os.path.join(BASE_DIR, 'online_house_rental/static/image')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'online_house_rental/static/images')
 
 
 # Default primary key field type
