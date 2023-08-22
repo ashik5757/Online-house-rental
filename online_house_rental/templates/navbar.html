@@ -1,13 +1,12 @@
 {% load static %}
 
 {% block more_link %}                              
-<link rel="stylesheet" href="{% static 'css/demo_for_navbar_others.css' %}">             <!-- used from core app('online_house_rental' app) -->
+<link rel="stylesheet" href="{% static 'css/navbar.css' %}">             
 {% endblock more_link %}
 
 <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
   <div class="container-fluid">
-    <!-- (navbar-brand) prev. class -->
-    <a class="logo_demo" href="{% url 'home_page' %}">LOGO</a>
+    <a class="navbar-brand" href="{% url 'home_page' %}">LOGO</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
