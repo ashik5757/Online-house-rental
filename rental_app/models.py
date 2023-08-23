@@ -1,41 +1,59 @@
 from django.db import models
+from django.contrib.auth.models import User
 from django.utils.text import slugify
 from multiselectfield import MultiSelectField
 
 
-class User(models.Model):
-    ADMIN = 'A'
-    LANDLORD = 'LL'
-    RENTER = 'R'
-    ROLE_CHOICES = [
-        (ADMIN,'Admin'),            # maybe no need
-        (LANDLORD, 'Landlord'),
-        (RENTER, 'Renter')
-    ]
+# class UserManager(models.Manager):
+#     def create_user(self, username, email, password, role):
+#         user = self.create(username=username, email=email, password=password, role=role)
+#         return user
 
-    # user_id = models.SmallIntegerField(auto_created=True)
-    username = models.CharField(max_length=100)
-    email = models.EmailField(unique=True)
-    password = models.CharField(max_length=100)
-    role = models.CharField(max_length=3, choices=ROLE_CHOICES, default=RENTER)
+# class User(models.Model):
+#     ADMIN = 'A'
+#     LANDLORD = 'LL'
+#     RENTER = 'R'
+#     ROLE_CHOICES = [
+#         (ADMIN,'Admin'),            # maybe no need
+#         (LANDLORD, 'Landlord'),
+#         (RENTER, 'Renter')
+#     ]
 
+#     # user_id = models.SmallIntegerField(auto_created=True)
+#     username = models.CharField(max_length=100, unique=True)
+#     email = models.EmailField(unique=True)
+#     password = models.CharField(max_length=100)
+#     role = models.CharField(max_length=3, choices=ROLE_CHOICES, default=RENTER)
+
+#     objects = UserManager()
+
+class LanlordManager(models.Manager):
+    def create_Landlord(self, first_name, last_name, phone_number, area, user):
+        landlord = self.create(first_name=first_name, last_name=last_name, phone_number=phone_number, area=area, user=user)
+        return landlord
+    
 
 class Landlord(models.Model):
     first_name = models.CharField(max_length=200)
     last_name = models.CharField(max_length=200)
     phone_number = models.DecimalField(max_digits=11, decimal_places=0)
-    present_address = models.CharField(max_length=300)
-    permanent_address = models.CharField(max_length=300)
-    User = models.OneToOneField(User, on_delete=models.CASCADE, unique=True, primary_key=False)
+    present_address = models.CharField(max_length=300, null=True, blank=True)
+    permanent_address = models.CharField(max_length=300, null=True, blank=True)
+    area = models.CharField(max_length=100, default='')
+    user = models.OneToOneField(User, on_delete=models.CASCADE, unique=True, primary_key=False)
+
+    objects = LanlordManager()
+
 
 class Renter(models.Model):
     first_name = models.CharField(max_length=200)
     last_name = models.CharField(max_length=200)
     phone_number = models.DecimalField(max_digits=11, decimal_places=0)
-    present_address = models.CharField(max_length=300)
-    permanent_address = models.CharField(max_length=300)
-    occupation = models.CharField(max_length=100)
-    User = models.OneToOneField(User, on_delete=models.CASCADE, unique=True, primary_key=False)
+    present_address = models.CharField(max_length=300, null=True, blank=True)
+    permanent_address = models.CharField(max_length=300, null=True, blank=True)
+    area = models.CharField(max_length=100, default='')
+    occupation = models.CharField(max_length=100, null=True, blank=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, unique=True, primary_key=False)
 
 
 class Rental_Property(models.Model):

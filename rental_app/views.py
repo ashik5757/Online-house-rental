@@ -86,14 +86,15 @@ def Signin(request):
         username = request.POST.get('username')
         password = request.POST.get('password')
 
-        # try:
-        #     user = User.objects.get(username=username)
-        #     # email = User.objects.get(email=username)  # have to complete
-        # except:
-        #     print(Exception)
-        #     messages.error(request, 'User not found')
+        try:
+            user = User.objects.get(username=username)
+            # email = User.objects.get(email=username)  # have to complete
+        except:
+            # print(Exception)
+            messages.error(request, 'User does not exist')
+            return redirect('home_page')
         
-        # user = User.objects.get(username=username)
+        user = User.objects.get(username=username)
 
         user = authenticate(request, username=username, password=password)
 
@@ -118,8 +119,31 @@ def Signup_base(request):
 
 
 def SignUp_landlord(request):
+
     if request.method == 'POST':
+
         print(request.POST)
+
+        first_name = request.POST.get('firstname')
+        last_name = request.POST.get('lastname')
+        phone = request.POST.get('phone')
+        Address = request.POST.get('Address')
+        city = request.POST.get('city')
+
+        username = request.POST.get('username')
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+
+        new_user = User.objects.create_user(username=username, email=email, password=password)
+        new_user.first_name = first_name
+        new_user.last_name = last_name
+        new_user.save()
+
+        new_landlord = Landlord.objects.create_Landlord(first_name, last_name, phone, city, new_user)
+        new_landlord.save()
+
+        messages.success(request, 'Your account has been successfully created')
+
         return redirect('home_page')
 
         # return render(request, 'Signup/signupLandlord1.html')
