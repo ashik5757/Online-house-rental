@@ -111,6 +111,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTH_USER_MODEL = 'rental_app.User'
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
@@ -124,11 +125,14 @@ USE_I18N = True
 USE_TZ = True
 
 
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/4.2/howto/static-files/
+
 STATIC_URL = 'online_house_rental/static/'
 MEDIA_URL = 'online_house_rental/images/'
 
 STATICFILES_DIRS = [
-    BASE_DIR / 'online_house_rental/static','rental_app/static'
+    BASE_DIR / 'online_house_rental/static'
 ]
 
 # STATIC_ROOT = os.path.join(BASE_DIR, 'online_house_rental/static/')
