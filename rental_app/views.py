@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, HttpResponse
 from django.contrib import messages
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
-# from django.contrib.auth.models import User
+from django.contrib.auth.models import User
 from .models import *
 
 
@@ -23,6 +23,7 @@ def About(request):
 
 @login_required(login_url="sign_in")
 def Profile(request):
+    
     return render(request, 'Profile/profile_page.html')
 
 @login_required(login_url="sign_in")
@@ -127,23 +128,28 @@ def SignUp_landlord(request):
         first_name = request.POST.get('firstname')
         last_name = request.POST.get('lastname')
         phone = request.POST.get('phone')
-        Address = request.POST.get('Address')
-        city = request.POST.get('city')
+        # Address = request.POST.get('Address')
+        area = request.POST.get('area')
 
         username = request.POST.get('username')
         email = request.POST.get('email')
         password = request.POST.get('password')
 
-        new_user = User.objects.create_user(username=username, email=email, password=password)
-        new_user.first_name = first_name
-        new_user.last_name = last_name
-        new_user.save()
+        if User.objects.filter(username=username).exists():
+            messages.error(request, 'Username already exists')
+            return redirect('home_page')
+        
+        try:
+            new_user = User.objects.create_user(username=username, email=email, password=password, role='L')
+            new_landlord = Landlord.objects.create_Landlord(first_name, last_name, phone, area, new_user)
+            new_landlord.save()
+        except:
+            messages.error(request, 'Something went wrong')
+            return redirect('home_page')
 
-        new_landlord = Landlord.objects.create_Landlord(first_name, last_name, phone, city, new_user)
-        new_landlord.save()
 
         messages.success(request, 'Your account has been successfully created')
-
+        messages.success(request, 'You can login NOW!')
         return redirect('home_page')
 
         # return render(request, 'Signup/signupLandlord1.html')
@@ -153,10 +159,38 @@ def SignUp_landlord(request):
 
 
 def SignUp_renter(request):
+
     if request.method == 'POST':
+
         print(request.POST)
+
+        first_name = request.POST.get('firstname')
+        last_name = request.POST.get('lastname')
+        phone = request.POST.get('phone')
+        area = request.POST.get('area')
+        username = request.POST.get('username')
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+
+        if User.objects.filter(username=username).exists():
+            messages.error(request, 'Username already exists')
+            return redirect('home_page')
+        
+        try:
+            new_user = User.objects.create_user(username=username, email=email, password=password, role='R')
+            new_renter = Renter.objects.create_Renter(first_name, last_name, phone, area, new_user)
+            new_renter.save()
+        except:
+            messages.error(request, 'Something went wrong')
+            return redirect('home_page')
+
+
+        messages.success(request, 'Your account has been successfully created')
+        messages.success(request, 'You can login NOW!')
         return redirect('home_page')
-    
+
+        # return render(request, 'Signup/signupLandlord1.html')
+
     else:
         return render(request, '404.html')
 

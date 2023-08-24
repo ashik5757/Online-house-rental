@@ -1,31 +1,27 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractUser, UserManager
+from django.contrib.auth.validators import ASCIIUsernameValidator
 from django.utils.text import slugify
 from multiselectfield import MultiSelectField
 
 
-# class UserManager(models.Manager):
-#     def create_user(self, username, email, password, role):
-#         user = self.create(username=username, email=email, password=password, role=role)
-#         return user
 
-# class User(models.Model):
-#     ADMIN = 'A'
-#     LANDLORD = 'LL'
-#     RENTER = 'R'
-#     ROLE_CHOICES = [
-#         (ADMIN,'Admin'),            # maybe no need
-#         (LANDLORD, 'Landlord'),
-#         (RENTER, 'Renter')
-#     ]
+class User(AbstractUser):
+    ADMIN = 'A'
+    LANDLORD = 'L'
+    RENTER = 'R'
+    ROLE_CHOICES = [
+        (ADMIN,'Admin'),            
+        (LANDLORD, 'Landlord'),
+        (RENTER, 'Renter')
+    ]
+    
+    role = models.CharField(max_length=3, choices=ROLE_CHOICES, default=ADMIN)
 
-#     # user_id = models.SmallIntegerField(auto_created=True)
-#     username = models.CharField(max_length=100, unique=True)
-#     email = models.EmailField(unique=True)
-#     password = models.CharField(max_length=100)
-#     role = models.CharField(max_length=3, choices=ROLE_CHOICES, default=RENTER)
+    username_validator = ASCIIUsernameValidator()
+    objects = UserManager()
 
-#     objects = UserManager()
+
 
 class LanlordManager(models.Manager):
     def create_Landlord(self, first_name, last_name, phone_number, area, user):
@@ -45,6 +41,12 @@ class Landlord(models.Model):
     objects = LanlordManager()
 
 
+class RenterManager(models.Manager):
+    def create_Renter(self, first_name, last_name, phone_number, area, user):
+        renter = self.create(first_name=first_name, last_name=last_name, phone_number=phone_number, area=area, user=user)
+        return renter
+
+
 class Renter(models.Model):
     first_name = models.CharField(max_length=200)
     last_name = models.CharField(max_length=200)
@@ -55,6 +57,7 @@ class Renter(models.Model):
     occupation = models.CharField(max_length=100, null=True, blank=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE, unique=True, primary_key=False)
 
+    objects = RenterManager()
 
 class Rental_Property(models.Model):
     FAMILY = 'F'
