@@ -1,0 +1,214 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+Online House Rental | {{ user.username }}
+{% endblock title %}
+
+
+{% block more_link %}
+<link href="{% static 'css/edit_profile.css' %}" rel="stylesheet">
+<!-- <link href="{% static 'css/profile.css' %}" rel="stylesheet"> -->
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+{% endblock more_link %}
+    
+
+
+
+{% block  home_content %}
+
+
+<div class="container">
+
+
+    <div class="row">
+        <div class="col">
+            <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4">
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item"><a href="{% url 'home_page' %}">Home</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'profile_post' user.username %}">Profile</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Edit-Profile</li>
+            </ol>
+            </nav>
+        </div>
+    </div>
+
+   <div class="row">
+      <div class="col-md-12">
+         <div id="content" class="content content-full-width">
+
+            <!-- begin profile-content -->
+            <div class="profile-content">
+                <div class="container">
+                    <div class="row gutters">
+
+                        <!-- START Left Panel -->
+                        <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <div class="account-settings">
+                                        <div class="user-profile">
+                                            <div class="user-avatar">
+                                                <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Maxwell Admin">
+                                            </div>
+                                            <h5 class="user-name">{{p.first_name}}</h5>
+                                            <h6 class="user-email">{{user.email}}</h6>
+                                        </div>
+                                        
+                                        <!-- list link START -->
+                                        <div class="col-md-10 pt-0">
+                                            <div class="list-group list-group-flush account-settings-links">
+                                                <a class="list-group-item list-group-item-action active" data-toggle="list" href="{% url 'edit_profile_general' user.username %}">General</a>
+                                                <a class="list-group-item list-group-item-action" data-toggle="list" href="{% url 'edit_profile_user_email' user.username %}">Username and Email</a>
+                                                <a class="list-group-item list-group-item-action" data-toggle="list" href="{% url 'edit_profile_password' user.username %}">Change password</a>
+                                                <a class="list-group-item list-group-item-action" data-toggle="list" href="#account-social-links">Social links</a>
+                                                <a class="list-group-item list-group-item-action" data-toggle="list" href="#account-connections">Connections</a>
+                                                <a class="list-group-item list-group-item-action" data-toggle="list" href="#account-notifications">Notifications</a>
+                                            </div>
+                                        </div>
+                                        <!-- list link END -->
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END Left Panel -->
+
+
+                        <!-- START Right Panel -->
+                        <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+                            <div class="card h-100">
+                                <div class="card-body">
+
+                                    <!-- START first half -->
+                                    <div class="row gutters">
+                                        <!-- START Change Profile Picture  -->
+                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                            <h6 class="mb-2 text-primary">Change Profile Picture</h6>
+                                        </div>
+                                        <div class="card-body media align-items-center">
+                                            <div class="user-avatar">
+                                                <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Maxwell Admin" style="width: 80px;">
+                                            </div>
+                                            <div class="media-body ml-4">
+                                            <label class="btn btn-outline-primary">
+                                                Upload new photo
+                                                <input type="file" class="account-settings-fileinput">
+                                            </label> &nbsp;
+                                            <button type="button" class="btn btn-default md-btn-flat">Reset</button>
+                            
+                                            <div class="text-light small mt-1">Allowed JPG, GIF or PNG. Max size of 800K</div>
+                                            </div>
+                                        </div>
+                                        <!-- END Change Profile Picture  -->
+
+
+                                        <!-- START Personal Details -->
+                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                            <h6 class="mb-2 text-primary">Personal Details</h6>
+                                        </div>
+                        
+                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                            <div class="form-group">
+                                                <label for="fullName">First Name</label>
+                                                <input type="text" class="form-control" id="first_name" name="first_name" value="{{p.first_name}}" placeholder="Enter First Name">
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                            <div class="form-group">
+                                                <label for="eMail">Last Name</label>
+                                                <input type="text" class="form-control" id="last_name" name="last_name" value="{{p.last_name}}" placeholder="Enter Last Name">
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                            <div class="form-group">
+                                                <label for="phone">Phone</label>
+                                                <input type="text" class="form-control" id="phone" name="phone" value="{{p.phone_number}}" placeholder="Enter Phone Number">
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                            <div class="form-group">
+                                                <label for="area">Occupation</label>
+                                                <input type="name" class="form-control" id="occupation" name="occupation" value="" placeholder="Enter your Occupation">
+                                            </div>
+                                        </div>
+                                        <!-- END Personal Details -->
+                                    </div>
+                                    <!-- END first half -->
+                                    
+
+                                    <!-- START Second half -->
+                                    <div class="row gutters">
+                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                            <h6 class="mt-3 mb-2 text-primary">Address</h6>
+                                        </div>
+                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                            <div class="form-group">
+                                                <label for="area">Area</label>
+                                                <input type="name" class="form-control" id="area" name="area" value="{{p.area}}" placeholder="Enter your Area">
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                            <div class="form-group">
+                                                <label for="area">District</label>
+                                                <input type="name" class="form-control" id="district" name="district" value="" placeholder="Enter your District">
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                            <div class="form-group">
+                                                <label for="present_address">Present Address</label>
+                                                <input type="text" class="form-control" id="present_address" name="present_address" 
+                                                {% if p.present_address is not None %}
+                                                value="{{p.present_address}}"
+                                                {% endif %} placeholder="(Ex : Road No, Block No, Area)">
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                            <div class="form-group">
+                                                <label for="ciTy">Permanent Address</label>
+                                                <input type="text" class="form-control" id="permanent_address" name="permanent_address"
+                                                {% if p.permanent_address is not None %}
+                                                value="{{p.permanent_address}}"
+                                                {% endif %} placeholder="(Ex : Road No, Block No, Area)">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- END Second half -->
+
+                                    <div class="row gutters">
+                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                            <div class="text-right">
+                                                <button type="button" id="submit" name="submit" class="btn btn-secondary">Cancel</button>
+                                                <button type="button" id="submit" name="submit" class="btn btn-primary">Update</button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END Right Panel -->
+
+                    </div>
+                </div>
+            </div>
+            <!-- begin profile-content -->
+         </div>
+      </div>
+   </div>
+</div>
+
+
+
+
+
+
+
+
+{% endblock home_content %}
+
+
+
+
+
+

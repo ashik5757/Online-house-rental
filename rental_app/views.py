@@ -31,6 +31,47 @@ def Profile(request, username):
 
     return render(request, 'Profile/profile_page.html', {'p' : profile})
 
+
+
+@login_required(login_url="sign_in")
+def Edit_Profile(request, username):
+        
+    if request.user.role == 'L':
+        profile = Landlord.objects.filter(user=request.user).first()
+    if request.user.role == 'R':
+        profile = Renter.objects.filter(user=request.user).first()
+
+    return render(request, 'Profile/Edit_profile/edit_profile_general.html', {'p' : profile})
+
+@login_required(login_url="sign_in")
+def Edit_Profile_user_email(request, username):
+        
+    if request.user.role == 'L':
+        profile = Landlord.objects.filter(user=request.user).first()
+    if request.user.role == 'R':
+        profile = Renter.objects.filter(user=request.user).first()
+
+    return render(request, 'Profile/Edit_profile/edit_profile_user_email.html', {'p' : profile})
+
+
+@login_required(login_url="sign_in")
+def Edit_Profile_password(request, username):
+        
+    if request.user.role == 'L':
+        profile = Landlord.objects.filter(user=request.user).first()
+    if request.user.role == 'R':
+        profile = Renter.objects.filter(user=request.user).first()
+
+    return render(request, 'Profile/Edit_profile/edit_profile_password.html', {'p' : profile})
+
+
+
+
+
+
+
+
+
 @login_required(login_url="sign_in")
 def Notification(request):
     return render(request, 'Profile/notification.html')
