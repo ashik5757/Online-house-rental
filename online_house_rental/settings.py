@@ -29,7 +29,9 @@ SECRET_KEY = 'django-insecure-y8=@w64$%jb**c0d6j&3w26b&0#^lk1z5t%5#$+ep-6+t9up@*
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+# ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 ALLOWED_HOSTS = []
+
 
 
 # Application definition
@@ -128,10 +130,15 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'online_house_rental/static/'
+MEDIA_URL = 'online_house_rental/images/'
 
 STATICFILES_DIRS = [
-    BASE_DIR / 'online_house_rental/static'
+    BASE_DIR / 'online_house_rental/static','rental_app/static'
 ]
+
+# STATIC_ROOT = os.path.join(BASE_DIR, 'online_house_rental/static/')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'online_house_rental/static/images')
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
