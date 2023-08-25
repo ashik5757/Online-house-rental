@@ -1,90 +1,115 @@
-
-<div class="pt-5">
+<div class="pt-0">
     <div class="container">
         <div class="row">
-            <div class="col-md-10 mx-auto">
-                <div class="card card-body">
-                    <h2>Sign Up</h2>
-                    <h6>As Renter</h6>
+            <div class="col-md-15 mx-auto">
+                <!-- <div class="card card-body"> -->
+                    <div class="d-flex flex-row mb-2">
+                        <div class="p-2">
+                            <h2>Sign Up</h2>
+                        </div>
+                        <div class="align-self-center">
+                            <h6>As Renter</h6>
+                        </div>
+                    </div>
                     <form id="submitForm_signup_1" action="{%url 'sign_up_renter' %}" method="post" class="row g-3 needs-validation-l" novalidate>
                         {% csrf_token %}
-                        <div class="form-group required">
-                            <lSabel for="firstname">First Name</lSabel>
-                            <input type="text" class="form-control" id="firstname" name="firstname" value="" pattern="[a-zA-Z\s]{2,}" maxlength="20" required>
-                            <div class="invalid-feedback">
-                                This field is required.
+                        <div class="row g-2">
+                            <div class="col form-floating mb-3">
+                                <input type="text" class="form-control" id="firstname" placeholder="firstname" value=""
+                                    pattern="[a-zA-Z\s]{2,}" maxlength="20" required>
+                                <label for="floatingInput">First Name</label>
+                                <div class="invalid-feedback">
+                                    This field is required.
+                                </div>
+                            </div>
+                            <div class="col form-floating mb-3">
+                                <input type="text" class="form-control" id="lastname" placeholder="lastname"
+                                    pattern="[a-zA-Z\s]{2,}" maxlength="20" value="" required>
+                                <label for="floatingInput">Last Name</label>
+                                <div class="invalid-feedback">
+                                    This field is required.
+                                </div>
                             </div>
                         </div>
-                        <div class="form-group required">
-                            <lSabel for="lastname">Last Name</lSabel>
-                            <input type="text" class="form-control" id="lastname" name="lastname" pattern="[a-zA-Z\s]{2,}" maxlength="20" value=""  required>
-                            <div class="invalid-feedback">
-                                This field is required.
+    
+                        <div class="row g-2">
+                            <div class="col form-floating mb-3">
+                                <input type="text" class="form-control" id="phone" placeholder="phone" pattern="^\d{11}$"
+                                    value="" required>
+                                <label for="floatingInput">Phone</label>
+                                <div class="invalid-feedback">
+                                    Invalid phone number.
+                                </div>
+                            </div>
+    
+                            <div class="col form-floating">
+                                <select class="form-select" id="area" aria-label="Floating label select example">
+                                    <option value="select">--select--</option>
+                                    <option value="banasree">Banasree</option>
+                                    <option value="rampura">Rampura</option>
+                                    <option value="badda">Badda</option>
+                                    <option value="uttara">Uttara</option>
+                                </select>
+                                <label for="floatingSelect">Area</label>
                             </div>
                         </div>
-                        <div class="form-group required">
-                            <lSabel for="phone">Phone</lSabel>
-                            <input type="phone" class="form-control" id="phone" name="phone" pattern="^\d{11}$" value="" required>
+    
+                        <!-- <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="address" placeholder="occupation"
+                                pattern="[a-zA-Z\s,]{3,}" maxlength="40" value="" required>
+                            <label for="floatingInput">Occupation</label>
                             <div class="invalid-feedback">
-                                Invalid phone number.
-                            </div>
-                        </div>
-
-                        <!-- <div class="form-group required">
-                            <lSabel for="address">Ocupation</lSabel>
-                            <input type="text" class="form-control" id="ocupation" name="ocupation" pattern="[a-zA-Z\s,]{3,}" maxlength="20" value="" required>
-                            <div class="invalid-feedback">
-                                Invalid Ocupation.
+                                Invalid Occupation.
                             </div>
                         </div> -->
-
-                        <div class="form-group required"><label for="area">Area</label>
-                            <select name="area" id="area">
-                                <option value="banasree">Banasree</option>
-                                <option value="rampura">Rampura</option>
-                                <option value="badda">Badda</option>
-                                <option value="uttara">Uttara</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group required">
-                            <lSabel for="username">User Name</lSabel>
-                            <input type="text" class="form-control text-lowercase" id="username" name="username" pattern="[a-z0-9]{5,}" value="" required>
-                            <div class="invalid-feedback">
-                                Invalid Username.
+    
+                        <div class="row g-2">
+                            <div class="col form-floating mb-3">
+                                <input type="text" class="form-control" id="username" placeholder="username"
+                                    pattern="[a-z0-9]{5,}" value="" required>
+                                <label for="floatingInput">Username</label>
+                                <div class="invalid-feedback">
+                                    Invalid Username.
+                                </div>
+                            </div>
+                            <div class="col form-floating mb-3">
+                                <input type="email" class="form-control" id="email" placeholder="name@example.com" value=""
+                                    required>
+                                <label for="floatingInput">Email</label>
+                                <div class="invalid-feedback">
+                                    Invalid Email.
+                                </div>
                             </div>
                         </div>
-                        <div class="form-group required">
-                            <lSabel for="email">Email</lSabel>
-                            <input type="email" class="form-control text-lowercase" id="email" name="email" value="" required>
-                            <div class="invalid-feedback">
-                                Invalid Email.
-                            </div>
-                        </div>
-                        
-                        <div class="form-group required">
-                            <label class="d-flex flex-row align-items-center" for="password">Password</label>
-                            <input type="password" class="form-control" id="password" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" maxlength="15" value="" 
+    
+                        <div class="row g-2">
+                            <div class="col form-floating mb-3">
+                                <input type="password" class="form-control" id="password" placeholder="password"
+                                    pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" maxlength="15" value=""
                                     onchange="form.confirmpassword.pattern = RegExp.escape(this.value);" required>
-                            <div class="invalid-feedback">
-                                Password must contain 6 to 15 characters including Uppercas,lowercase and numbers.
+                                <label class="floatingInput" for="password">Password</label>
+                                <div class="invalid-feedback">
+                                    Password must contain 6 to 15 characters including Uppercas,lowercase and numbers.
+                                </div>
+                            </div>
+    
+                            <div class="col form-floating mb-3">
+                                <input type="password" class="form-control" required="" id="confirmpassword"
+                                    placeholder="password" maxlength="15" value="">
+                                <label class="floatingInput" for="password">Confirm Password</label>
+                                <div class="invalid-feedback">
+                                    Invalid Password (Must be same)
+                                </div>
                             </div>
                         </div>
-
-                        <div class="form-group required">
-                            <label class="d-flex flex-row align-items-center" for="password">Confirm Password</label>
-                            <input type="password" class="form-control" required="" id="confirmpassword" name="password" value="" required>
-                            <div class="invalid-feedback">
-                                Invalid Password (Must be same)
-                            </div>
-                        </div>
-
+    
                         <div class="form-group pt-1">
-                            <button class="btn btn-primary btn-block" style="width:100%" type="submit">Create Account</button>
+                            <button class="btn btn-primary btn-block" style="width:100%" type="submit">Create
+                                Account</button>
                         </div>
-                        
+    
                     </form>
-                </div>
+                <!-- </div> -->
             </div>
         </div>
     </div>
@@ -125,5 +150,6 @@
     }
   
   </script>
+
 
 
