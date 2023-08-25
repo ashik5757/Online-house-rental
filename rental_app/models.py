@@ -33,8 +33,10 @@ class Landlord(models.Model):
     first_name = models.CharField(max_length=200)
     last_name = models.CharField(max_length=200)
     phone_number = models.DecimalField(max_digits=11, decimal_places=0)
+    occupation = models.CharField(max_length=100, null=True, blank=True)
     present_address = models.CharField(max_length=300, null=True, blank=True)
     permanent_address = models.CharField(max_length=300, null=True, blank=True)
+    district = models.CharField(max_length=100, null=True, blank=True)
     area = models.CharField(max_length=100, default='')
     user = models.OneToOneField(User, on_delete=models.CASCADE, unique=True, primary_key=False)
 
@@ -51,10 +53,11 @@ class Renter(models.Model):
     first_name = models.CharField(max_length=200)
     last_name = models.CharField(max_length=200)
     phone_number = models.DecimalField(max_digits=11, decimal_places=0)
+    occupation = models.CharField(max_length=100, null=True, blank=True)
     present_address = models.CharField(max_length=300, null=True, blank=True)
     permanent_address = models.CharField(max_length=300, null=True, blank=True)
+    district = models.CharField(max_length=100, null=True, blank=True)
     area = models.CharField(max_length=100, default='')
-    occupation = models.CharField(max_length=100, null=True, blank=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE, unique=True, primary_key=False)
 
     objects = RenterManager()
