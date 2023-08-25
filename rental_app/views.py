@@ -22,9 +22,14 @@ def About(request):
     return render(request, 'About/about.html')
 
 @login_required(login_url="sign_in")
-def Profile(request):
+def Profile(request, username):
     
-    return render(request, 'Profile/profile_page.html')
+    if request.user.role == 'L':
+        profile = Landlord.objects.filter(user=request.user).first()
+    if request.user.role == 'R':
+        profile = Renter.objects.filter(user=request.user).first()
+
+    return render(request, 'Profile/profile_page.html', {'p' : profile})
 
 @login_required(login_url="sign_in")
 def Notification(request):
