@@ -46,6 +46,7 @@ Online House Rental | {{ user.username }}
                         <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
                             <div class="card h-100">
                                 <div class="card-body">
+                                    
                                     <div class="account-settings">
                                         <div class="user-profile">
                                             <div class="user-avatar">
@@ -128,7 +129,7 @@ Online House Rental | {{ user.username }}
                                         </div>
                                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                             <div class="form-group">
-                                                <label for="area">Occupation</label>
+                                                <label for="occupation">Occupation</label>
                                                 <input type="name" class="form-control" id="occupation" name="occupation" value="" placeholder="Enter your Occupation">
                                             </div>
                                         </div>
@@ -145,7 +146,12 @@ Online House Rental | {{ user.username }}
                                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                             <div class="form-group">
                                                 <label for="area">Area</label>
-                                                <input type="name" class="form-control" id="area" name="area" value="{{p.area}}" placeholder="Enter your Area">
+                                                <input type="text" class="form-select" id="area" name="area" list="area_list" placeholder="Enter your Area">
+                                                <datalist id="area_list">
+                                                    {% for a in arealist %}
+                                                        <option value="{{a.name}}">
+                                                    {% endfor %}
+                                                </datalist>
                                             </div>
                                         </div>
                                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
@@ -209,6 +215,10 @@ Online House Rental | {{ user.username }}
 
 
 
-
+<!-- <script>
+    document.addEventListener('DOMContentLoaded', e => {
+        $('#area').autocomplete()
+    }, false);
+</script> -->
 
 

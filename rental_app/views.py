@@ -4,6 +4,7 @@ from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from .models import *
+from django.views import View
 
 
 def Homepage(request):
@@ -36,22 +37,27 @@ def Profile(request, username):
 @login_required(login_url="sign_in")
 def Edit_Profile(request, username):
         
+    areaObj = Area.objects.all()
+
     if request.user.role == 'L':
         profile = Landlord.objects.filter(user=request.user).first()
     if request.user.role == 'R':
         profile = Renter.objects.filter(user=request.user).first()
 
-    return render(request, 'Profile/Edit_profile/edit_profile_general.html', {'p' : profile})
+    context = {'p' : profile, 'arealist': areaObj}
+    return render(request, 'Profile/Edit_profile/edit_profile_general.html', context=context)
 
 @login_required(login_url="sign_in")
 def Edit_Profile_user_email(request, username):
+
         
     if request.user.role == 'L':
         profile = Landlord.objects.filter(user=request.user).first()
     if request.user.role == 'R':
         profile = Renter.objects.filter(user=request.user).first()
 
-    return render(request, 'Profile/Edit_profile/edit_profile_user_email.html', {'p' : profile})
+    context = {'p' : profile}
+    return render(request, 'Profile/Edit_profile/edit_profile_user_email.html', context=context)
 
 
 @login_required(login_url="sign_in")

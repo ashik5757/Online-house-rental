@@ -6,6 +6,22 @@ from multiselectfield import MultiSelectField
 
 
 
+class Area(models.Model):
+    name = models.CharField(max_length=30)
+
+    def __str__(self):
+        return self.name
+
+    # from rental_app.models import Area
+    # areas = ['Banasree', 'Rampura', 'Dhanmondi', 'Azimpur', 'Mirpur']
+    # objs = [Area(name=i) for i in areas]
+    # Area.objects.bulk_create(objs)
+
+
+
+
+
+
 class User(AbstractUser):
     ADMIN = 'A'
     LANDLORD = 'L'
