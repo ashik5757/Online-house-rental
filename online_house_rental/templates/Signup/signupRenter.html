@@ -15,17 +15,17 @@
                         {% csrf_token %}
                         <div class="row g-2">
                             <div class="col form-floating mb-3">
-                                <input type="text" class="form-control" id="firstname" placeholder="firstname" value=""
+                                <input type="text" class="form-control" id="firstname" name="firstname" placeholder="firstname" value=""
                                     pattern="[a-zA-Z\s]{2,}" maxlength="20" required>
-                                <label for="floatingInput">First Name</label>
+                                <label for="firstname">First Name</label>
                                 <div class="invalid-feedback">
                                     This field is required.
                                 </div>
                             </div>
                             <div class="col form-floating mb-3">
-                                <input type="text" class="form-control" id="lastname" placeholder="lastname"
+                                <input type="text" class="form-control" id="lastname" name="lastname" placeholder="lastname"
                                     pattern="[a-zA-Z\s]{2,}" maxlength="20" value="" required>
-                                <label for="floatingInput">Last Name</label>
+                                <label for="lastname">Last Name</label>
                                 <div class="invalid-feedback">
                                     This field is required.
                                 </div>
@@ -34,16 +34,16 @@
     
                         <div class="row g-2">
                             <div class="col form-floating mb-3">
-                                <input type="text" class="form-control" id="phone" placeholder="phone" pattern="^\d{11}$"
+                                <input type="text" class="form-control" id="phone" name="phone" placeholder="phone" pattern="^\d{11}$"
                                     value="" required>
-                                <label for="floatingInput">Phone</label>
+                                <label for="phone">Phone</label>
                                 <div class="invalid-feedback">
                                     Invalid phone number.
                                 </div>
                             </div>
     
                             <div class="col form-floating">
-                                <select class="form-select" id="area" aria-label="Floating label select example">
+                                <select class="form-select" id="area" name="area" aria-label="Floating label select example">
                                     <option value="select">--select--</option>
                                     <option value="banasree">Banasree</option>
                                     <option value="rampura">Rampura</option>
@@ -65,17 +65,17 @@
     
                         <div class="row g-2">
                             <div class="col form-floating mb-3">
-                                <input type="text" class="form-control" id="username" placeholder="username"
+                                <input type="text" class="form-control" id="username" name="username" placeholder="username"
                                     pattern="[a-z0-9]{5,}" value="" required>
-                                <label for="floatingInput">Username</label>
+                                <label for="username">User Name</label>
                                 <div class="invalid-feedback">
                                     Invalid Username.
                                 </div>
                             </div>
                             <div class="col form-floating mb-3">
-                                <input type="email" class="form-control" id="email" placeholder="name@example.com" value=""
+                                <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" value=""
                                     required>
-                                <label for="floatingInput">Email</label>
+                                <label for="email">Email</label>
                                 <div class="invalid-feedback">
                                     Invalid Email.
                                 </div>
@@ -84,7 +84,7 @@
     
                         <div class="row g-2">
                             <div class="col form-floating mb-3">
-                                <input type="password" class="form-control" id="password" placeholder="password"
+                                <input type="password" class="form-control" id="password" name="password" placeholder="password"
                                     pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" maxlength="15" value=""
                                     onchange="form.confirmpassword.pattern = RegExp.escape(this.value);" required>
                                 <label class="floatingInput" for="password">Password</label>
@@ -94,7 +94,7 @@
                             </div>
     
                             <div class="col form-floating mb-3">
-                                <input type="password" class="form-control" required="" id="confirmpassword"
+                                <input type="password" class="form-control" required="" id="confirmpassword" name="confirmpassword"
                                     placeholder="password" maxlength="15" value="">
                                 <label class="floatingInput" for="password">Confirm Password</label>
                                 <div class="invalid-feedback">
