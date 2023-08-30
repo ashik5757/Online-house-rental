@@ -50,7 +50,7 @@ Online House Rental | {{ user.username }}
                                     <div class="account-settings">
                                         <div class="user-profile">
                                             <div class="user-avatar">
-                                                <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Maxwell Admin">
+                                                <img src="{{ p.profile_image.url }}" alt="{{p.first_name}}">
                                             </div>
                                             <h5 class="user-name">{{p.first_name}}</h5>
                                             <h6 class="user-email">{{user.email}}</h6>
@@ -81,6 +81,12 @@ Online House Rental | {{ user.username }}
                             <div class="card h-100">
                                 <div class="card-body">
 
+                                <form id="submitForm_edit_profile_general" action="{%url 'edit_profile_general' user.username %}" method="post"
+                                    class="row g-3 needs-validation-l" enctype='multipart/form-data' novalidate>
+
+                                    {% csrf_token %}
+
+
                                     <!-- START first half -->
                                     <div class="row gutters">
                                         <!-- START Change Profile Picture  -->
@@ -88,13 +94,15 @@ Online House Rental | {{ user.username }}
                                             <h6 class="mb-2 text-primary">Change Profile Picture</h6>
                                         </div>
                                         <div class="card-body media align-items-center">
+                                            
+
                                             <div class="user-avatar">
-                                                <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Maxwell Admin" style="width: 80px;">
+                                                <img id="imagePreview" src="{{p.profile_image.url}}" alt="{{p.first_name}}" style="width: 80px;">
                                             </div>
                                             <div class="media-body ml-4">
                                             <label class="btn btn-outline-primary">
                                                 Upload new photo
-                                                <input type="file" class="account-settings-fileinput">
+                                                <input type="file" id="profile_image" name="profile_image" class="account-settings-fileinput" accept="image/*">
                                             </label> &nbsp;
                                             <button type="button" class="btn btn-default md-btn-flat">Reset</button>
                             
@@ -110,27 +118,34 @@ Online House Rental | {{ user.username }}
                                         </div>
                         
                                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                            <div class="form-group">
-                                                <label for="fullName">First Name</label>
-                                                <input type="text" class="form-control" id="first_name" name="first_name" value="{{p.first_name}}" placeholder="Enter First Name">
+                                            <div class="form-group"> 
+                                                <label for="first_name">First Name</label>
+                                                <input type="text" class="form-control" id="first_name" name="first_name" value="{{p.first_name}}" 
+                                                    placeholder="Enter First Name" pattern="[a-zA-Z\s]{2,}" maxlength="20" required>
+                                                <div class="invalid-feedback">
+                                                    This field is required.
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                             <div class="form-group">
-                                                <label for="eMail">Last Name</label>
-                                                <input type="text" class="form-control" id="last_name" name="last_name" value="{{p.last_name}}" placeholder="Enter Last Name">
+                                                <label for="last_name">Last Name</label>
+                                                <input type="text" class="form-control" id="last_name" name="last_name" value="{{p.last_name}}" 
+                                                    pattern="[a-zA-Z\s]{2,}" maxlength="20" placeholder="Enter Last Name" required>
                                             </div>
                                         </div>
                                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                             <div class="form-group">
                                                 <label for="phone">Phone</label>
-                                                <input type="text" class="form-control" id="phone" name="phone" value="{{p.phone_number}}" placeholder="Enter Phone Number">
+                                                <input type="text" class="form-control" id="phone" name="phone" value="{{p.phone_number}}" 
+                                                    pattern="^\d{11}$" placeholder="Phone (Ex:01XXXXXXXXX)" required>
                                             </div>
                                         </div>
                                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                             <div class="form-group">
                                                 <label for="occupation">Occupation</label>
-                                                <input type="name" class="form-control" id="occupation" name="occupation" value="" placeholder="Enter your Occupation">
+                                                <input type="text" class="form-control" id="occupation" name="occupation" value="{{p.occupation}}"
+                                                        pattern="[a-zA-Z\s]{3,}" maxlength="20" placeholder="Enter your Occupation" required>
                                             </div>
                                         </div>
                                         <!-- END Personal Details -->
@@ -146,7 +161,7 @@ Online House Rental | {{ user.username }}
                                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                             <div class="form-group">
                                                 <label for="area">Area</label>
-                                                <input type="text" class="form-select" id="area" name="area" list="area_list" placeholder="Enter your Area">
+                                                <input type="text" class="form-select" id="area" name="area" list="area_list" value="{{p.area}}" placeholder="Enter your Area" required>
                                                 <datalist id="area_list">
                                                     {% for a in arealist %}
                                                         <option value="{{a.name}}">
@@ -157,7 +172,12 @@ Online House Rental | {{ user.username }}
                                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                             <div class="form-group">
                                                 <label for="area">District</label>
-                                                <input type="name" class="form-control" id="district" name="district" value="" placeholder="Enter your District">
+                                                <input type="name" class="form-control" id="district" name="district" list="district_list" value="{{p.district}}" placeholder="Enter your District" required>
+                                                <datalist id="district_list">
+                                                    {% for d in distList %}
+                                                        <option value="{{d.name}}">
+                                                    {% endfor %}
+                                                </datalist>
                                             </div>
                                         </div>
                                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
@@ -166,7 +186,7 @@ Online House Rental | {{ user.username }}
                                                 <input type="text" class="form-control" id="present_address" name="present_address" 
                                                 {% if p.present_address is not None %}
                                                 value="{{p.present_address}}"
-                                                {% endif %} placeholder="(Ex : Road No, Block No, Area)">
+                                                {% endif %} placeholder="(Ex : Road No, Block No, Area)" required>
                                             </div>
                                         </div>
                                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
@@ -175,7 +195,7 @@ Online House Rental | {{ user.username }}
                                                 <input type="text" class="form-control" id="permanent_address" name="permanent_address"
                                                 {% if p.permanent_address is not None %}
                                                 value="{{p.permanent_address}}"
-                                                {% endif %} placeholder="(Ex : Road No, Block No, Area)">
+                                                {% endif %} placeholder="(Ex : Road No, Block No, Area)" required>
                                             </div>
                                         </div>
                                     </div>
@@ -184,12 +204,13 @@ Online House Rental | {{ user.username }}
                                     <div class="row gutters">
                                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                             <div class="text-right">
-                                                <button type="button" id="submit" name="submit" class="btn btn-secondary">Cancel</button>
-                                                <button type="button" id="submit" name="submit" class="btn btn-primary">Update</button>
+                                                <button type="button" id="cancel" name="cancel" class="btn btn-secondary">Cancel</button>
+                                                <button type="submit" id="submit" class="btn btn-primary">Update</button>
                                             </div>
                                         </div>
                                     </div>
 
+                                </form>
                                 </div>
                             </div>
                         </div>
@@ -206,19 +227,52 @@ Online House Rental | {{ user.username }}
 
 
 
+<script>
+    (() => {
+        'use strict'
+
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        const forms = document.querySelectorAll('.needs-validation-l')
+
+        // Loop over them and prevent submission
+        Array.from(forms).forEach(form => {
+            form.addEventListener('submit', event => {
+
+                if (!form.checkValidity()) {
+                    event.preventDefault()
+                    event.stopPropagation()
+                }
+
+                form.classList.add('was-validated')
+            }, false)
+        })
+    })()
+</script>
 
 
-
+<script>
+    document.getElementById('profile_image').addEventListener('change', function(event) {
+        const imagePreview = document.getElementById('imagePreview');
+        const selectedImage = event.target.files[0];
+    
+        if (selectedImage) {
+            const reader = new FileReader();
+    
+            reader.onload = function(e) {
+                imagePreview.src = e.target.result;
+            }
+    
+            reader.readAsDataURL(selectedImage);
+        }
+    });
+    </script>
+    
 
 
 {% endblock home_content %}
 
 
 
-<!-- <script>
-    document.addEventListener('DOMContentLoaded', e => {
-        $('#area').autocomplete()
-    }, false);
-</script> -->
+
 
 

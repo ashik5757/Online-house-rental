@@ -38,13 +38,43 @@ def Profile(request, username):
 def Edit_Profile(request, username):
         
     areaObj = Area.objects.all()
+    distObj = District.objects.all()
 
     if request.user.role == 'L':
         profile = Landlord.objects.filter(user=request.user).first()
+
     if request.user.role == 'R':
         profile = Renter.objects.filter(user=request.user).first()
+    
+    if request.method == 'POST':
+        profile_image = request.FILES['profile_image']
+        first_name = request.POST.get('first_name')
+        last_name = request.POST.get('last_name')
+        phone = request.POST.get('phone')
+        occupation = request.POST.get('occupation')
+        area = request.POST.get('area')
+        district = request.POST.get('district')
+        present_address = request.POST.get('present_address')
+        permanent_address = request.POST.get('permanent_address')
 
-    context = {'p' : profile, 'arealist': areaObj}
+        profile.profile_image = profile_image
+        profile.first_name = first_name
+        profile.last_name = last_name
+        profile.phone = phone
+        profile.occupation = occupation
+        profile.area = area
+        profile.district = district
+        profile.present_address = present_address
+        profile.permanent_address = permanent_address
+        
+        print(request.POST)
+        
+        profile.save()
+        messages.success(request, 'Profile Uopdated')
+        return redirect('profile_post', {'p' : profile})
+        
+        
+    context = {'p' : profile, 'arealist': areaObj, 'distList': distObj}
     return render(request, 'Profile/Edit_profile/edit_profile_general.html', context=context)
 
 @login_required(login_url="sign_in")
@@ -173,7 +203,13 @@ def Signup_base(request):
 
 def SignUp_landlord(request):
 
+    if request.method == 'GET':
+
+        return render(request, 'Signup/signupLandlord1.html', context=context)
+
     if request.method == 'POST':
+
+        areaObj = Area.objects.all()
 
         print(request.POST)
 

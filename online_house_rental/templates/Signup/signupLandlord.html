@@ -1,3 +1,5 @@
+{% load custom_context %}
+
 <div class="pt-0">
     <div class="container">
         <div class="row">
@@ -38,7 +40,7 @@
 
                     <div class="row g-2">
                         <div class="col form-floating mb-3">
-                            <input type="text" class="form-control" id="phone" name="phone" placeholder="phone" pattern="^\d{11}$"
+                            <input type="text" class="form-control" id="phone" name="phone" placeholder="Phone (Ex:01XXXXXXXXX)" pattern="^\d{11}$"
                                 value="" required>
                             <label for="phone">Phone</label>
                             <div class="invalid-feedback">
@@ -46,26 +48,21 @@
                             </div>
                         </div>
 
+                        {% city_context as areaObj %}
+
                         <div class="col form-floating">
-                            <select class="form-select" id="area" name="area" aria-label="Floating label select example">
-                                <option value="select">--Select your Area--</option>
-                                <option value="banasree">Banasree</option>
-                                <option value="rampura">Rampura</option>
-                                <option value="badda">Badda</option>
-                                <option value="uttara">Uttara</option>
-                            </select>
+                            <input type="text" class="form-select" id="area" name="area" list="area_list" placeholder="Enter your Area" required>
+                            <datalist id="area_list">
+                                {% for a in areaObj %}
+                                    <option value="{{a.name}}">
+                                {% endfor %}
+                            </datalist>
                             <label for="area">Area</label>
+                            <div class="invalid-feedback">
+                                Invalid Area-name.
+                            </div>
                         </div>
                     </div>
-
-                    <!-- <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="address" placeholder="address"
-                            pattern="[a-zA-Z\s,]{3,}" maxlength="40" value="" required>
-                        <label for="floatingInput">Address</label>
-                        <div class="invalid-feedback">
-                            Invalid address.
-                        </div>
-                    </div> -->
 
 
 

@@ -18,6 +18,16 @@ class Area(models.Model):
     # Area.objects.bulk_create(objs)
 
 
+class District(models.Model):
+    name = models.CharField(max_length=30)
+
+    def __str__(self):
+        return self.name
+
+    # from rental_app.models import Area
+    # areas = ['Banasree', 'Rampura', 'Dhanmondi', 'Azimpur', 'Mirpur']
+    # objs = [Area(name=i) for i in areas]
+    # Area.objects.bulk_create(objs)
 
 
 
@@ -43,9 +53,11 @@ class LanlordManager(models.Manager):
     def create_Landlord(self, first_name, last_name, phone_number, area, user):
         landlord = self.create(first_name=first_name, last_name=last_name, phone_number=phone_number, area=area, user=user)
         return landlord
+        
     
 
 class Landlord(models.Model):
+    profile_image = models.ImageField(default="", blank=True, null=True, upload_to='profile/profile_images/')
     first_name = models.CharField(max_length=200)
     last_name = models.CharField(max_length=200)
     phone_number = models.DecimalField(max_digits=11, decimal_places=0)
@@ -66,6 +78,7 @@ class RenterManager(models.Manager):
 
 
 class Renter(models.Model):
+    profile_image = models.ImageField(default="", blank=True, null=True, upload_to='profile/profile_images/')
     first_name = models.CharField(max_length=200)
     last_name = models.CharField(max_length=200)
     phone_number = models.DecimalField(max_digits=11, decimal_places=0)
@@ -135,13 +148,13 @@ class Services(models.Model):
     service_charge = models.DecimalField(max_digits=10, decimal_places=2)
 
 
-class Renter_ProfileImage(models.Model):
-    image = models.ImageField()
-    Renter = models.OneToOneField(Renter, on_delete=models.CASCADE, primary_key=True)
+# class Renter_ProfileImage(models.Model):
+#     image = models.ImageField()
+#     Renter = models.OneToOneField(Renter, on_delete=models.CASCADE, primary_key=True)
 
-class Landlord_ProfileImage(models.Model):
-    image = models.ImageField()
-    Landlord = models.OneToOneField(Landlord, on_delete=models.CASCADE, primary_key=True)
+# class Landlord_ProfileImage(models.Model):
+#     image = models.ImageField()
+#     Landlord = models.OneToOneField(Landlord, on_delete=models.CASCADE, primary_key=True)
 
 
 
