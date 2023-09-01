@@ -49,7 +49,11 @@ Online House Rental | {{ user.username }}
                                     <div class="account-settings">
                                         <div class="user-profile">
                                             <div class="user-avatar">
-                                                <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Maxwell Admin">
+                                                {% if p.profile_image.url is not None %}
+                                                    <img src="{{p.profile_image.url}}" alt="{{p.first_name}}" style="width: 80px;">
+                                                {% else %}
+                                                    <img src="{% static 'images/blank_profile_image.png' %}" alt="{{p.first_name}}" style="width: 80px;">
+                                                {% endif %}
                                             </div>
                                             <h5 class="user-name">{{p.first_name}}</h5>
                                             <h6 class="user-email">{{user.email}}</h6>

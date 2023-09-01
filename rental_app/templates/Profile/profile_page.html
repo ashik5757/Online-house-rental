@@ -43,8 +43,14 @@ Online House Rental | {{ user.username }}
                   <!-- BEGIN profile-header-content -->
                   <div class="profile-header-content">
                      <!-- BEGIN profile-header-img -->
+
                      <div class="profile-header-img">
-                        <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="">
+                        {% if p.profile_image.url is not None %}
+                           <img src="{{p.profile_image.url}}" alt="{{p.first_name}}">
+                        {% else %}
+                           <img src="{% static 'images/blank_profile_image.png' %}" alt="{{p.first_name}}">
+                        {% endif %}
+                        
                      </div>
                      <!-- END profile-header-img -->
                      <!-- BEGIN profile-header-info -->
@@ -100,7 +106,13 @@ Online House Rental | {{ user.username }}
                         <!-- begin timeline-body -->
                         <div class="timeline-body">
                               <div class="timeline-header">
-                                 <span class="userimage"><img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt=""></span>
+                                 <span class="userimage">
+                                    {% if p.profile_image.url is not None %}
+                                    <img src="{{p.profile_image.url}}" alt="{{p.first_name}}">
+                                    {% else %}
+                                       <img src="{% static 'images/blank_profile_image.png' %}" alt="{{p.first_name}}">
+                                    {% endif %}
+                                 </span>
                                  <span class="username"><a href="javascript:;">#{{user.username}}</a> <small></small></span>
                                  <span class="pull-right text-muted">18 Views</span>
                               </div>

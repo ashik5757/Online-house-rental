@@ -53,7 +53,7 @@ Online House Rental | {{ user.username }}
                                                 {% if p.profile_image.url is not None %}
                                                     <img src="{{p.profile_image.url}}" alt="{{p.first_name}}" style="width: 80px;">
                                                 {% else %}
-                                                    <img src="" alt="{{p.first_name}}" style="width: 80px;">
+                                                    <img src="{% static 'images/blank_profile_image.png' %}" alt="{{p.first_name}}" style="width: 80px;">
                                                 {% endif %}
                                             </div>
                                             <h5 class="user-name">{{p.first_name}}</h5>
@@ -106,7 +106,7 @@ Online House Rental | {{ user.username }}
                                                 {% if p.profile_image.url is not None %}
                                                     <img id="imagePreview" src="{{p.profile_image.url}}" alt="{{p.first_name}}" style="width: 80px;">
                                                 {% else %}
-                                                    <img id="imagePreview" src="" alt="{{p.first_name}}" style="width: 80px;">
+                                                    <img id="imagePreview" src="{% static 'images/blank_profile_image.png' %}" alt="{{p.first_name}}" style="width: 80px;">
                                                 {% endif %}
                                                             
                                                 
