@@ -274,9 +274,9 @@ def Signup_base(request):
 
 def SignUp_landlord(request):
 
-    if request.method == 'GET':
+    # if request.method == 'GET':
 
-        return render(request, 'Signup/signupLandlord1.html', context=context)
+    #     return render(request, 'Signup/signupLandlord1.html', context=context)
 
     if request.method == 'POST':
 
