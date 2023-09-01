@@ -9,3 +9,9 @@ register = template.Library()
 def city_context():
     areaObj = Area.objects.all()
     return areaObj
+
+
+@register.simple_tag
+def district_context():
+    distObj = District.objects.all()
+    return distObj
