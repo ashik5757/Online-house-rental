@@ -133,6 +133,7 @@ STATIC_URL = '/static/'
 MEDIA_URL = 'online_house_rental/media/'
 
 
+
 STATICFILES_DIRS = [
     BASE_DIR / 'rental_app/static'
 ]
