@@ -128,16 +128,16 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'online_house_rental/static/'
+STATIC_URL = '/static/'
 # MEDIA_URL = 'online_house_rental/images/'
 MEDIA_URL = 'online_house_rental/media/'
 
 
 STATICFILES_DIRS = [
-    BASE_DIR / 'online_house_rental/static'
+    BASE_DIR / 'rental_app/static'
 ]
 
-# STATIC_ROOT = os.path.join(BASE_DIR, 'online_house_rental/static/')
+STATIC_ROOT = os.path.join(BASE_DIR, 'online_house_rental/static/')
 # MEDIA_ROOT = os.path.join(BASE_DIR, 'online_house_rental/static/images')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'online_house_rental/media')
 
