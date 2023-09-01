@@ -80,6 +80,11 @@ Online House Rental | {{ user.username }}
                             <div class="card h-100">
                                 <div class="card-body">
 
+                                <form id="submitForm_edit_profile_user_email" action="{%url 'edit_profile_user_email' user.username %}" method="post"
+                                    class="row g-3 needs-validation-l" enctype='multipart/form-data' novalidate>
+
+                                    {% csrf_token %}
+
                                     <!-- START first half -->
                                     <div class="row gutters">
 
@@ -92,13 +97,13 @@ Online House Rental | {{ user.username }}
                                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                             <div class="form-group">
                                                 <label for="username">Username</label>
-                                                <input type="text" class="form-control lower-case" id="username" name="username" value="{{user.username}}" placeholder="Enter a username">
+                                                <input type="text" class="form-control lower-case" id="username" name="username" value="{{user.username}}" placeholder="Enter a username" required>
                                             </div>
                                         </div>
                                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                             <div class="form-group">
                                                 <label for="email">Email</label>
-                                                <input type="email" class="form-control lower-case" id="email" name="email" value="{{user.email}}" placeholder="Enter email ID">
+                                                <input type="email" class="form-control lower-case" id="email" name="email" value="{{user.email}}" placeholder="Enter email ID" required>
                                             </div>
                                         </div>
 
@@ -110,7 +115,7 @@ Online House Rental | {{ user.username }}
                                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                             <div class="form-group">
                                                 <label for="password">Password</label>
-                                                <input type="password" class="form-control" id="password" name="password" placeholder="Enter your current password">
+                                                <input type="password" class="form-control" id="password" name="password" placeholder="Enter your current password" required>
                                             </div>
                                         </div>
                                         <!-- END User and Email -->
@@ -123,11 +128,13 @@ Online House Rental | {{ user.username }}
                                     <div class="row gutters">
                                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                             <div class="text-right">
-                                                <button type="button" id="submit" name="submit" class="btn btn-secondary">Cancel</button>
-                                                <button type="button" id="submit" name="submit" class="btn btn-primary">Update</button>
+                                                <button type="button" id="cancel" name="cancel" class="btn btn-secondary">Cancel</button>
+                                                <button type="submit" id="submit" class="btn btn-primary">Update</button>
                                             </div>
                                         </div>
                                     </div>
+
+                                </form>
 
                                 </div>
                             </div>
@@ -146,7 +153,27 @@ Online House Rental | {{ user.username }}
 
 
 
+<script>
+    (() => {
+        'use strict'
 
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        const forms = document.querySelectorAll('.needs-validation-l')
+
+        // Loop over them and prevent submission
+        Array.from(forms).forEach(form => {
+            form.addEventListener('submit', event => {
+
+                if (!form.checkValidity()) {
+                    event.preventDefault()
+                    event.stopPropagation()
+                }
+
+                form.classList.add('was-validated')
+            }, false)
+        })
+    })()
+</script>
 
 
 

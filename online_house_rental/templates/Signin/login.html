@@ -10,9 +10,10 @@
                         {% csrf_token %}
                         <div class="form-group required">
                             <lSabel for="username">Username / Email</lSabel>
-                            <input type="text" class="form-control text-lowercase" id="username" name="username" pattern="[a-z0-9]{5,}" value="" required>
+                            <input type="text" class="form-control text-lowercase" id="username" name="username_email" minlength="5"  value="" required>
+                            
                             <div class="invalid-feedback">
-                                Invalid Username.
+                                Invalid Username or Email.
                             </div>
                         </div>
 

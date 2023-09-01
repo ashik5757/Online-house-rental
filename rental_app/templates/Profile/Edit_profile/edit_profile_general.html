@@ -50,7 +50,11 @@ Online House Rental | {{ user.username }}
                                     <div class="account-settings">
                                         <div class="user-profile">
                                             <div class="user-avatar">
-                                                <img src="{{ p.profile_image.url }}" alt="{{p.first_name}}">
+                                                {% if p.profile_image.url is not None %}
+                                                    <img src="{{p.profile_image.url}}" alt="{{p.first_name}}" style="width: 80px;">
+                                                {% else %}
+                                                    <img src="" alt="{{p.first_name}}" style="width: 80px;">
+                                                {% endif %}
                                             </div>
                                             <h5 class="user-name">{{p.first_name}}</h5>
                                             <h6 class="user-email">{{user.email}}</h6>
@@ -97,7 +101,15 @@ Online House Rental | {{ user.username }}
                                             
 
                                             <div class="user-avatar">
-                                                <img id="imagePreview" src="{{p.profile_image.url}}" alt="{{p.first_name}}" style="width: 80px;">
+                                                
+                                                
+                                                {% if p.profile_image.url is not None %}
+                                                    <img id="imagePreview" src="{{p.profile_image.url}}" alt="{{p.first_name}}" style="width: 80px;">
+                                                {% else %}
+                                                    <img id="imagePreview" src="" alt="{{p.first_name}}" style="width: 80px;">
+                                                {% endif %}
+                                                            
+                                                
                                             </div>
                                             <div class="media-body ml-4">
                                             <label class="btn btn-outline-primary">
@@ -144,8 +156,10 @@ Online House Rental | {{ user.username }}
                                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                             <div class="form-group">
                                                 <label for="occupation">Occupation</label>
-                                                <input type="text" class="form-control" id="occupation" name="occupation" value="{{p.occupation}}"
-                                                        pattern="[a-zA-Z\s]{3,}" maxlength="20" placeholder="Enter your Occupation" required>
+                                                <input type="text" class="form-control" id="occupation" name="occupation"
+                                                {% if p.occupation is not None %}
+                                                value="{{p.occupation}}"
+                                                {% endif %} pattern="[a-zA-Z\s]{3,}" maxlength="20" placeholder="Enter your Occupation" required>
                                             </div>
                                         </div>
                                         <!-- END Personal Details -->
@@ -172,7 +186,10 @@ Online House Rental | {{ user.username }}
                                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                             <div class="form-group">
                                                 <label for="area">District</label>
-                                                <input type="name" class="form-control" id="district" name="district" list="district_list" value="{{p.district}}" placeholder="Enter your District" required>
+                                                <input type="name" class="form-control" id="district" name="district" list="district_list"
+                                                {% if p.district is not None %}
+                                                value="{{p.district}}"
+                                                {% endif %} placeholder="Enter your District" required>
                                                 <datalist id="district_list">
                                                     {% for d in distList %}
                                                         <option value="{{d.name}}">
