@@ -1,12 +1,35 @@
-.nav-link{
+.nav-link {
     display: block;
     padding: var(--bs-nav-link-padding-y) var(--bs-nav-link-padding-x);
-    font-size: var(--bs-nav-link-font-size);
-    font-weight: var(--bs-nav-link-font-weight);
-    color: red;
+    font-family: 'Poppins';
+    font-size: large;
+    font-weight: 1000;
+    /* font-size: var(--bs-nav-link-font-size); */
+    /* font-weight: var(--bs-nav-link-font-weight); */
+    color: #0dcaf0;
     text-decoration: none;
     border: 0;
-    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out;
-    color: rgba(var(--bs-link-color-rgb),var(--bs-link-opacity,1));
-    text-decoration: underline;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out;
+    /* color: rgba(var(--bs-link-color-rgb),var(--bs-link-opacity,1)); */
 }
+
+nav {
+    /* opacity: 1; */
+    background-color: hwb(0 0% 100% / 0.548);
+    backdrop-filter: blur(8px);
+}
+
+.dropdown-item:hover{
+    background-color: #0dcaf0;
+    color: black;
+}
+
+/* .navbutton{
+    color: #0dcaf0;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out;
+    
+} 
+
+.navbutton :hover{ 
+    background-color: aliceblue;
+} */
