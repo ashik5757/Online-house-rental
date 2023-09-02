@@ -1,13 +1,14 @@
 .btn-login-custom {
     background-color: #0dcaf0;
-    color: black;
+    color: white;
 }
 
 .btn-login-custom:hover {
     /* color: var(--bs-btn-hover-color);
     background-color: var(--bs-btn-hover-bg);*/
     border-color: #0dcaf0;
-    background-color: aliceblue;
+    background-color: white;
+    color: #0dcaf0;
 } 
 
 
