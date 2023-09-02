@@ -1,0 +1,11 @@
+.btn-signup-custom {
+    background-color: #0dcaf0;
+    color: black;
+}
+
+.btn-signup-custom:hover {
+    /* color: var(--bs-btn-hover-color);
+    background-color: var(--bs-btn-hover-bg);*/
+    border-color: #0dcaf0;
+    background-color: aliceblue;
+} 

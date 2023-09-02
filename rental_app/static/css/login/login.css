@@ -1,0 +1,25 @@
+.btn-login-custom {
+    background-color: #0dcaf0;
+    color: black;
+}
+
+.btn-login-custom:hover {
+    /* color: var(--bs-btn-hover-color);
+    background-color: var(--bs-btn-hover-bg);*/
+    border-color: #0dcaf0;
+    background-color: aliceblue;
+} 
+
+
+.border-link,
+.sign-up-link,
+.admin-link{
+    text-decoration: none;
+    color: #0dcaf0;
+}
+
+.border-link:hover,
+.sign-up-link:hover,
+.admin-link:hover{
+    color: #00a3c4;
+}
