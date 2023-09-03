@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+Online House Rental | 404-Page ERROR
+{% endblock title %}
+
+{% block more_link %}
+<link href="{% static 'css/404.css' %}" rel="stylesheet">
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+{% endblock more_link%}
+
+{% block home_content %}
+
+
+<div align="center" class="container-fluid">
+
+
+    <div class="page-404">
+        <div class="outer">
+            <div class="middle">
+                <div class="inner">
+                    <!--BEGIN CONTENT-->
+                    <div class="inner-circle"><i class="fa fa-home"></i><span>404</span></div>
+                    <span class="inner-status">Oops! You're lost</span>
+                    <span class="inner-detail">
+                        We can not find the page you're looking for.
+                        <a href="{% url 'home_page' %}" class="btn btn-info mtl"><i class="fa fa-home"></i>&nbsp;
+                            Return home
+                        </a> 
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+
+{% endblock home_content %}
+
+

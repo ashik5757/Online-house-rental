@@ -1,0 +1,231 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+Online House Rental | {{ user.username }}
+{% endblock title %}
+
+
+{% block more_link %}
+<link href="{% static 'css/profile.css' %}" rel="stylesheet">
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+{% endblock more_link %}
+    
+
+{% block  home_content %}
+
+
+
+
+<div class="container">
+
+
+    <div class="row">
+        <div class="col">
+            <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4">
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item"><a href="{% url 'home_page' %}">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Profile</li>
+            </ol>
+            </nav>
+        </div>
+    </div>
+
+   <div class="row">
+      <div class="col-md-12">
+         <div id="content" class="content content-full-width">
+            <!-- begin profile -->
+            <div class="profile">
+               <div class="profile-header">
+                  <!-- BEGIN profile-header-cover -->
+                  <div class="profile-header-cover"></div>
+                  <!-- END profile-header-cover -->
+                  <!-- BEGIN profile-header-content -->
+                  <div class="profile-header-content">
+                     <!-- BEGIN profile-header-img -->
+
+                     <div class="profile-header-img">
+                        {% if p.profile_image.url is not None %}
+                           <img src="{{p.profile_image.url}}" alt="{{p.first_name}}">
+                        {% else %}
+                           <img src="{% static 'images/blank_profile_image.png' %}" alt="{{p.first_name}}">
+                        {% endif %}
+                        
+                     </div>
+                     <!-- END profile-header-img -->
+                     <!-- BEGIN profile-header-info -->
+                     <div class="profile-header-info">
+                        <h4 class="m-t-10 m-b-5">{{p.first_name}} ({{p.last_name}}) <small>#{{user.username}}</small></h4>
+                        <p class="m-b-10">
+                            Email : {{user.email}}  <br>
+                            Mobile : {{p.phone_number}} <br>
+                            UserType : {{user.role}} <br>
+                            UserID : {{user.id}}
+                            
+                        </p>
+                        <a href="{% url 'edit_profile_general' user.username %}" class="btn btn-sm btn-info mb-2">Edit Profile</a>
+                        <a href="#" class="btn btn-sm btn-info mb-2">Create Post</a>
+                     </div>
+                     <!-- END profile-header-info -->
+                  </div>
+                  <!-- END profile-header-content -->
+                  <!-- BEGIN profile-header-tab -->
+                  <ul class="profile-header-tab nav nav-tabs" style="align-content: center;">
+                     <li class="nav-item"><a href="{% url 'profile_post' user.username %}" target="posts" class="nav-link_ active show">POSTS</a></li>
+                     <li class="nav-item"><a href="#" target="about" class="nav-link_">ABOUT</a></li>
+                     <li class="nav-item"><a href="https://www.bootdey.com/snippets/view/profile-photos" target="__blank" class="nav-link_">PHOTOS</a></li>
+                     <li class="nav-item"><a href="https://www.bootdey.com/snippets/view/profile-videos"  target="__blank" class="nav-link_">VIDEOS</a></li>
+                  </ul>
+                  <!-- END profile-header-tab -->
+               </div>
+            </div>
+            <!-- end profile -->
+
+
+
+            <!-- begin profile-content -->
+            <div class="profile-content">
+               <!-- begin tab-content -->
+               <div class="tab-content p-0">
+                  <!-- begin #profile-post tab -->
+                  <div class="tab-pane fade active show" id="profile-post">
+                     <!-- begin timeline -->
+                     <ul class="timeline">
+
+                        
+                        {% for i in "x"|rjust:"10" %}
+                        <li>
+                           <!-- begin timeline-time -->
+                           <div class="timeline-time">
+                                 <span class="date">today</span>
+                                 <span class="time">04:20</span>
+                           </div>
+                           <!-- end timeline-time -->
+                           <!-- begin timeline-icon -->
+                           <div class="timeline-icon">
+                                 <a href="javascript:;">&nbsp;</a>
+                           </div>
+                           <!-- end timeline-icon -->
+                           <!-- begin timeline-body -->
+                           <div class="timeline-body">
+                                 <div class="timeline-header">
+                                    <span class="userimage">
+                                       {% if p.profile_image.url is not None %}
+                                       <img src="{{p.profile_image.url}}" alt="{{p.first_name}}">
+                                       {% else %}
+                                          <img src="{% static 'images/blank_profile_image.png' %}" alt="{{p.first_name}}">
+                                       {% endif %}
+                                    </span>
+                                    <span class="username"><a href="javascript:;">#{{user.username}}</a> <small></small></span>
+                                    <span class="pull-right text-muted">
+                                       <a href="">18 Reviews</a>
+                                    </span>
+                                 </div>
+                                 <div class="timeline-content">
+
+                                    <div class="card mb-3" style="max-width: 740px;">
+                                       <div class="row g-0">
+                                         <div class="col-md-4">
+                                           <!-- <img src="{% static 'images/blank_profile_image.png' %}" class="img-fluid rounded-start" alt="..."> -->
+                                             <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+                                                <div class="carousel-inner">
+                                                <div class="carousel-item active">
+                                                   <img src="{% static 'images/blank_profile_image.png' %}" class="d-block w-100" alt="...">
+                                                </div>
+                                                <div class="carousel-item">
+                                                   <img src="..." class="d-block w-100" alt="...">
+                                                </div>
+                                                <div class="carousel-item">
+                                                   <img src="{% static 'images/blank_profile_image.png' %}" class="d-block w-100" alt="...">
+                                                </div>
+                                                </div>
+                                             </div>
+                                         </div>
+                                         <div class="col-md-8">
+                                           <div class="card-body">
+                                             <h5 class="card-title">
+                                                <font style="font-size: small;">BDT</font> 90 Thousand <small style="font-size:x-small;">Available</small> 
+                                             </h5>
+
+                                             <h6>For Sale | 2 Beds 4 Baths | Area : 1,350 sqft</h6>
+
+
+                                             
+
+                                             <p class="card-text">Zakir Hossain Housing Society, South Khulshi, Khulshi, Chattogram</p>
+                                             <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+                                           </div>
+                                         </div>
+                                       </div>
+                                     </div>
+
+
+                                 </div>
+                                 <div class="timeline-likes">
+                                    <div class="stats-right">
+                                       <span class="stats-text">259 Shares</span>
+                                       <span class="stats-text">21 Comments</span>
+                                    </div>
+                                    <div class="stats">
+                                       <span class="stats-total">4.3k</span>
+                                    </div>
+                                 </div>
+                                 <div class="timeline-footer">
+                                    <a href="javascript:;" class="m-r-15 text-inverse-lighter"><i class="fa fa-bookmark fa-fw fa-lg m-r-3"></i> Save </a>
+                                    <a href="javascript:;" class="m-r-15 text-inverse-lighter"><i class="fa fa-comments fa-fw fa-lg m-r-3"></i> Comment</a>
+                                    <a href="javascript:;" class="m-r-15 text-inverse-lighter"><i class="fa fa-share fa-fw fa-lg m-r-3"></i> Share</a>
+                                 </div>
+                                 <div class="timeline-comment-box">
+                                    <div class="user"><img src="https://bootdey.com/img/Content/avatar/avatar2.png"></div>
+                                    <div class="input">
+                                       <form action="">
+                                       <div class="input-group">
+                                             <input type="text" class="form-control rounded-corner" placeholder="Write a comment...">
+                                             <span class="input-group-btn p-l-10">
+                                             <button class="btn btn-primary f-s-12 rounded-corner" type="button">Comment</button>
+                                             </span>
+                                       </div>
+                                       </form>
+                                    </div>
+                                 </div>
+                           </div>
+                           <!-- end timeline-body -->
+                        </li>
+                        {% endfor %}
+                           
+
+
+                        <!-- begin timeline-icon -->
+                        <div class="timeline-icon">
+                              <a href="javascript:;">&nbsp;</a>
+                        </div>
+                        <!-- end timeline-icon -->
+                        <!-- begin timeline-body -->
+                        <div class="timeline-body">
+                              Loading...
+                        </div>
+                        <!-- begin timeline-body -->
+                        </li>
+                     </ul>
+                     <!-- end timeline -->
+                  </div>
+                  <!-- end #profile-post tab -->
+               </div>
+               <!-- end tab-content -->
+            </div>
+            <!-- begin profile-content -->
+         </div>
+      </div>
+   </div>
+</div>
+
+
+
+
+
+
+
+
+{% endblock home_content %}
+
+
