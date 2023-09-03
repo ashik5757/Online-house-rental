@@ -60,9 +60,14 @@
       <ul class="navbar-nav ml-auto ">
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <!-- {{user.username}} -->
-            <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" class="rounded-circle" style="width: 40px;"
-            alt="Avatar" />
+            
+            
+            {% if p.profile_image.url is not None %}
+                <img src="{{p.profile_image.url}}" alt="{{p.first_name}}" class="rounded-circle" style="width: 40px;">
+            {% else %}
+                <img src="{% static 'images/blank_profile_image.png' %}" alt="{{p.first_name}}" class="rounded-circle" style="width: 40px;">
+            {% endif %}
+              
           </a>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="{% url 'profile_post' user.username %}">Profile</a></li>
