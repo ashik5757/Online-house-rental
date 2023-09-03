@@ -29,8 +29,10 @@ SECRET_KEY = 'django-insecure-y8=@w64$%jb**c0d6j&3w26b&0#^lk1z5t%5#$+ep-6+t9up@*
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+# ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 ALLOWED_HOSTS = []
 # ALLOWED_HOSTS = ['127.0.0.1']
+
 
 
 
@@ -133,7 +135,6 @@ USE_TZ = True
 STATIC_URL = '/static/'
 # MEDIA_URL = 'online_house_rental/images/'
 MEDIA_URL = 'online_house_rental/media/'
-
 
 
 STATICFILES_DIRS = [

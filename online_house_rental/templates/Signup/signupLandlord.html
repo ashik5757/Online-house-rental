@@ -1,4 +1,11 @@
+
+{% load static %}
+{% block more_link %}                              
+<link rel="stylesheet" href="{% static 'css/signup/signup.css' %}">             
+{% endblock more_link %}
+
 {% load custom_context %}
+
 
 <div class="pt-0">
     <div class="container">
@@ -7,11 +14,8 @@
                 <!-- <div class="card card-body"> -->
 
                 <div class="d-flex flex-row mb-2">
-                    <div class="p-2">
-                        <h2>Sign Up</h2>
-                    </div>
                     <div class="align-self-center">
-                        <h6>As Landlord</h6>
+                        <h5>As Landlord</h5>
                     </div>
                 </div>
 
@@ -108,7 +112,7 @@
                     </div>
 
                     <div class="form-group pt-1">
-                        <button class="btn btn-primary btn-block" style="width:100%" type="submit">Create
+                        <button class="btn btn-signup-custom btn-block" style="width:100%" type="submit">Create
                             Account</button>
                     </div>
 

@@ -1,10 +1,11 @@
 {% load static %}
-
-<div class="pt-5">
+{% block more_link %}                              
+<link rel="stylesheet" href="{% static 'css/login/login.css' %}">             
+{% endblock more_link %}
+<div class="pt-2 mx-4">
     <div class="container">
         <div class="row">
-            <div class="col-md-10 mx-auto">
-                <div class="card card-body">
+            <div class="col mx-auto">
                     <h2>Login</h2>
                     <form id="submitForm" action="{%url 'sign_in' %}" method="post" class="row g-3 needs-validation" novalidate>
                         {% csrf_token %}
@@ -18,8 +19,12 @@
                         </div>
 
                         <div class="form-group required">
+
+                            <label class="d-flex flex-row align-items-center" for="password">Password </label>
+
                             <label class="d-flex flex-row align-items-center" for="password">Password
                                 <a class="ml-auto border-link small-xl" href="">Forget?</a></label>
+
                             <input type="password" class="form-control" id="password" name="password" minlength="6" maxlength="15" value="" required>
                             <div class="invalid-feedback">
                                 Password must contain 6 to 15 characters.
@@ -33,18 +38,21 @@
                             </div>
                         </div>
                         <div class="form-group pt-1">
-                            <button class="btn btn-primary btn-block" style="width:100%" type="submit" >Log In</button>
+                            <button class="btn btn-login-custom btn-block" style="width:100%" type="submit" >Log In</button>
                         </div>
                     </form>
                     <p class="small-xl pt-3 text-center">
-                        <span class="text-muted">Not a member?</span>
-                        <a data-bs-toggle="modal" data-bs-target="#signupModal_base" href="{% url 'signup_base' %}">Sign up</a>
+                        <a class="ml-auto border-link small-xl" href="/forget-password">Forgotten password?</a>
                     </p>
+                    <p class="small-xl pt-3 text-center">
+                        <span class="text-muted">Not a member?</span>
+                        <a class="sign-up-link" data-bs-toggle="modal" data-bs-target="#signupModal_base" href="{% url 'signup_base' %}">Sign up</a>
+                    </p>
+                    
                     <p class="small-xl text-center">
                         <span class="text-muted">Login as an </span>
-                        <a href="{% url 'admin:index' %}">Admin</a>
+                        <a class="admin-link" href="{% url 'admin:index' %}">Admin</a>
                     </p>
-                </div>
             </div>
         </div>
     </div>

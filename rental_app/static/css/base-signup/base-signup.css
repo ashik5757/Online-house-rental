@@ -1,0 +1,9 @@
+.btn-option-custom{
+    background-color: #0dcaf0;
+    color: white;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out;
+}
+.btn-option-custom:hover{
+    color: #0dcaf0;
+    border-color: #0dcaf0;
+}
