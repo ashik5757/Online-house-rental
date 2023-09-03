@@ -91,177 +91,110 @@ Online House Rental | {{ user.username }}
                   <div class="tab-pane fade active show" id="profile-post">
                      <!-- begin timeline -->
                      <ul class="timeline">
+
+                        
+                        {% for i in "x"|rjust:"10" %}
                         <li>
-                        <!-- begin timeline-time -->
-                        <div class="timeline-time">
-                              <span class="date">today</span>
-                              <span class="time">04:20</span>
-                        </div>
-                        <!-- end timeline-time -->
-                        <!-- begin timeline-icon -->
-                        <div class="timeline-icon">
-                              <a href="javascript:;">&nbsp;</a>
-                        </div>
-                        <!-- end timeline-icon -->
-                        <!-- begin timeline-body -->
-                        <div class="timeline-body">
-                              <div class="timeline-header">
-                                 <span class="userimage">
-                                    {% if p.profile_image.url is not None %}
-                                    <img src="{{p.profile_image.url}}" alt="{{p.first_name}}">
-                                    {% else %}
-                                       <img src="{% static 'images/blank_profile_image.png' %}" alt="{{p.first_name}}">
-                                    {% endif %}
-                                 </span>
-                                 <span class="username"><a href="javascript:;">#{{user.username}}</a> <small></small></span>
-                                 <span class="pull-right text-muted">18 Views</span>
-                              </div>
-                              <div class="timeline-content">
-                                 <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc faucibus turpis quis tincidunt luctus.
-                                    Nam sagittis dui in nunc consequat, in imperdiet nunc sagittis.
-                                 </p>
-                              </div>
-                              <div class="timeline-likes">
-                                 <div class="stats-right">
-                                    <span class="stats-text">259 Shares</span>
-                                    <span class="stats-text">21 Comments</span>
-                                 </div>
-                                 <div class="stats">
-                                    <span class="fa-stack fa-fw stats-icon">
-                                    <i class="fa fa-circle fa-stack-2x text-danger"></i>
-                                    <i class="fa fa-heart fa-stack-1x fa-inverse t-plus-1"></i>
+                           <!-- begin timeline-time -->
+                           <div class="timeline-time">
+                                 <span class="date">today</span>
+                                 <span class="time">04:20</span>
+                           </div>
+                           <!-- end timeline-time -->
+                           <!-- begin timeline-icon -->
+                           <div class="timeline-icon">
+                                 <a href="javascript:;">&nbsp;</a>
+                           </div>
+                           <!-- end timeline-icon -->
+                           <!-- begin timeline-body -->
+                           <div class="timeline-body">
+                                 <div class="timeline-header">
+                                    <span class="userimage">
+                                       {% if p.profile_image.url is not None %}
+                                       <img src="{{p.profile_image.url}}" alt="{{p.first_name}}">
+                                       {% else %}
+                                          <img src="{% static 'images/blank_profile_image.png' %}" alt="{{p.first_name}}">
+                                       {% endif %}
                                     </span>
-                                    <span class="fa-stack fa-fw stats-icon">
-                                    <i class="fa fa-circle fa-stack-2x text-primary"></i>
-                                    <i class="fa fa-thumbs-up fa-stack-1x fa-inverse"></i>
+                                    <span class="username"><a href="javascript:;">#{{user.username}}</a> <small></small></span>
+                                    <span class="pull-right text-muted">
+                                       <a href="">18 Reviews</a>
                                     </span>
-                                    <span class="stats-total">4.3k</span>
                                  </div>
-                              </div>
-                              <div class="timeline-footer">
-                                 <a href="javascript:;" class="m-r-15 text-inverse-lighter"><i class="fa fa-thumbs-up fa-fw fa-lg m-r-3"></i> Like</a>
-                                 <a href="javascript:;" class="m-r-15 text-inverse-lighter"><i class="fa fa-comments fa-fw fa-lg m-r-3"></i> Comment</a> 
-                                 <a href="javascript:;" class="m-r-15 text-inverse-lighter"><i class="fa fa-share fa-fw fa-lg m-r-3"></i> Share</a>
-                              </div>
-                              <div class="timeline-comment-box">
-                                 <div class="user"><img src="https://bootdey.com/img/Content/avatar/avatar2.png"></div>
-                                 <div class="input">
-                                    <form action="">
-                                    <div class="input-group">
-                                          <input type="text" class="form-control rounded-corner" placeholder="Write a comment...">
-                                          <span class="input-group-btn p-l-10">
-                                          <button class="btn btn-primary f-s-12 rounded-corner" type="button">Comment</button>
-                                          </span>
+                                 <div class="timeline-content">
+
+                                    <div class="card mb-3" style="max-width: 740px;">
+                                       <div class="row g-0">
+                                         <div class="col-md-4">
+                                           <!-- <img src="{% static 'images/blank_profile_image.png' %}" class="img-fluid rounded-start" alt="..."> -->
+                                             <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+                                                <div class="carousel-inner">
+                                                <div class="carousel-item active">
+                                                   <img src="{% static 'images/blank_profile_image.png' %}" class="d-block w-100" alt="...">
+                                                </div>
+                                                <div class="carousel-item">
+                                                   <img src="..." class="d-block w-100" alt="...">
+                                                </div>
+                                                <div class="carousel-item">
+                                                   <img src="{% static 'images/blank_profile_image.png' %}" class="d-block w-100" alt="...">
+                                                </div>
+                                                </div>
+                                             </div>
+                                         </div>
+                                         <div class="col-md-8">
+                                           <div class="card-body">
+                                             <h5 class="card-title">
+                                                <font style="font-size: small;">BDT</font> 90 Thousand <small style="font-size:x-small;">Available</small> 
+                                             </h5>
+
+                                             <h6>For Sale | 2 Beds 4 Baths | Area : 1,350 sqft</h6>
+
+
+                                             
+
+                                             <p class="card-text">Zakir Hossain Housing Society, South Khulshi, Khulshi, Chattogram</p>
+                                             <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+                                           </div>
+                                         </div>
+                                       </div>
+                                     </div>
+
+
+                                 </div>
+                                 <div class="timeline-likes">
+                                    <div class="stats-right">
+                                       <span class="stats-text">259 Shares</span>
+                                       <span class="stats-text">21 Comments</span>
                                     </div>
-                                    </form>
+                                    <div class="stats">
+                                       <span class="stats-total">4.3k</span>
+                                    </div>
                                  </div>
-                              </div>
-                        </div>
-                        <!-- end timeline-body -->
+                                 <div class="timeline-footer">
+                                    <a href="javascript:;" class="m-r-15 text-inverse-lighter"><i class="fa fa-bookmark fa-fw fa-lg m-r-3"></i> Save </a>
+                                    <a href="javascript:;" class="m-r-15 text-inverse-lighter"><i class="fa fa-comments fa-fw fa-lg m-r-3"></i> Comment</a>
+                                    <a href="javascript:;" class="m-r-15 text-inverse-lighter"><i class="fa fa-share fa-fw fa-lg m-r-3"></i> Share</a>
+                                 </div>
+                                 <div class="timeline-comment-box">
+                                    <div class="user"><img src="https://bootdey.com/img/Content/avatar/avatar2.png"></div>
+                                    <div class="input">
+                                       <form action="">
+                                       <div class="input-group">
+                                             <input type="text" class="form-control rounded-corner" placeholder="Write a comment...">
+                                             <span class="input-group-btn p-l-10">
+                                             <button class="btn btn-primary f-s-12 rounded-corner" type="button">Comment</button>
+                                             </span>
+                                       </div>
+                                       </form>
+                                    </div>
+                                 </div>
+                           </div>
+                           <!-- end timeline-body -->
                         </li>
-                        <li>
-                        <!-- begin timeline-time -->
-                        <div class="timeline-time">
-                              <span class="date">yesterday</span>
-                              <span class="time">20:17</span>
-                        </div>
-                        <!-- end timeline-time -->
-                        <!-- begin timeline-icon -->
-                        <div class="timeline-icon">
-                              <a href="javascript:;">&nbsp;</a>
-                        </div>
-                        <!-- end timeline-icon -->
-                        <!-- begin timeline-body -->
-                        <div class="timeline-body">
-                              <div class="timeline-header">
-                                 <span class="userimage"><img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt=""></span>
-                                 <span class="username">#{{user.username}}</span>
-                                 <span class="pull-right text-muted">82 Views</span>
-                              </div>
-                              <div class="timeline-content">
-                                 <p>Location: United States</p>
-                              </div>
-                              <div class="timeline-footer">
-                                 <a href="javascript:;" class="m-r-15 text-inverse-lighter"><i class="fa fa-thumbs-up fa-fw fa-lg m-r-3"></i> Like</a>
-                                 <a href="javascript:;" class="m-r-15 text-inverse-lighter"><i class="fa fa-comments fa-fw fa-lg m-r-3"></i> Comment</a> 
-                                 <a href="javascript:;" class="m-r-15 text-inverse-lighter"><i class="fa fa-share fa-fw fa-lg m-r-3"></i> Share</a>
-                              </div>
-                        </div>
-                        <!-- end timeline-body -->
-                        </li>
-                        <li>
-                        <!-- begin timeline-time -->
-                        <div class="timeline-time">
-                              <span class="date">24 February 2014</span>
-                              <span class="time">08:17</span>
-                        </div>
-                        <!-- end timeline-time -->
-                        <!-- begin timeline-icon -->
-                        <div class="timeline-icon">
-                              <a href="javascript:;">&nbsp;</a>
-                        </div>
-                        <!-- end timeline-icon -->
-                        <!-- begin timeline-body -->
-                        <div class="timeline-body">
-                              <div class="timeline-header">
-                                 <span class="userimage"><img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt=""></span>
-                                 <span class="username">#{{user.username}}</span>
-                                 <span class="pull-right text-muted">1,282 Views</span>
-                              </div>
-                              <div class="timeline-content">
-                                 <p class="lead">
-                                    <i class="fa fa-quote-left fa-fw pull-left"></i>
-                                    Quisque sed varius nisl. Nulla facilisi. Phasellus consequat sapien sit amet nibh molestie placerat. Donec nulla quam, ullamcorper ut velit vitae, lobortis condimentum magna. Suspendisse mollis in sem vel mollis.
-                                    <i class="fa fa-quote-right fa-fw pull-right"></i>
-                                 </p>
-                              </div>
-                              <div class="timeline-footer">
-                                 <a href="javascript:;" class="m-r-15 text-inverse-lighter"><i class="fa fa-thumbs-up fa-fw fa-lg m-r-3"></i> Like</a>
-                                 <a href="javascript:;" class="m-r-15 text-inverse-lighter"><i class="fa fa-comments fa-fw fa-lg m-r-3"></i> Comment</a> 
-                                 <a href="javascript:;" class="m-r-15 text-inverse-lighter"><i class="fa fa-share fa-fw fa-lg m-r-3"></i> Share</a>
-                              </div>
-                        </div>
-                        <!-- end timeline-body -->
-                        </li>
-                        <li>
-                        <!-- begin timeline-time -->
-                        <div class="timeline-time">
-                              <span class="date">10 January 2014</span>
-                              <span class="time">20:43</span>
-                        </div>
-                        <!-- end timeline-time -->
-                        <!-- begin timeline-icon -->
-                        <div class="timeline-icon">
-                              <a href="javascript:;">&nbsp;</a>
-                        </div>
-                        <!-- end timeline-icon -->
-                        <!-- begin timeline-body -->
-                        <div class="timeline-body">
-                              <div class="timeline-header">
-                                 <span class="userimage"><img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt=""></span>
-                                 <span class="username">#{{user.username}}</span>
-                                 <span class="pull-right text-muted">1,021,282 Views</span>
-                              </div>
-                              <div class="timeline-content">
-                                 <h4 class="template-title">
-                                    <i class="fa fa-map-marker text-danger fa-fw"></i>
-                                    795 Folsom Ave, Suite 600 San Francisco, CA 94107
-                                 </h4>
-                                 <p>In hac habitasse platea dictumst. Pellentesque bibendum id sem nec faucibus. Maecenas molestie, augue vel accumsan rutrum, massa mi rutrum odio, id luctus mauris nibh ut leo.</p>
-                                 <p class="m-t-20">
-                                    <img src="../assets/img/gallery/gallery-5.jpg" alt="">
-                                 </p>
-                              </div>
-                              <div class="timeline-footer">
-                                 <a href="javascript:;" class="m-r-15 text-inverse-lighter"><i class="fa fa-thumbs-up fa-fw fa-lg m-r-3"></i> Like</a>
-                                 <a href="javascript:;" class="m-r-15 text-inverse-lighter"><i class="fa fa-comments fa-fw fa-lg m-r-3"></i> Comment</a> 
-                                 <a href="javascript:;" class="m-r-15 text-inverse-lighter"><i class="fa fa-share fa-fw fa-lg m-r-3"></i> Share</a>
-                              </div>
-                        </div>
-                        <!-- end timeline-body -->
-                        </li>
-                        <li>
+                        {% endfor %}
+                           
+
+
                         <!-- begin timeline-icon -->
                         <div class="timeline-icon">
                               <a href="javascript:;">&nbsp;</a>
