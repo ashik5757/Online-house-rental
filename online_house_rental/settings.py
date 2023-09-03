@@ -31,6 +31,8 @@ DEBUG = True
 
 # ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = ['127.0.0.1']
+
 
 
 
@@ -134,6 +136,7 @@ STATIC_URL = '/static/'
 # MEDIA_URL = 'online_house_rental/images/'
 MEDIA_URL = 'online_house_rental/media/'
 
+
 STATICFILES_DIRS = [
     BASE_DIR / 'rental_app/static'
 ]
@@ -141,6 +144,7 @@ STATICFILES_DIRS = [
 STATIC_ROOT = os.path.join(BASE_DIR, 'online_house_rental/static/')
 # MEDIA_ROOT = os.path.join(BASE_DIR, 'online_house_rental/static/images')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'online_house_rental/media')
+
 
 
 # Default primary key field type
