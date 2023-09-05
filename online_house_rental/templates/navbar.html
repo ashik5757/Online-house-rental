@@ -63,9 +63,9 @@
             
             
             {% if p.profile_image.url is not None %}
-                <img src="{{p.profile_image.url}}" alt="{{p.first_name}}" class="rounded-circle" style="width: 40px;">
+                <img src="{{p.profile_image.url}}" alt="{{p.first_name}}" class="rounded-circle" style="width: 30px; height: 30px;">
             {% else %}
-                <img src="{% static 'images/blank_profile_image.png' %}" alt="{{p.first_name}}" class="rounded-circle" style="width: 40px;">
+                <img src="{% static 'images/blank_profile_image.png' %}" alt="{{p.first_name}}" class="rounded-circle" style="width: 30px; height: 30px;">
             {% endif %}
               
           </a>
