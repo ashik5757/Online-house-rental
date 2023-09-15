@@ -91,28 +91,13 @@ class Renter(models.Model):
 
     objects = RenterManager()
 
+# class Property_Manager(models.Manager):
+#     def create_property(self, title, description, street, area, city, zip, rent_charge, numbers_of_beds, numbers_of_bath, apartment_area,
+#                          drawing_room_status,dining_room_status,kitchen_status, electric_meter_type, gass_type, Landlord):
+        
+
+
 class Rental_Property(models.Model):
-    # FAMILY = 'F'
-    # BACHELORS = 'B'
-    # OFFICE = 'O'
-    # RENTS_FOR = [
-    #     (FAMILY,'For Family'),
-    #     (BACHELORS,'For Bachelors'),
-    #     (OFFICE,'For Office')
-    # ]
-
-    # YES_NO = [
-    #     ('Y', 'YES'),
-    #     ('N', 'NO')
-    # ]
-
-    # AVAILABLE = 'A'
-    # NOTAVAILABLE = 'NA'
-
-    # STATUS = [
-    #     (AVAILABLE, 'Available'),
-    #     (NOTAVAILABLE, 'Not Available')
-    # ]
 
     title = models.CharField(max_length=300)
     slug = models.SlugField(default="", blank=True, editable=False, null=False)
@@ -126,13 +111,14 @@ class Rental_Property(models.Model):
     numbers_of_beds = models.PositiveSmallIntegerField()
     numbers_of_bath = models.PositiveSmallIntegerField()
     apartment_area = models.PositiveIntegerField(default=1)
+    area_unit = models.CharField(max_length=10, default='sq-ft')
     drawing_room_status = models.CharField(max_length=15, default='Available')
     dining_room_status = models.CharField(max_length=15, default='Available')
-    kitchen_status = models.CharField(max_length=15, default='Available')
-    rental_status = models.CharField(max_length=15, default='Available')        # Set default while posting
-    electric_meter_type = models.CharField(max_length=10, default='Post-paid')
-    gass_type = models.CharField(max_length=10, default='Pre-paid')
-    post_date = models.DateField(auto_created=True, editable=False)
+    kitchen_status = models.CharField(max_length=20, default='Available')
+    rental_status = models.CharField(max_length=20, default='Available')        # Set default while posting
+    electric_meter_type = models.CharField(max_length=30, default='Post-paid Meter')
+    gass_type = models.CharField(max_length=30, default='Pre-paid Gas Meter')
+    post_date = models.DateField(auto_created=True, auto_now=True, editable=False)
     last_updated = models.DateTimeField(auto_now=True, editable=False)
     Landlord = models.ForeignKey(Landlord, on_delete=models.CASCADE, primary_key=False)
 
@@ -143,8 +129,14 @@ class Rental_Property(models.Model):
 
 
 class Property_Image(models.Model):
-    image = models.ImageField()
+
+    def upload_path(instance, filename):
+        folder_name = str(instance.Rental_Property.id)
+        return f'property_images/{folder_name}/{filename}'
+
+    image = models.ImageField(default="", blank=True, null=True, upload_to=upload_path)
     Rental_Property = models.ForeignKey(Rental_Property, on_delete=models.CASCADE, primary_key=False)
+
 
 class Services(models.Model):
     Rental_Property = models.ForeignKey(Rental_Property, on_delete=models.CASCADE, primary_key=False)
