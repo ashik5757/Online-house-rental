@@ -41,74 +41,75 @@ def Create_post(request, username):
     profile = Landlord.objects.filter(user=request.user).first()
 
 
-    # if request.method == 'POST':
+    if request.method == 'POST':
 
-    #     title = request.POST.get('title')
-    #     description = request.POST.get('description')
-    #     street = request.POST.get('street')
-    #     area = request.POST.get('area')
-    #     city = request.POST.get('city')
-    #     zip = request.POST.get('zip')
-    #     rent_charge = request.POST.get('rent_charge')
-    #     rent_for = request.POST.get('rent_for')
-    #     no_of_beds = request.POST.get('no_of_beds')
-    #     no_of_baths = request.POST.get('no_of_baths')
-    #     area_size = request.POST.get('area_size')
-    #     unit = request.POST.get('unit')
-    #     drawing_status = request.POST.get('drawing_status')
-    #     dinning_status = request.POST.get('dinning_status')
-    #     kitchen_status = request.POST.get('kitchen_status')
-    #     electric_meter_type = request.POST.get('electric_meter_type')
-    #     gas_type = request.POST.get('gas_type')
+        title = request.POST.get('title')
+        description = request.POST.get('description')
+        street = request.POST.get('street')
+        area = request.POST.get('area')
+        city = request.POST.get('city')
+        zip = request.POST.get('zip')
+        rent_charge = request.POST.get('rent_charge')
+        rent_for = request.POST.get('rent_for')
+        no_of_beds = request.POST.get('no_of_beds')
+        no_of_baths = request.POST.get('no_of_baths')
+        area_size = request.POST.get('area_size')
+        unit = request.POST.get('unit')
+        drawing_status = request.POST.get('drawing_status')
+        dinning_status = request.POST.get('dinning_status')
+        kitchen_status = request.POST.get('kitchen_status')
+        electric_meter_type = request.POST.get('electric_meter_type')
+        gas_type = request.POST.get('gas_type')
 
-    #     service_type = request.POST.getlist('service_type')
-    #     service_charge = request.POST.getlist('service_charge')
-    #     image_files = request.FILES.getlist('image_files')
-
-
-
-    #     aProperty = Rental_Property()
-    #     aProperty.title = title
-    #     aProperty.description = description
-    #     aProperty.street = street
-    #     aProperty.area = area
-    #     aProperty.city = city
-    #     aProperty.zip = zip
-    #     aProperty.rent_charge = rent_charge
-    #     aProperty.rents_for = rent_for
-    #     aProperty.numbers_of_beds = no_of_beds
-    #     aProperty.numbers_of_bath = no_of_baths
-    #     aProperty.apartment_area = area_size
-    #     aProperty.area_unit = unit
-    #     aProperty.drawing_room_status = drawing_status
-    #     aProperty.dining_room_status = dinning_status
-    #     aProperty.kitchen_status = kitchen_status
-    #     aProperty.electric_meter_type = electric_meter_type
-    #     aProperty.gass_type = gas_type
-    #     aProperty.Landlord = profile
+        service_type = request.POST.getlist('service_type')
+        service_charge = request.POST.getlist('service_charge')
+        image_files = request.FILES.getlist('image_files')
 
 
-    #     aProperty.save()
 
-    #     for i in range(len(service_type)):
-    #         service = Services()
-    #         service.Rental_Property = aProperty
-    #         service.service_type = service_type[i]
-    #         service.service_charge = service_charge[i]
-    #         service.save()
+        aProperty = Rental_Property()
+        aProperty.title = title
+        aProperty.description = description
+        aProperty.street = street
+        aProperty.area = area
+        aProperty.city = city
+        aProperty.zip = zip
+        aProperty.rent_charge = rent_charge
+        aProperty.rents_for = rent_for
+        aProperty.numbers_of_beds = no_of_beds
+        aProperty.numbers_of_bath = no_of_baths
+        aProperty.apartment_area = area_size
+        aProperty.area_unit = unit
+        aProperty.drawing_room_status = drawing_status
+        aProperty.dining_room_status = dinning_status
+        aProperty.kitchen_status = kitchen_status
+        aProperty.electric_meter_type = electric_meter_type
+        aProperty.gass_type = gas_type
+        aProperty.Landlord = profile
 
-    #     for img in image_files:
-    #         imgObj = Property_Image()
-    #         imgObj.image = img
-    #         imgObj.Rental_Property = aProperty
-    #         imgObj.save()
+
+        aProperty.save()
+
+        for i in range(len(service_type)):
+            service = Services()
+            service.Rental_Property = aProperty
+            service.service_type = service_type[i]
+            service.service_charge = service_charge[i]
+            service.save()
+
+        for img in image_files:
+            imgObj = Property_Image()
+            imgObj.image = img
+            imgObj.Rental_Property = aProperty
+            imgObj.save()
+
+        print(request.POST)
+        
+        messages.success(request, 'Property Created')
+        return redirect('profile_post', {'p' : profile})
+
 
         
-    #     messages.success(request, 'Property Created')
-    #     return redirect('profile_post', {'p' : profile})
-
-
-    print(request.POST)
 
     # print(service_type, service_charge, image_files)
 
