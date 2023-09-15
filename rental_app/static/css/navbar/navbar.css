@@ -21,6 +21,23 @@
     /* color: rgba(var(--bs-link-color-rgb),var(--bs-link-opacity,1)); */
 }
 
+.nav-link{
+    position: relative;
+}
+
+.nav-link:after{
+    content: "";
+    position: absolute;
+    background-color: #0dcaf0;
+    height: 3px;
+    width: 0;
+    left: 0;
+    bottom: 0;
+    transition: 0.3s;
+}
+.nav-link:hover:after{
+    width: 100%;
+}
 .nav-link:hover{
     color: #0dcaf0;
 }
