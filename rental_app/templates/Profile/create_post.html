@@ -1,0 +1,570 @@
+{% extends "base.html" %}
+{% load static %}
+{% load custom_context %}
+
+{% block title %}
+Online House Rental | {{ user.username }}
+{% endblock title %}
+
+
+{% block more_link %}
+<link href="{% static 'css/create_post.css' %}" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+{% endblock more_link %}
+    
+
+{% block  home_content %}
+
+
+
+   
+
+   
+
+<div class="container">
+
+
+    <div class="row">
+        <div class="col">
+            <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4">
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item"><a href="{% url 'home_page' %}">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page"><a href="{% url 'profile_post' user.username %}">Profile</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Create Post</li>
+            </ol>
+            </nav>
+        </div>
+    </div>
+
+
+
+
+
+
+    
+{% comment %}
+
+   <div class="row">
+      <div class="col-md-12">
+         <div id="content" class="content content-full-width">
+            <!-- begin profile -->
+            <div class="profile">
+               <div class="profile-header">
+                  <!-- BEGIN profile-header-cover -->
+                  <div class="profile-header-cover"></div>
+                  <!-- END profile-header-cover -->
+                  <!-- BEGIN profile-header-content -->
+                  <div class="profile-header-content">
+                     <!-- BEGIN profile-header-img -->
+
+                     <div class="profile-header-img">
+                        {% if p.profile_image.url is not None %}
+                           <img src="{{p.profile_image.url}}" alt="{{p.first_name}}">
+                        {% else %}
+                           <img src="{% static 'images/blank_profile_image.png' %}" alt="{{p.first_name}}">
+                        {% endif %}
+                        
+                     </div>
+                     <!-- END profile-header-img -->
+                     <!-- BEGIN profile-header-info -->
+                     <div class="profile-header-info">
+                        <h4 class="m-t-10 m-b-5">{{p.first_name}} ({{p.last_name}}) <small>#{{user.username}}</small></h4>
+                        <p class="m-b-10">
+                            Email : {{user.email}}  <br>
+                            Mobile : {{p.phone_number}} <br>
+                            UserType : {{user.role}} <br>
+                            UserID : {{user.id}}
+                            
+                        </p>
+                        <a href="{% url 'edit_profile_general' user.username %}" class="btn btn-sm btn-info mb-2">Edit Profile</a>
+                        <a href="#" class="btn btn-sm btn-info mb-2">Create Post</a>
+                     </div>
+                     <!-- END profile-header-info -->
+                  </div>
+                  <!-- END profile-header-content -->
+                  <!-- BEGIN profile-header-tab -->
+                  <ul class="profile-header-tab nav nav-tabs" style="align-content: center;">
+                     <li class="nav-item"><a href="{% url 'profile_post' user.username %}" target="posts" class="nav-link_ active show">POSTS</a></li>
+                     <li class="nav-item"><a href="#" target="about" class="nav-link_">ABOUT</a></li>
+                     <li class="nav-item"><a href="https://www.bootdey.com/snippets/view/profile-photos" target="__blank" class="nav-link_">PHOTOS</a></li>
+                     <li class="nav-item"><a href="https://www.bootdey.com/snippets/view/profile-videos"  target="__blank" class="nav-link_">VIDEOS</a></li>
+                  </ul>
+                  <!-- END profile-header-tab -->
+               </div>
+            </div>
+            <!-- end profile -->
+         
+            {% endcomment %}    
+
+
+            <!-- begin profile-content -->
+            <div class="profile-content">
+               <!-- begin tab-content -->
+               <div class="tab-content p-0">
+                  <!-- begin #profile-post tab -->
+                  <div class="tab-pane fade active show" id="profile-post">
+
+                           <div class="timeline-body">
+                                 <div class="timeline-content">
+
+                                  <div class="card mb-3">
+                                    <div class="row g-0">
+                                       <div class="col-md-8">
+                                        <div class="card-body">
+
+
+                                        <form id="submitForm_create_post" action="{%url 'create_post' user.username %}" method="post"
+                                          class="row g-3 needs-validation-l" novalidate>
+                                          {% csrf_token %}
+                      
+                                          <div class="row g-2">
+                                              <div class="col form-floating mb-3">
+                                                  <input type="text" class="form-control" id="title" name="title" placeholder="title" value=""
+                                                      pattern="[a-zA-Z\s]{2,}" maxlength="20" required>
+                                                  <label for="title">Title</label>
+                                                  <div class="invalid-feedback">
+                                                      This field is required.
+                                                  </div>
+                                              </div>
+                                          </div>
+                      
+                                          <div class="row g-2">
+                                            <div class="col form-floating mb-3">
+                                                <textarea type="text" class="form-control" id="description" name="description" placeholder="description" value=""
+                                                     maxlength="1000" required></textarea>
+                                                <label for="description">Description</label>
+                                                <div class="invalid-feedback">
+                                                    This field is required.
+                                                </div>
+                                            </div>
+                                          </div>
+                    
+
+
+                                          <div class="row g-2">
+                                            <div class="col form-floating mb-3">
+                                                <input type="text" class="form-control" id="street" name="street" placeholder="street" value=""
+                                                    pattern="[a-zA-Z\s]{2,}" maxlength="20" required>
+                                                <label for="street">Street Address</label>
+                                                <div class="invalid-feedback">
+                                                    This field is required.
+                                                </div>
+                                            </div>
+                                          </div>
+
+
+
+                                          <div class="row g-3">
+
+                      
+                                              {% city_context as areaObj %}
+                      
+                                              <div class="col form-floating">
+                                                  <input type="text" class="form-select" id="area" name="area" list="area_list" placeholder="Enter your Area" required>
+                                                  <datalist id="area_list">
+                                                      {% for a in areaObj %}
+                                                          <option value="{{a.name}}">
+                                                      {% endfor %}
+                                                  </datalist>
+                                                  <label for="area">Area</label>
+                                                  <div class="invalid-feedback">
+                                                      Invalid Area-name.
+                                                  </div>
+                                              </div>
+
+                                              <div class="col form-floating">
+                                                <input type="text" class="form-select" id="city" name="city" list="area_list" placeholder="Enter your Area" required>
+                                                <datalist id="area_list">
+                                                    {% for a in areaObj %}
+                                                        <option value="{{a.name}}">
+                                                    {% endfor %}
+                                                </datalist>
+                                                <label for="city">City</label>
+                                                <div class="invalid-feedback">
+                                                    Invalid Area-name.
+                                                </div>
+                                            </div>
+                                            
+                                              <div class="col form-floating mb-3">
+                                                <input type="text" class="form-control" id="zip" name="zip" placeholder="zip" value=""
+                                                    pattern="[a-zA-Z\s]{2,}" maxlength="20" required>
+                                                <label for="zip">Zip</label>
+                                                <div class="invalid-feedback">
+                                                    This field is required.
+                                                </div>
+                                            </div>
+
+                                          </div>
+                      
+                      
+                      
+                                          <div class="row g-2">
+                                            <div class="col form-floating mb-3">
+                                                <input type="text" class="form-control" id="rent_charge" name="rent_charge" placeholder="rent_charge" value=""
+                                                    pattern="[a-zA-Z\s]{2,}" maxlength="20" required>
+                                                <label for="rent_charge">Rent Charge</label>
+                                                <div class="invalid-feedback">
+                                                    This field is required.
+                                                </div>
+                                            </div>
+                                            <div class="col form-floating mb-3">
+                                              <input type="text" class="form-control" id="rent_for" name="rent_for" placeholder="rent_for" value=""
+                                                  pattern="[a-zA-Z\s]{2,}" maxlength="20" required>
+                                              <label for="rent_for">Rent For</label>
+                                              <div class="invalid-feedback">
+                                                  This field is required.
+                                              </div>
+                                            </div>
+                                        </div>
+                      
+
+                                        <div class="row g-3">
+
+                                          <div class="col form-floating mb-3">
+                                              <select type="text" class="form-control" id="no_of_beds" name="no_of_beds" placeholder="no_of_beds" value="" required>
+                                                <option>1</option>
+                                                <option>2</option>
+                                                <option>3</option>
+                                                <option>4</option>
+                                                <option>5</option>
+                                              </select>
+                                              <label for="no_of_beds">No of Beds</label>
+                                              <div class="invalid-feedback">
+                                                  This field is required.
+                                              </div>
+                                          </div>
+                                          
+                                          <div class="col form-floating mb-3">
+                                            <select type="text" class="form-control" id="no_of_baths" name="no_of_baths" placeholder="no_of_baths" value="" required>
+                                              <option>1</option>
+                                              <option>2</option>
+                                              <option>3</option>
+                                              <option>4</option>
+                                              <option>5</option>
+                                            </select>
+                                            <label for="no_of_baths">No of Baths</label>
+                                            <div class="invalid-feedback">
+                                                This field is required.
+                                            </div>
+                                          </div>
+
+                                            <div class="input-group col form-floating mb-3">
+                                              <input type="text" class="form-control" id="area_size" name="area_size" placeholder="area_size" value=""
+                                                  pattern="[a-zA-Z\s]{2,}" maxlength="20" required>
+                                              <label for="area_size">Area(Size)</label>
+                                              <div class="invalid-feedback">
+                                                  This field is required.
+                                              </div>
+                                              <select type="text" class="form-control" id="unit" name="unit" placeholder="unit" value="" required>
+                                                <option>sqft</option>
+                                                <option>sq-meter</option>
+                                                <option>sq-inch</option>
+                                              </select>
+                                            </div>
+
+                                        </div>
+
+
+
+
+
+                                        <div class="row g-3">
+
+                                          <div class="col form-floating mb-3">
+                                              <select type="text" class="form-control" id="drawing_status" name="drawing_status" placeholder="drawing_status" value="" required>
+                                                <option>YES</option>
+                                                <option>NO</option>
+                                              </select>
+                                              <label for="drawing_status">Drawing Room Status</label>
+                                              <div class="invalid-feedback">
+                                                  This field is required.
+                                              </div>
+                                          </div>
+                                          
+                                          <div class="col form-floating mb-3">
+                                            <select type="text" class="form-control" id="dinning_status" name="dinning_status" placeholder="dinning_status" value="" required>
+                                              <option>YES</option>
+                                              <option>NO</option>
+                                            </select>
+                                            <label for="dinning_status">Dinning Room Status</label>
+                                            <div class="invalid-feedback">
+                                                This field is required.
+                                            </div>
+                                          </div>
+
+                                          <div class="col form-floating mb-3">
+                                            <select type="text" class="form-control" id="kitchen_status" name="kitchen_status" placeholder="kitchen_status" value="" required>
+                                              <option>YES</option>
+                                              <option>NO</option>
+                                            </select>
+                                            <label for="kitchen_status">Kitchen Status</label>
+                                            <div class="invalid-feedback">
+                                                This field is required.
+                                            </div>
+                                          </div>
+
+                                        </div>
+
+
+
+                                    
+
+                                          
+                                          <div class="row g-3">
+
+                                            <div class="col form-floating mb-3">
+                                                <select type="text" class="form-control" id="electric_meter_type" name="electric_meter_type" placeholder="electric_meter_type" value="" required>
+                                                  <option>Pre-paid Meter</option>
+                                                  <option>Post-paid Meter</option>
+                                                </select>
+                                                <label for="electric_meter_type">Electric Meter Type</label>
+                                                <div class="invalid-feedback">
+                                                    This field is required.
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="col form-floating mb-3">
+                                              <select type="text" class="form-control" id="gas_type" name="gas_type" placeholder="gas_type" value="" required>
+                                                <option>Sylinder</option>
+                                                <option>Line Gas</option>
+                                                <option>Pre-paid Gas Meter</option>
+                                              </select>
+                                              <label for="gas_typea">Gas Type</label>
+                                              <div class="invalid-feedback">
+                                                  This field is required.
+                                              </div>
+                                            </div>
+
+                                          </div>
+                                          
+                                          <button type="button" name="extend" id="extend">Add Services</button>
+                                          <div id="extend_field"></div>
+                                          
+
+
+
+
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+
+
+
+
+
+
+
+
+
+
+                                  <div class="card mb-3">
+                                       <div class="row g-0">
+                                          <div class="col-md-8">
+                                           <div class="card-body">
+
+                                            <div class="upload__box">
+                                              <div class="upload__btn-box">
+                                                <label class="upload__btn">
+                                                  <p>Upload images</p>
+                                                  <input type="file" multiple="" name="image_files" data-max_length="20" class="upload__inputfile">
+                                                </label>
+                                              </div>
+                                              <div class="upload__img-wrap"></div>
+                                            </div>
+
+
+                                           </div>
+                                         </div>
+                                       </div>
+                                  </div>
+
+
+
+
+
+
+
+
+
+                                  <div class="card mb-3">
+                                    <div class="row g-0">
+                                       <div class="col-md-8">
+                                        <div class="card-body">
+
+                                          <div class="form-group pt-1">
+                                            <button class="btn btn-signup-custom btn-block" style="width:100%" type="submit">Create a Post</button>
+                                          </div>
+
+
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+
+                                </form>
+
+
+
+
+                                 </div>
+                           </div>
+                           <!-- end timeline-body -->
+
+
+                        
+                        <!-- begin timeline-body -->
+
+                  </div>
+                  <!-- end #profile-post tab -->
+               </div>
+               <!-- end tab-content -->
+            </div>
+            <!-- begin profile-content -->
+         </div>
+      </div>
+   </div>
+</div>
+
+
+
+
+<script>
+
+  $(document).ready(function(){
+
+    let fieldCount = 0;
+    
+    $("#extend").click(function(e){
+      e.preventDefault();
+      fieldCount++;
+
+
+      const dynamicFieldHTML = 
+        
+      
+        `<div class="row g-3">
+  
+          <div class="col form-floating mb-3">
+              <select type="text" class="form-control" id="service_type" name="service_type" placeholder="service_type" value="" required>
+                <option>Electricity</option>
+                <option>Gas</option>
+                <option>Water</option>
+                <option>Utility</option>
+                <option>Other</option>
+              </select>
+              <label for="service_type">Service Type</label>
+              <div class="invalid-feedback">
+                  This field is required.
+              </div>
+          </div>
+  
+          <div class="col form-floating mb-3">
+            <input type="text" class="form-control" id="service_charge" name="service_charge" placeholder="Service Charge" value=""
+                pattern="[a-zA-Z\s]{2,}" maxlength="20" required>
+            <label for="service_charge">Service Charge</label>
+            <div class="invalid-feedback">
+                This field is required.
+            </div>
+          </div>
+  
+          <div class="col remove-field">
+            <button>Remove</button
+          </div>
+  
+        </div>`;
+        
+        
+        $("#submitForm_create_post").append(dynamicFieldHTML);
+
+    });
+  
+  
+    $("#extend_field").on("click",".remove-field",function(e){
+      e.preventDefault();
+      $(this).parent('div').remove();
+    });
+  
+    
+  });
+  
+</script>
+
+
+
+
+
+
+
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+  ImgUpload();
+});
+
+function ImgUpload() {
+  var imgWrap = document.querySelector('.upload__img-wrap');
+  var imgArray = [];
+
+  var uploadInput = document.querySelector('.upload__inputfile');
+  var maxLength = parseInt(uploadInput.getAttribute('data-max_length'));
+
+  uploadInput.addEventListener('change', function (e) {
+    var files = e.target.files;
+    var filesArr = Array.from(files);
+
+    filesArr.forEach(function (f) {
+      if (!f.type.match('image.*')) {
+        return;
+      }
+
+      if (imgArray.length >= maxLength) {
+        alert('You have reached the maximum number of images.');
+        return;
+      }
+
+      imgArray.push(f);
+
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        var imgBox = document.createElement('div');
+        imgBox.className = 'upload__img-box';
+
+        var img = document.createElement('div');
+        img.className = 'img-bg';
+        img.style.backgroundImage = 'url(' + e.target.result + ')';
+        img.setAttribute('data-file', f.name);
+
+        var imgClose = document.createElement('div');
+        imgClose.className = 'upload__img-close';
+        imgClose.innerHTML = '\u2716';
+
+        imgBox.appendChild(img);
+        img.appendChild(imgClose); // Append imgClose to img
+        imgWrap.appendChild(imgBox);
+
+        imgClose.addEventListener('click', function () {
+          imgWrap.removeChild(imgBox);
+          imgArray = imgArray.filter(function (item) {
+            return item.name !== f.name;
+          });
+        });
+      };
+
+      reader.readAsDataURL(f);
+    });
+  });
+}
+
+</script>
+
+
+
+
+
+
+
+{% endblock home_content %}
+
+

@@ -36,6 +36,71 @@ def Profile(request, username):
 
 
 @login_required(login_url="sign_in")
+def Create_post(request, username):
+    
+    profile = Landlord.objects.filter(user=request.user).first()
+
+
+    title = request.POST.get('title')
+    description = request.POST.get('description')
+    street = request.POST.get('street')
+    area = request.POST.get('area')
+    city = request.POST.get('city')
+    zip = request.POST.get('zip')
+    rent_charge = request.POST.get('rent_charge')
+    rent_for = request.POST.get('rent_for')
+    no_of_beds = request.POST.get('no_of_beds')
+    no_of_baths = request.POST.get('no_of_baths')
+    area_size = request.POST.get('area_size')
+    unit = request.POST.get('unit')
+    drawing_status = request.POST.get('drawing_status')
+    dinning_status = request.POST.get('dinning_status')
+    kitchen_status = request.POST.get('kitchen_status')
+    electric_meter_type = request.POST.get('electric_meter_type')
+    gas_type = request.POST.get('gas_type')
+    service_type = request.POST.getlist('service_type')
+    service_charge = request.POST.getlist('service_charge')
+    image_files = request.POST.getlist('image_files')
+
+
+
+    print(request.POST)
+
+    # print(service_type, service_charge, image_files)
+
+
+
+    return render(request, 'Profile/create_post.html', {'p' : profile})
+
+
+
+
+
+
+
+
+
+
+
+
+@login_required(login_url="sign_in")
+def Profile_detail_post(request, username, slug):
+    
+    if request.user.role == 'L':
+        profile = Landlord.objects.filter(user=request.user).first()
+    if request.user.role == 'R':
+        profile = Renter.objects.filter(user=request.user).first()
+
+
+    return render(request, 'Profile/profile_detail_post.html', {'p' : profile})
+
+
+
+
+
+
+
+@login_required(login_url="sign_in")
 def Edit_Profile(request, username):
         
     areaObj = Area.objects.all()

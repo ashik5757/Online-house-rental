@@ -64,7 +64,7 @@ Online House Rental | {{ user.username }}
                             
                         </p>
                         <a href="{% url 'edit_profile_general' user.username %}" class="btn btn-sm btn-info mb-2">Edit Profile</a>
-                        <a href="#" class="btn btn-sm btn-info mb-2">Create Post</a>
+                        <a href="{% url 'create_post' user.username %}" class="btn btn-sm btn-info mb-2">Create Post</a>
                      </div>
                      <!-- END profile-header-info -->
                   </div>
@@ -126,7 +126,7 @@ Online House Rental | {{ user.username }}
                                     </span>
                                  </div>
                                  <div class="timeline-content">
-
+                                    <a href=" {% url 'profile_detail_post' user.username 'slug1212' %}" style="text-decoration: none;">
                                     <div class="card mb-3" style="max-width: 740px;">
                                        <div class="row g-0">
                                          <div class="col-md-4">
@@ -148,23 +148,23 @@ Online House Rental | {{ user.username }}
                                          <div class="col-md-8">
                                            <div class="card-body">
                                              <h5 class="card-title">
-                                                <font style="font-size: small;">BDT</font> 90 Thousand <small style="font-size:x-small;">Available</small> 
+                                                <font style="font-size: small;">BDT</font> 21 Thousand <small style="font-size:x-small;">Available</small> 
                                              </h5>
 
-                                             <h6>For Sale | 2 Beds 4 Baths | Area : 1,350 sqft</h6>
+                                             For Rent | 4 Beds 4 Baths | Area : 1850 sqft
 
 
-                                             
-
-                                             <p class="card-text">Zakir Hossain Housing Society, South Khulshi, Khulshi, Chattogram</p>
+                                             <p class="card-text"><h6>An Apartment Is Ready For Rent At Uttara</h6></p>
+                                             <p class="card-text">Sector 6, Uttara, Dhaka</p>
                                              <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
                                            </div>
                                          </div>
                                        </div>
                                      </div>
-
+                                    </a>
 
                                  </div>
+                                 
                                  <div class="timeline-likes">
                                     <div class="stats-right">
                                        <span class="stats-text">259 Shares</span>

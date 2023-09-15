@@ -15,3 +15,13 @@ def city_context():
 def district_context():
     distObj = District.objects.all()
     return distObj
+
+
+@register.simple_tag
+def profile_context(user):
+
+    if user.role == 'L':
+        profile = Landlord.objects.filter(user=user).first()
+    if user.role == 'R':
+        profile = Renter.objects.filter(user=user).first()
+    return profile

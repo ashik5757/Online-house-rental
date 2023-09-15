@@ -13,9 +13,13 @@ urlpatterns = [
     
     # Profile
     path('<str:username>/profile/', views.Profile, name='profile_post'),
+    path('<str:username>/profile/<str:slug>', views.Profile_detail_post, name='profile_detail_post'),
     path('<str:username>/about/', views.Profile, name='profile_about'),
     path('<str:username>/photos/', views.Profile, name='profile_photos'),
     path('<str:username>/videos/', views.Profile, name='profile_videos'),
+    path('<str:username>/create-post/', views.Create_post, name='create_post'),
+
+
 
     # Edit Profile
     path('<str:username>/edit-profile/general', views.Edit_Profile, name='edit_profile_general'),

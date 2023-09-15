@@ -92,27 +92,27 @@ class Renter(models.Model):
     objects = RenterManager()
 
 class Rental_Property(models.Model):
-    FAMILY = 'F'
-    BACHELORS = 'B'
-    OFFICE = 'O'
-    RENTS_FOR = [
-        (FAMILY,'For Family'),
-        (BACHELORS,'For Bachelors'),
-        (OFFICE,'For Office')
-    ]
+    # FAMILY = 'F'
+    # BACHELORS = 'B'
+    # OFFICE = 'O'
+    # RENTS_FOR = [
+    #     (FAMILY,'For Family'),
+    #     (BACHELORS,'For Bachelors'),
+    #     (OFFICE,'For Office')
+    # ]
 
-    YES_NO = [
-        ('Y', 'YES'),
-        ('N', 'NO')
-    ]
+    # YES_NO = [
+    #     ('Y', 'YES'),
+    #     ('N', 'NO')
+    # ]
 
-    AVAILABLE = 'A'
-    NOTAVAILABLE = 'NA'
+    # AVAILABLE = 'A'
+    # NOTAVAILABLE = 'NA'
 
-    STATUS = [
-        (AVAILABLE, 'Available'),
-        (NOTAVAILABLE, 'Not Available')
-    ]
+    # STATUS = [
+    #     (AVAILABLE, 'Available'),
+    #     (NOTAVAILABLE, 'Not Available')
+    # ]
 
     title = models.CharField(max_length=300)
     slug = models.SlugField(default="", blank=True, editable=False, null=False)
@@ -121,13 +121,17 @@ class Rental_Property(models.Model):
     area = models.CharField(max_length=200)
     city = models.CharField(max_length=200)
     zip = models.CharField(max_length=20, null=True)
-    rents_for = MultiSelectField(max_length=10, choices=RENTS_FOR, default=FAMILY)
+    rent_charge = models.PositiveIntegerField(default=0)
+    rents_for = MultiSelectField(max_length=10, default='FAMILY')   # BACHELORS, OFFICE
     numbers_of_beds = models.PositiveSmallIntegerField()
     numbers_of_bath = models.PositiveSmallIntegerField()
-    drawing_room_status = models.CharField(max_length=3, choices=STATUS, default=AVAILABLE)
-    dining_room_status = models.CharField(max_length=3, choices=STATUS, default=AVAILABLE)
-    kitchen_status = models.CharField(max_length=3, choices=STATUS, default=AVAILABLE)
-    rental_status = models.CharField(max_length=3, choices=STATUS, default=AVAILABLE)
+    apartment_area = models.PositiveIntegerField(default=1)
+    drawing_room_status = models.CharField(max_length=15, default='Available')
+    dining_room_status = models.CharField(max_length=15, default='Available')
+    kitchen_status = models.CharField(max_length=15, default='Available')
+    rental_status = models.CharField(max_length=15, default='Available')        # Set default while posting
+    electric_meter_type = models.CharField(max_length=10, default='Post-paid')
+    gass_type = models.CharField(max_length=10, default='Pre-paid')
     post_date = models.DateField(auto_created=True, editable=False)
     last_updated = models.DateTimeField(auto_now=True, editable=False)
     Landlord = models.ForeignKey(Landlord, on_delete=models.CASCADE, primary_key=False)
@@ -168,9 +172,26 @@ class Transaction(models.Model):
 
 
 class Review(models.Model):
-    Renter = models.OneToOneField(Renter, on_delete=models.CASCADE, primary_key=False)
+    Renter = models.ForeignKey(Renter, on_delete=models.CASCADE, primary_key=False)
     Rental_Property = models.ForeignKey(Rental_Property, on_delete=models.CASCADE, primary_key=False)
     rating = models.PositiveSmallIntegerField()
     comment = models.TextField()
     review_date = models.DateTimeField(auto_created=True)
 
+
+class Responses(models.Model):
+    Renter = models.ForeignKey(Renter, on_delete=models.CASCADE, primary_key=False)
+    Rental_Property = models.ForeignKey(Rental_Property, on_delete=models.CASCADE, primary_key=False)
+
+
+
+
+
+class Bookmarks(models.Model):
+    Renter = models.ForeignKey(Renter, on_delete=models.CASCADE, primary_key=False)
+    Rental_Property = models.ForeignKey(Rental_Property, on_delete=models.CASCADE, primary_key=False)
+
+
+class Notification(models.Model):
+    User = models.ForeignKey(User, on_delete=models.CASCADE, primary_key=False)
+    Message = models.CharField(max_length=400)

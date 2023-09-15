@@ -8,8 +8,13 @@
         <div class="row">
             <div class="col-md-auto mx-auto">
                 <div class="d-flex flex-row mb-2">
-                    <div class="order-2 p-2"><a class="btn btn-option-custom" data-bs-toggle="modal" data-bs-target="#signupModal1" href="{% url 'sign_up_landlord' %}">Landlord</a></div>
-                    <div class="order-1 p-2"><a class="btn btn-option-custom" data-bs-toggle="modal" data-bs-target="#signupModal2" href="{% url 'sign_up_renter' %}">Renter</a></div>
+                    <div class="order-1 p-2"><a class="btn btn-option-custom" data-bs-toggle="modal" data-bs-target="#signupModal1" href="{% url 'sign_up_landlord' %}">
+                        <img src="{% static 'images/landlord_1.png' %}" style="width: 100px; height: 100px;">Landlord</a>
+                    </div>
+                    <!-- <label style="text-align: right;">Landlord</label> -->
+                    <div class="order-2 p-2"><a class="btn btn-option-custom" data-bs-toggle="modal" data-bs-target="#signupModal2" href="{% url 'sign_up_renter' %}">
+                        <img src="{% static 'images/renter.png' %}" style="width: 100px; height: 100px;">Renter</a>
+                    </div>
                 </div>
             </div>
         </div>
