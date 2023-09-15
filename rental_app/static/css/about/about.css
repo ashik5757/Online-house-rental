@@ -96,6 +96,17 @@ img{
     }
 }
 
+@keyframes fadeInLeft{
+    0%{
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    100%{
+        opacity: 1;
+        transform: translateX(0px);
+    }
+}
+
 
 @media (max-width: 768px) {
     .about-container {
@@ -140,7 +151,7 @@ img{
     background: rgb(240, 240, 240);
     padding-top: 20px;
     padding-bottom: 20px;
-    animation: fadeInUp 1.5s ease;
+    animation: fadeInLeft 1.5s ease;
 }
 
 .icon{
