@@ -1,3 +1,178 @@
-h1 {
-    color: red;
+button{
+    border: none;
+    border-radius: 5px;
+}
+
+input{
+    padding: 10px 0 10px 0;
+    border-radius: 5px;
+}
+
+img{
+    width: 100%;
+}
+
+::-webkit-input-placeholder {
+    padding-left: 5px;
+}
+
+.home-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 80vh;
+    background-image: url('https://images.unsplash.com/photo-1613575831056-0acd5da8f085?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+}
+
+.home-title{
+    width: 30%;
+    color: rgb(0, 0, 0);
+}
+
+.home-title h1{
+    font-size: 48px;
+    font-weight: bold;
+}
+
+.home-btns{
+    display: flex;
+    gap: 5px;
+    width: 100%;
+}
+
+.learn-btn{
+    background-color: #0dcaf0;
+    color: white;
+}
+
+.contact-btn{
+    background-color: black;
+    color: white;
+}
+
+
+.booking{
+    width: 30%;
+    background-color: black;
+    color: white;
+    padding: 15px;
+}
+
+
+.form{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.full-name{
+    width: 100%;
+}
+
+.input-container{
+    display: flex;
+    justify-content: space-between;
+}
+
+.input-class{
+    width: 45%;
+}
+
+.book-btn{
+    padding: 10px 0;
+}
+
+.home-posts{
+    display: grid;
+    width: 65%;
+    position: absolute;
+    left: 17.5%;
+    bottom: -50%;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+}
+
+.home-post{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 15px;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.8);
+    background-color: white;
+}
+
+
+@media (max-width: 768px) {
+    .home-container {
+        flex-direction: column;
+        align-items: center;
+        padding: 20px; 
+    }
+
+    .home-title, .booking {
+        width: 100%;
+        text-align: center;
+    }
+
+    .home-posts {
+        width: 100%;
+        left: 0;
+        bottom: 0;
+        grid-template-columns: 1fr; 
+    }
+
+    .home-post {
+        padding: 15px;
+        margin: 10px;
+    }
+
+    .home-title h1 {
+        font-size: 36px;
+    }
+
+    .input-class {
+        width: 100%;
+    }
+}
+
+@media (max-width: 576px) {
+    .home-title h1 {
+        font-size: 24px;
+    }
+
+    .home-title p {
+        font-size: 14px;
+    }
+
+    .booking h2 {
+        font-size: 20px;
+    }
+
+    .home-btns {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .home-btns button {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .input-class {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .home-posts {
+        grid-template-columns: 1fr; 
+    }
+
+    .home-post h1 {
+        font-size: 20px;
+    }
+
+    .home-post p {
+        font-size: 14px;
+    }
 }
