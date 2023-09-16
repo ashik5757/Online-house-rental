@@ -13,7 +13,12 @@ def Homepage(request):
 
 @login_required(login_url='sign_in')
 def Apartments(request):
-    return render(request, 'Apartments/apartments.html')
+
+    properties = Rental_Property.objects.all() 
+
+    context = {'pr':properties}
+
+    return render(request, 'Apartments/apartments.html', context=context)
 
 
 @login_required(login_url="sign_in")
@@ -28,10 +33,16 @@ def Profile(request, username):
     
     if request.user.role == 'L':
         profile = Landlord.objects.filter(user=request.user).first()
+        properties = Rental_Property.objects.filter(Landlord=profile) 
     if request.user.role == 'R':
         profile = Renter.objects.filter(user=request.user).first()
+        properties = Bookmark.objects.filter(Renter=profile)
+    
 
-    return render(request, 'Profile/profile_page.html', {'p' : profile})
+    # print(properties)
+    context = {'p' : profile, 'pr':properties}
+
+    return render(request, 'Profile/profile_page.html', context=context)
 
 
 

@@ -118,7 +118,7 @@ class Rental_Property(models.Model):
     rental_status = models.CharField(max_length=20, default='Available')        # Set default while posting
     electric_meter_type = models.CharField(max_length=30, default='Post-paid Meter')
     gass_type = models.CharField(max_length=30, default='Pre-paid Gas Meter')
-    post_date = models.DateField(auto_created=True, auto_now=True, editable=False)
+    post_date = models.DateTimeField(auto_created=True, auto_now=True, editable=False)
     last_updated = models.DateTimeField(auto_now=True, editable=False)
     Landlord = models.ForeignKey(Landlord, on_delete=models.CASCADE, primary_key=False)
 
@@ -176,10 +176,7 @@ class Responses(models.Model):
     Rental_Property = models.ForeignKey(Rental_Property, on_delete=models.CASCADE, primary_key=False)
 
 
-
-
-
-class Bookmarks(models.Model):
+class Bookmark(models.Model):
     Renter = models.ForeignKey(Renter, on_delete=models.CASCADE, primary_key=False)
     Rental_Property = models.ForeignKey(Rental_Property, on_delete=models.CASCADE, primary_key=False)
 

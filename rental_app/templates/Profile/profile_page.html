@@ -74,7 +74,6 @@ Online House Rental | {{ user.username }}
                      <li class="nav-item"><a href="{% url 'profile_post' user.username %}" target="posts" class="nav-link_ active show">POSTS</a></li>
                      <li class="nav-item"><a href="#" target="about" class="nav-link_">ABOUT</a></li>
                      <li class="nav-item"><a href="https://www.bootdey.com/snippets/view/profile-photos" target="__blank" class="nav-link_">PHOTOS</a></li>
-                     <li class="nav-item"><a href="https://www.bootdey.com/snippets/view/profile-videos"  target="__blank" class="nav-link_">VIDEOS</a></li>
                   </ul>
                   <!-- END profile-header-tab -->
                </div>
@@ -97,12 +96,12 @@ Online House Rental | {{ user.username }}
                      <ul class="timeline">
 
                         
-                        {% for i in "x"|rjust:"10" %}
+                        {% for i in pr %}
                         <li>
                            <!-- begin timeline-time -->
                            <div class="timeline-time">
-                                 <span class="date">today</span>
-                                 <span class="time">04:20</span>
+                              <span class="date">{{ i.post_date|date:"d F, Y" }}</span>
+                              <span class="time">{{ i.post_date|date:"h:iA" }}</span>
                            </div>
                            <!-- end timeline-time -->
                            <!-- begin timeline-icon -->
@@ -120,9 +119,9 @@ Online House Rental | {{ user.username }}
                                           <img src="{% static 'images/blank_profile_image.png' %}" alt="{{p.first_name}}">
                                        {% endif %}
                                     </span>
-                                    <span class="username"><a href="javascript:;">#{{user.username}}</a> <small></small></span>
+                                    <span class="username"><a href="">{{p.first_name}}</a> <small></small></span>
                                     <span class="pull-right text-muted">
-                                       <a href="">18 Reviews</a>
+                                       <a href="javascript:;">#{{user.username}}</a>
                                     </span>
                                  </div>
                                  <div class="timeline-content">
@@ -154,9 +153,9 @@ Online House Rental | {{ user.username }}
                                              For Rent | 4 Beds 4 Baths | Area : 1850 sqft
 
 
-                                             <p class="card-text"><h6>An Apartment Is Ready For Rent At Uttara</h6></p>
+                                             <p class="card-text"><h6>{{i.title}}</h6></p>
                                              <p class="card-text">Sector 6, Uttara, Dhaka</p>
-                                             <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+                                             <p class="card-text"><small class="text-body-secondary">Last updated {{i.last_updated}}</small></p>
                                            </div>
                                          </div>
                                        </div>
@@ -167,11 +166,11 @@ Online House Rental | {{ user.username }}
                                  
                                  <div class="timeline-likes">
                                     <div class="stats-right">
-                                       <span class="stats-text">259 Shares</span>
-                                       <span class="stats-text">21 Comments</span>
+                                       <span class="stats-text">21 Responses</span>
                                     </div>
                                     <div class="stats">
-                                       <span class="stats-total">4.3k</span>
+                                       <span class="stats-text">13 Reviews</span>
+                                       <span class="stats-text">Rating : 4.5</span>
                                     </div>
                                  </div>
                                  <div class="timeline-footer">
@@ -179,19 +178,7 @@ Online House Rental | {{ user.username }}
                                     <a href="javascript:;" class="m-r-15 text-inverse-lighter"><i class="fa fa-comments fa-fw fa-lg m-r-3"></i> Comment</a>
                                     <a href="javascript:;" class="m-r-15 text-inverse-lighter"><i class="fa fa-share fa-fw fa-lg m-r-3"></i> Share</a>
                                  </div>
-                                 <div class="timeline-comment-box">
-                                    <div class="user"><img src="https://bootdey.com/img/Content/avatar/avatar2.png"></div>
-                                    <div class="input">
-                                       <form action="">
-                                       <div class="input-group">
-                                             <input type="text" class="form-control rounded-corner" placeholder="Write a comment...">
-                                             <span class="input-group-btn p-l-10">
-                                             <button class="btn btn-primary f-s-12 rounded-corner" type="button">Comment</button>
-                                             </span>
-                                       </div>
-                                       </form>
-                                    </div>
-                                 </div>
+
                            </div>
                            <!-- end timeline-body -->
                         </li>
