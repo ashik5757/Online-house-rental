@@ -19,7 +19,7 @@ def district_context():
 
 @register.simple_tag
 def profile_context(user):
-
+    profile = ""
     if user.role == 'L':
         profile = Landlord.objects.filter(user=user).first()
     if user.role == 'R':

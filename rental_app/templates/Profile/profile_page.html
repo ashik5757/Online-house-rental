@@ -18,9 +18,7 @@ Online House Rental | {{ user.username }}
 
 
 <div class="container">
-
-
-    <div class="row">
+    <div class="row pt-3">
         <div class="col">
             <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4">
             <ol class="breadcrumb mb-0">
@@ -63,8 +61,8 @@ Online House Rental | {{ user.username }}
                             UserID : {{user.id}}
                             
                         </p>
-                        <a href="{% url 'edit_profile_general' user.username %}" class="btn btn-sm btn-info mb-2">Edit Profile</a>
-                        <a href="{% url 'create_post' user.username %}" class="btn btn-sm btn-info mb-2">Create Post</a>
+                        <a href="{% url 'edit_profile_general' user.username %}" class="btn btn-outline-light btn-sm">Edit Profile</a>
+                        <a href="{% url 'create_post' user.username %}" class="btn btn-outline-light btn-sm">Create Post</a>
                      </div>
                      <!-- END profile-header-info -->
                   </div>
