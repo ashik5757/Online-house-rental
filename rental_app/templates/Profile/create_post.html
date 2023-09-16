@@ -469,7 +469,7 @@ Online House Rental | {{ user.username }}
           </div>
   
           <div class="col remove-field">
-            <button>Remove</button
+            <button>Remove</button>
           </div>
   
         </div>`;
@@ -480,9 +480,9 @@ Online House Rental | {{ user.username }}
     });
   
   
-    $("#extend_field").on("click",".remove-field",function(e){
+    $("#submitForm_create_post").on("click", ".remove-field button", function(e) {
       e.preventDefault();
-      $(this).parent('div').remove();
+      $(this).closest('.row').remove();
     });
   
     
