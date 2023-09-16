@@ -114,13 +114,13 @@ Online House Rental | {{ user.username }}
 
 
                                         <form id="submitForm_create_post" action="{%url 'create_post' user.username %}" method="post"
-                                          class="row g-3 needs-validation-l" novalidate>
+                                          class="row g-3 needs-validation-l" enctype='multipart/form-data' novalidate>
                                           {% csrf_token %}
                       
                                           <div class="row g-2">
                                               <div class="col form-floating mb-3">
                                                   <input type="text" class="form-control" id="title" name="title" placeholder="title" value=""
-                                                      pattern="[a-zA-Z\s]{2,}" maxlength="20" required>
+                                                       maxlength="100" minlength="5" required>
                                                   <label for="title">Title</label>
                                                   <div class="invalid-feedback">
                                                       This field is required.
@@ -144,7 +144,7 @@ Online House Rental | {{ user.username }}
                                           <div class="row g-2">
                                             <div class="col form-floating mb-3">
                                                 <input type="text" class="form-control" id="street" name="street" placeholder="street" value=""
-                                                    pattern="[a-zA-Z\s]{2,}" maxlength="20" required>
+                                                    maxlength="100", minlength="10" required>
                                                 <label for="street">Street Address</label>
                                                 <div class="invalid-feedback">
                                                     This field is required.
@@ -187,7 +187,7 @@ Online House Rental | {{ user.username }}
                                             
                                               <div class="col form-floating mb-3">
                                                 <input type="text" class="form-control" id="zip" name="zip" placeholder="zip" value=""
-                                                    pattern="[a-zA-Z\s]{2,}" maxlength="20" required>
+                                                    pattern="^\d{4}$" required>
                                                 <label for="zip">Zip</label>
                                                 <div class="invalid-feedback">
                                                     This field is required.
@@ -200,16 +200,18 @@ Online House Rental | {{ user.username }}
                       
                                           <div class="row g-2">
                                             <div class="col form-floating mb-3">
-                                                <input type="text" class="form-control" id="rent_charge" name="rent_charge" placeholder="rent_charge" value=""
-                                                    pattern="[a-zA-Z\s]{2,}" maxlength="20" required>
+                                                <input type="number" class="form-control" id="rent_charge" name="rent_charge" placeholder="rent_charge" max="500000" value="" required>
                                                 <label for="rent_charge">Rent Charge</label>
                                                 <div class="invalid-feedback">
                                                     This field is required.
                                                 </div>
                                             </div>
                                             <div class="col form-floating mb-3">
-                                              <input type="text" class="form-control" id="rent_for" name="rent_for" placeholder="rent_for" value=""
-                                                  pattern="[a-zA-Z\s]{2,}" maxlength="20" required>
+                                                <select type="text" class="form-control" id="rent_for" name="rent_for" placeholder="rent_for" value="" required>
+                                                  <option>Family</option>
+                                                  <option>Bachelors</option>
+                                                  <option>Office</option>
+                                                </select>
                                               <label for="rent_for">Rent For</label>
                                               <div class="invalid-feedback">
                                                   This field is required.
@@ -249,17 +251,15 @@ Online House Rental | {{ user.username }}
                                           </div>
 
                                             <div class="input-group col form-floating mb-3">
-                                              <input type="text" class="form-control" id="area_size" name="area_size" placeholder="area_size" value=""
-                                                  pattern="[a-zA-Z\s]{2,}" maxlength="20" required>
+                                              <input type="number" class="form-control" id="area_size" name="area_size" placeholder="area_size" max="10000" value="" required>
                                               <label for="area_size">Area(Size)</label>
-                                              <div class="invalid-feedback">
-                                                  This field is required.
-                                              </div>
                                               <select type="text" class="form-control" id="unit" name="unit" placeholder="unit" value="" required>
-                                                <option>sqft</option>
+                                                <option>sq-ft</option>
                                                 <option>sq-meter</option>
-                                                <option>sq-inch</option>
                                               </select>
+                                              <div class="invalid-feedback">
+                                                This field is required.
+                                              </div>
                                             </div>
 
                                         </div>
@@ -367,7 +367,7 @@ Online House Rental | {{ user.username }}
                                               <div class="upload__btn-box">
                                                 <label class="upload__btn">
                                                   <p>Upload images</p>
-                                                  <input type="file" multiple="" name="image_files" data-max_length="20" class="upload__inputfile">
+                                                  <input type="file" multiple="" name="image_files" id="image_files" class="upload__inputfile" accept="image/*">
                                                 </label>
                                               </div>
                                               <div class="upload__img-wrap"></div>
@@ -393,7 +393,7 @@ Online House Rental | {{ user.username }}
                                         <div class="card-body">
 
                                           <div class="form-group pt-1">
-                                            <button class="btn btn-signup-custom btn-block" style="width:100%" type="submit">Create a Post</button>
+                                            <button type="submit" class="btn btn-signup-custom btn-block" style="width:100%">Create a Post</button>
                                           </div>
 
 
@@ -460,8 +460,7 @@ Online House Rental | {{ user.username }}
           </div>
   
           <div class="col form-floating mb-3">
-            <input type="text" class="form-control" id="service_charge" name="service_charge" placeholder="Service Charge" value=""
-                pattern="[a-zA-Z\s]{2,}" maxlength="20" required>
+            <input type="number" class="form-control" id="service_charge" name="service_charge" placeholder="Service Charge" value="" max="500000" required>
             <label for="service_charge">Service Charge</label>
             <div class="invalid-feedback">
                 This field is required.
@@ -561,6 +560,27 @@ function ImgUpload() {
 
 
 
+<script>
+  (() => {
+      'use strict'
+
+      // Fetch all the forms we want to apply custom Bootstrap validation styles to
+      const forms = document.querySelectorAll('.needs-validation-l')
+
+      // Loop over them and prevent submission
+      Array.from(forms).forEach(form => {
+          form.addEventListener('submit', event => {
+
+              if (!form.checkValidity()) {
+                  event.preventDefault()
+                  event.stopPropagation()
+              }
+
+              form.classList.add('was-validated')
+          }, false)
+      })
+  })()
+</script>
 
 
 
