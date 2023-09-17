@@ -7,6 +7,9 @@ Online House Rental | {{ user.username }}
 
 
 {% block more_link %}
+<style>
+   @import url('https://fonts.googleapis.com/css2?family=Crimson+Text&family=Josefin+Sans:wght@100;500&family=Kanit&family=Poppins:wght@100&family=Roboto+Condensed:wght@300;700&family=Ubuntu:wght@300&display=swap');
+</style>
 <link href="{% static 'css/profile.css' %}" rel="stylesheet">
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 {% endblock more_link %}
@@ -18,9 +21,7 @@ Online House Rental | {{ user.username }}
 
 
 <div class="container">
-
-
-    <div class="row">
+    <div class="row pt-3">
         <div class="col">
             <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4">
             <ol class="breadcrumb mb-0">
@@ -64,8 +65,8 @@ Online House Rental | {{ user.username }}
                             UserID : {{user.id}}
                             
                         </p>
-                        <a href="{% url 'edit_profile_general' user.username %}" class="btn btn-sm btn-info mb-2">Edit Profile</a>
-                        <a href="{% url 'create_post' user.username %}" class="btn btn-sm btn-info mb-2">Create Post</a>
+                        <a href="{% url 'edit_profile_general' user.username %}" class="btn btn-outline-info btn-sm">Edit Profile</a>
+                        <a href="{% url 'create_post' user.username %}" class="btn btn-outline-info btn-sm">Create Post</a>
                      </div>
                      <!-- END profile-header-info -->
                   </div>
@@ -174,12 +175,11 @@ Online House Rental | {{ user.username }}
                                        <span class="stats-text">Rating : 4.5</span>
                                     </div>
                                  </div>
-                                 <div class="timeline-footer">
-                                    <a href="javascript:;" class="m-r-15 text-inverse-lighter"><i class="fa fa-bookmark fa-fw fa-lg m-r-3"></i> Save </a>
-                                    <a href="javascript:;" class="m-r-15 text-inverse-lighter"><i class="fa fa-comments fa-fw fa-lg m-r-3"></i> Comment</a>
-                                    <a href="javascript:;" class="m-r-15 text-inverse-lighter"><i class="fa fa-share fa-fw fa-lg m-r-3"></i> Share</a>
+                                 <div class="d-flex justify-content-evenly timeline-footer">
+                                    <a href="javascript:;" class="m-r-15 text-inverse-lighter"><i class="face fa fa-bookmark fa-fw fa-lg m-r-3"></i> Save </a>
+                                    <a href="javascript:;" class="m-r-15 text-inverse-lighter" data-bs-toggle="modal" data-bs-target="#comment"><i class="face fa fa-comments fa-fw fa-lg m-r-3"></i> Comment</a>
+                                    <a href="javascript:;" class="m-r-15 text-inverse-lighter" data-bs-toggle="modal" data-bs-target="#share"><i class="face fa fa-share fa-fw fa-lg m-r-3"></i> Share</a>
                                  </div>
-
                            </div>
                            <!-- end timeline-body -->
                         </li>
@@ -213,6 +213,41 @@ Online House Rental | {{ user.username }}
 
 
 
+
+
+<!-- Comment -->
+<div class="modal fade" id="comment" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="comment" aria-hidden="true">
+   <div class="modal-dialog">
+     <div class="modal-content">
+       <div class="modal-header">
+         <div class="p-2 ">
+           <h2>Comment</h2>
+       </div>
+         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+       </div>
+       <div class="modal-body">
+         {% include 'Profile/Modal/comment.html' %}
+       </div>
+     </div>
+   </div>
+ </div>
+
+ <!-- share -->
+ <div class="modal fade" id="share"  tabindex="-1" aria-labelledby="share" aria-hidden="true">
+   <div class="modal-dialog">
+     <div class="modal-content">
+       <div class="modal-header">
+         <div class="p-2 ">
+           <h2>Share Link</h2>
+       </div>
+         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+       </div>
+       <div class="modal-body">
+         {% include 'Profile/Modal/share_link.html' %}
+       </div>
+     </div>
+   </div>
+ </div>
 
 {% endblock home_content %}
 
