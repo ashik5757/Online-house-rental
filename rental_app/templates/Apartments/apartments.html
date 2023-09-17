@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 {% load static %}                   <!-- This must be inluded (load) -->
+{% load custom_context %}
+
 
 {% block title %}
 Online House Rental | Apartments
@@ -7,21 +9,328 @@ Online House Rental | Apartments
 
 <!--have to put css and other link in more_link block-->
 
-{% block more_link %}                              
+{% block more_link %}
+<link href="{% static 'css/apartments.css' %}" rel="stylesheet">
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.css" 
+                     integrity="sha256-NAxhqDvtY0l4xn+YVa6WjAcmd94NNfttjNsDmNatFVc=" crossorigin="anonymous" />  
+                                       
 {% endblock more_link %}
 
 
 {% block  home_content %}
 
 
-<div align="center" class="container-fluid">
-    
-    <br><br>
 
-    <h1> Apartments Post Page </h1>     
+<section class="section">
+    <div class="container">
+        <div class="justify-content-center row">
+            <div class="col-lg-12">
+                <div class="candidate-list-widgets mb-4">
+                    <form id="from_filter" action="{%url 'apartments' %}" method="post">
+
+                        {% csrf_token %}
+
+                        <div class="g-2 row">
+
+                            {% district_context as distObj %}
+                            <div class="col-lg-2">
+                                <div class="filler-job-form">
+                                    <input type="text" class="form-select" id="city" name="city" list="city_list" placeholder="City" value="{{value.city}}">
+                                    <datalist id="city_list">
+                                        {% for a in distObj %}
+                                            <option value="{{a.name}}">
+                                        {% endfor %}
+                                    </datalist>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-2">
+                                <div class="filler-job-form">
+                                    <i class="uil uil-briefcase-alt"></i>
+                                    <input id="location" name="location" placeholder="Location" type="search" class="form-control filler-job-input-box form-control" />
+                                </div>
+                            </div>
+
+                            {% city_context as areaObj %}
+                            <div class="col-lg-2">
+                                <div class="filler-job-form">
+                                    <input type="text" class="form-select" id="area" name="area" list="area_list" placeholder="Area" >
+                                    <datalist id="area_list">
+                                        {% for a in areaObj %}
+                                            <option value="{{a.name}}">
+                                        {% endfor %}
+                                    </datalist>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-1">
+                                <div class="filler-job-form">
+                                    <i class="uil uil-clipboard-notes"></i>
+                                    <select class="form-select selectForm__inner" id="no_of_beds" name="no_of_beds">
+                                        <option value="" disabled selected>Beds</option>
+                                        <option value="">Any</option>
+                                        <option value="1">1 Bed</option>
+                                        <option value="2">2 Beds</option>
+                                        <option value="3">3 Beds</option>
+                                        <option value="4">4 Beds</option>
+                                        <option value="5">5 Beds</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-1">
+                                <div class="filler-job-form">
+                                    <i class="uil uil-clipboard-notes"></i>
+                                    <select class="form-select selectForm__inner" id="no_of_baths" name="no_of_baths">
+                                        <option value="" disabled selected>Baths</option>
+                                        <option value="">Any</option>
+                                        <option value="1">1 Bath</option>
+                                        <option value="2">2 Baths</option>
+                                        <option value="3">3 Baths</option>
+                                        <option value="4">4 Baths</option>
+                                        <option value="5">5 Baths</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="g-2 row">
 
 
-</div>
+                            <div class="col-lg-2">
+                                <div class="filler-job-form">
+                                    <select class="form-select selectForm__inner" id="price" name="price">
+                                        <option value="" disabled selected>Price(BDT)</option>
+                                        <option value="">Any</option>
+                                        <option value="10000">< 10,000 TK</option>
+                                        <option value="20000">< 20,000 TK</option>
+                                        <option value="30000">< 30,000 TK</option>
+                                        <option value="40000">< 40,000 TK</option>
+                                        <option value="50000">< 50,000 TK</option>
+                                        <option value="60000">< 60,000 TK</option>
+                                        <option value="70000">< 70,000 TK</option>
+                                        <option value="80000">< 80,000 TK</option>
+                                        <option value="90000">< 90,000 TK</option>
+                                        <option value="100000">< 100,000 TK</option>
+                                        <option value="200000">< 200,000 TK</option>
+
+
+
+                                        
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-2">
+                                <div class="filler-job-form">
+                                    <i class="uil uil-clipboard-notes"></i>
+                                    <select class="form-select selectForm__inner" id="rent_for" name="rent_for">
+                                        <option value="" disabled selected>Rent For</option>
+                                        <option value="Family">Family</option>
+                                        <option value="Bachelors">Bachelors</option>
+                                        <option value="Office">Office</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-2">
+                                <div class="candidate-list-widgets">
+                                    <div class="row">
+                                        <div class="col-lg-8">
+                                            <div class="selection-widget">
+                                                <select class="form-select" id="sort_by" name="sort_by">
+                                                    <option value="" disabled selected>Sort by</option>
+                                                    <option value="df">Default</option>
+                                                    <option value="ne">Newest</option>
+                                                    <option value="od">Oldest</option>
+                                                    <option value="rd">Rent Charge</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-2">
+                                <div>
+                                    <button type="submit" class="btn btn-signup-custom btn-block">Filter</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+        <div class="row">
+            <div class="col-lg-12">
+
+                <div class="align-items-center row">
+                    <div class="col-lg-2">
+                        <div class="mb-3 mb-lg-0"><h6 class="fs-16 mb-0">Showing {{pr.count}} results</h6></div>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                  <div class="col-md-12">
+                     <div id="content" class="content content-full-width">
+            
+            
+            
+                        
+            
+            
+            
+                        <!-- begin profile-content -->
+                        <div class="profile-content">
+                           <!-- begin tab-content -->
+                           <div class="tab-content p-0">
+                              <!-- begin #profile-post tab -->
+                              <div class="tab-pane fade active show" id="profile-post">
+                                 <!-- begin timeline -->
+                                 <ul class="timeline">
+            
+                                    
+                                    {% for i in pr %}
+                                    <li>
+                                       <!-- begin timeline-time -->
+                                       <div class="timeline-time">
+                                        <span class="date">{{ i.post_date|date:"d F, Y" }}</span>
+                                        <span class="time">{{ i.post_date|date:"h:iA" }}</span>
+                                       </div>
+                                       <!-- end timeline-time -->
+                                       <!-- begin timeline-icon -->
+
+                                       <!-- end timeline-icon -->
+                                       <!-- begin timeline-body -->
+                                       <div class="timeline-body">
+                                             <div class="timeline-header">
+                                                <span class="userimage">
+                                                   {% if i.Landlord.profile_image.url is not None %}
+                                                   <img src="{{i.Landlord.profile_image.url}}" alt="{{p.first_name}}">
+                                                   {% else %}
+                                                      <img src="{% static 'images/blank_profile_image.png' %}" alt="{{p.first_name}}">
+                                                   {% endif %}
+                                                </span>
+                                                <span class="username"><a href="{% url 'profile_post' i.Landlord.user.username %}">{{i.Landlord.first_name}}</a> <small></small></span>
+                                                <span class="pull-right text-muted">
+                                                   <a href="{% url 'profile_post' i.Landlord.user.username %}">#{{i.Landlord.user.username}}</a>
+                                                </span>
+                                             </div>
+                                             <div class="timeline-content">
+                                                <a href=" {% url 'profile_detail_post' i.Landlord.user.username i.slug %}" style="text-decoration: none;">
+                                                <div class="card mb-3" style="max-width: 740px;">
+                                                   <div class="row g-0">
+                                                     <div class="col-md-4">
+                                                       <!-- <img src="{% static 'images/blank_profile_image.png' %}" class="img-fluid rounded-start" alt="..."> -->
+                                                         <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+                                                            <div class="carousel-inner">
+                                                                {% for im in pr_img %}
+                                                                
+                                                                {% if i.id is im.Rental_Property.id %}
+                                                                <div class="carousel-item active">
+                                                                    <img src="{{im.image.url}}" class="d-block w-100" alt="...">
+                                                                </div>
+                                                                {% endif %}
+                                                                    
+
+                                                                {% endfor %}
+
+                                                            </div>
+                                                         </div>
+                                                     </div>
+                                                     <div class="col-md-8">
+                                                       <div class="card-body">
+                                                         <h5 class="card-title">
+                                                            <font style="font-size: small;">BDT</font> {{i.rent_charge}} TK <small style="font-size:x-small;">{{i.rental_status}}</small> 
+                                                         </h5>
+            
+                                                         Rent for {{i.rents_for}} | {{i.numbers_of_beds}} Beds {{i.numbers_of_bath}} Baths | Area : {{i.apartment_area}} {{i.areunit}}
+            
+            
+                                                         <p class="card-text"><h6>{{i.title}}</h6></p>
+                                                         <p class="card-text">{{i.street}} {{i.area}} {{i.city}}-{{i.zip}}</p>
+                                                         <p class="card-text"><small class="text-body-secondary">Last updated {{i.last_updated}}</small></p>
+                                                       </div>
+                                                     </div>
+                                                   </div>
+                                                 </div>
+                                                </a>
+            
+                                             </div>
+                                             
+                                             <div class="timeline-likes">
+                                                <div class="stats-right">
+                                                    <span class="stats-text">13 Reviews</span>
+                                                </div>
+                                                <div class="stats">
+                                                   <span class="stats-text">Rating : 4.5</span>
+                                                </div>
+                                             </div>
+                                             <div class="timeline-footer">
+                                                <a href="javascript:;" class="m-r-15 text-inverse-lighter"><i class="fa fa-bookmark fa-fw fa-lg m-r-3"></i> Save </a>
+                                                <a href="javascript:;" class="m-r-15 text-inverse-lighter"><i class="fa fa-comments fa-fw fa-lg m-r-3"></i> Comment</a>
+                                                <a href="javascript:;" class="m-r-15 text-inverse-lighter"><i class="fa fa-share fa-fw fa-lg m-r-3"></i> Share</a>
+                                             </div>
+            
+                                       </div>
+                                       <!-- end timeline-body -->
+                                    </li>
+                                    {% endfor %}
+                                       
+            
+                                    </li>
+                                 </ul>
+                                 <!-- end timeline -->
+                              </div>
+                              <!-- end #profile-post tab -->
+                           </div>
+                           <!-- end tab-content -->
+                        </div>
+                        <!-- begin profile-content -->
+                     </div>
+                  </div>
+               </div>
+
+
+
+
+
+            </div>
+        </div>
+
+        
+        <!-- Pagination -->
+
+        <div class="row">
+            <div class="mt-4 pt-2 col-lg-7">
+                <nav aria-label="Page navigation example">
+                    <div class="pagination job-pagination mb-0 justify-content-center">
+                        <li class="page-item disabled">
+                            <a class="page-link" tabindex="-1" href="#"><i class="mdi mdi-chevron-double-left fs-15"></i></a>
+                        </li>
+                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item"><a class="page-link" href="#">4</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="#"><i class="mdi mdi-chevron-double-right fs-15"></i></a>
+                        </li>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
 
 
 {% endblock home_content %}
