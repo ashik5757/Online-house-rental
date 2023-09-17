@@ -45,17 +45,17 @@ Online House Rental | Apartments
                                 </div>
                             </div>
 
-                            <div class="col-lg-2">
+                            <!-- <div class="col-lg-2">
                                 <div class="filler-job-form">
                                     <i class="uil uil-briefcase-alt"></i>
                                     <input id="location" name="location" placeholder="Location" type="search" class="form-control filler-job-input-box form-control" />
                                 </div>
-                            </div>
+                            </div> -->
 
                             {% city_context as areaObj %}
                             <div class="col-lg-2">
                                 <div class="filler-job-form">
-                                    <input type="text" class="form-select" id="area" name="area" list="area_list" placeholder="Area" >
+                                    <input type="text" class="form-select" id="area" name="area" list="area_list" placeholder="Area" value="{{value.area}}">
                                     <datalist id="area_list">
                                         {% for a in areaObj %}
                                             <option value="{{a.name}}">
@@ -64,32 +64,32 @@ Online House Rental | Apartments
                                 </div>
                             </div>
 
-                            <div class="col-lg-1">
+                            <div class="col-lg-2">
                                 <div class="filler-job-form">
                                     <i class="uil uil-clipboard-notes"></i>
                                     <select class="form-select selectForm__inner" id="no_of_beds" name="no_of_beds">
                                         <option value="" disabled selected>Beds</option>
                                         <option value="">Any</option>
-                                        <option value="1">1 Bed</option>
-                                        <option value="2">2 Beds</option>
-                                        <option value="3">3 Beds</option>
-                                        <option value="4">4 Beds</option>
-                                        <option value="5">5 Beds</option>
+                                        <option value="1" {% if value.no_of_beds == '1' %}selected="selected"{% endif %}>1 Bed</option>
+                                        <option value="2" {% if value.no_of_beds == '2' %}selected="selected"{% endif %}>2 Beds</option>
+                                        <option value="3" {% if value.no_of_beds == '3' %}selected="selected"{% endif %}>3 Beds</option>
+                                        <option value="4" {% if value.no_of_beds == '4' %}selected="selected"{% endif %}>4 Beds</option>
+                                        <option value="5" {% if value.no_of_beds == '5' %}selected="selected"{% endif %}>5 Beds</option>
                                     </select>
                                 </div>
                             </div>
 
-                            <div class="col-lg-1">
+                            <div class="col-lg-2">
                                 <div class="filler-job-form">
                                     <i class="uil uil-clipboard-notes"></i>
                                     <select class="form-select selectForm__inner" id="no_of_baths" name="no_of_baths">
                                         <option value="" disabled selected>Baths</option>
                                         <option value="">Any</option>
-                                        <option value="1">1 Bath</option>
-                                        <option value="2">2 Baths</option>
-                                        <option value="3">3 Baths</option>
-                                        <option value="4">4 Baths</option>
-                                        <option value="5">5 Baths</option>
+                                        <option value="1" {% if value.no_of_baths == '1' %}selected="selected"{% endif %}>1 Bath</option>
+                                        <option value="2" {% if value.no_of_baths == '2' %}selected="selected"{% endif %}>2 Baths</option>
+                                        <option value="3" {% if value.no_of_baths == '3' %}selected="selected"{% endif %}>3 Baths</option>
+                                        <option value="4" {% if value.no_of_baths == '4' %}selected="selected"{% endif %}>4 Baths</option>
+                                        <option value="5" {% if value.no_of_baths == '5' %}selected="selected"{% endif %}>5 Baths</option>
                                     </select>
                                 </div>
                             </div>
@@ -104,21 +104,18 @@ Online House Rental | Apartments
                                     <select class="form-select selectForm__inner" id="price" name="price">
                                         <option value="" disabled selected>Price(BDT)</option>
                                         <option value="">Any</option>
-                                        <option value="10000">< 10,000 TK</option>
-                                        <option value="20000">< 20,000 TK</option>
-                                        <option value="30000">< 30,000 TK</option>
-                                        <option value="40000">< 40,000 TK</option>
-                                        <option value="50000">< 50,000 TK</option>
-                                        <option value="60000">< 60,000 TK</option>
-                                        <option value="70000">< 70,000 TK</option>
-                                        <option value="80000">< 80,000 TK</option>
-                                        <option value="90000">< 90,000 TK</option>
-                                        <option value="100000">< 100,000 TK</option>
-                                        <option value="200000">< 200,000 TK</option>
-
-
-
-                                        
+                                        <option value="10000" {% if value.price == '10000' %}selected="selected"{% endif %}>&lt; 10,000 TK</option>
+                                        <option value="20000" {% if value.price == '20000' %}selected="selected"{% endif %}>&lt; 20,000 TK</option>
+                                        <option value="30000" {% if value.price == '30000' %}selected="selected"{% endif %}>&lt; 30,000 TK</option>
+                                        <option value="40000" {% if value.price == '40000' %}selected="selected"{% endif %}>&lt; 40,000 TK</option>
+                                        <option value="50000" {% if value.price == '50000' %}selected="selected"{% endif %}>&lt; 50,000 TK</option>
+                                        <option value="60000" {% if value.price == '60000' %}selected="selected"{% endif %}>&lt; 60,000 TK</option>
+                                        <option value="70000" {% if value.price == '70000' %}selected="selected"{% endif %}>&lt; 70,000 TK</option>
+                                        <option value="80000" {% if value.price == '80000' %}selected="selected"{% endif %}>&lt; 80,000 TK</option>
+                                        <option value="90000" {% if value.price == '90000' %}selected="selected"{% endif %}>&lt; 90,000 TK</option>
+                                        <option value="100000" {% if value.price == '100000' %}selected="selected"{% endif %}>&lt; 100,000 TK</option>
+                                        <option value="200000" {% if value.price == '200000' %}selected="selected"{% endif %}>&lt; 200,000 TK</option>
+                                         
                                     </select>
                                 </div>
                             </div>
@@ -128,9 +125,10 @@ Online House Rental | Apartments
                                     <i class="uil uil-clipboard-notes"></i>
                                     <select class="form-select selectForm__inner" id="rent_for" name="rent_for">
                                         <option value="" disabled selected>Rent For</option>
-                                        <option value="Family">Family</option>
-                                        <option value="Bachelors">Bachelors</option>
-                                        <option value="Office">Office</option>
+                                        <option value="">Any</option>
+                                        <option value="Family" {% if value.rent_for == 'Family' %}selected="selected"{% endif %}>Family</option>
+                                        <option value="Bachelors" {% if value.rent_for == 'Bachelors' %}selected="selected"{% endif %}>Bachelors</option>
+                                        <option value="Office" {% if value.rent_for == 'Office' %}selected="selected"{% endif %}>Office</option>
                                     </select>
                                 </div>
                             </div>
@@ -138,14 +136,15 @@ Online House Rental | Apartments
                             <div class="col-lg-2">
                                 <div class="candidate-list-widgets">
                                     <div class="row">
-                                        <div class="col-lg-8">
+                                        <div class="col-lg-12">
                                             <div class="selection-widget">
                                                 <select class="form-select" id="sort_by" name="sort_by">
                                                     <option value="" disabled selected>Sort by</option>
                                                     <option value="df">Default</option>
                                                     <option value="ne">Newest</option>
                                                     <option value="od">Oldest</option>
-                                                    <option value="rd">Rent Charge</option>
+                                                    <option value="rd">Rent Charge ↓</option>
+                                                    <option value="rd2">Rent Charge ↑</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -153,9 +152,9 @@ Online House Rental | Apartments
                                 </div>
                             </div>
 
-                            <div class="col-lg-2">
+                            <div class="col-lg-6">
                                 <div>
-                                    <button type="submit" class="btn btn-signup-custom btn-block">Filter</button>
+                                    <button type="submit" class="btn btn-signup-custom btn-block col-lg-4">Filter</button>
                                 </div>
                             </div>
                         </div>

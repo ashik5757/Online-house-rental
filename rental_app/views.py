@@ -13,23 +13,85 @@ def Homepage(request):
 
 @login_required(login_url='sign_in')
 def Apartments(request):
-
+    print(request.POST)
     properties = Rental_Property.objects.all()
     property_images = Property_Image.objects.all()
-    value = {'city':''}
+    value = {'city':'', 'area':'', 'no_of_beds':'', 'no_of_baths':'', 'price':'', 'rent_for':'', 'sort_by':'' }
 
     if request.method=='POST':
         city = request.POST.get('city')
+        area = request.POST.get('area')
+        no_of_beds = request.POST.get('no_of_beds')
+        no_of_baths = request.POST.get('no_of_baths')
+        price = request.POST.get('price')
+        rent_for = request.POST.get('rent_for')
+        sort_by = request.POST.get('sort_by')
+    
+
+        properties = Rental_Property.objects.all()
+
         
         if city is not None and city!='':
             value['city'] = city
-            properties = Rental_Property.objects.filter(city=city)
-            context = {'pr':properties, 'pr_img': property_images, 'value':value}
-        
-            messages.success(request, 'Property Filtered')
-            print(value)
-            # return redirect('apartments', context=context)
+            properties = properties.filter(city=city)
 
+        if area is not None and area!='':
+            value['area'] = area
+            properties = properties.filter(area=area)
+        
+        if no_of_beds is not None and no_of_beds!='':
+            value['no_of_beds'] = no_of_beds
+            properties = properties.filter(numbers_of_beds=no_of_beds)
+
+        if no_of_baths is not None and no_of_baths!='':
+            value['no_of_baths'] = no_of_baths
+            properties = properties.filter(numbers_of_bath=no_of_baths)
+        
+        if price is not None and price!='':
+            value['price'] = price
+            if price=='10000':
+                properties = properties.filter(rent_charge__lte=price)
+            elif price=='20000':
+                properties = properties.filter(rent_charge__lte=price)
+            elif price=='30000':
+                properties = properties.filter(rent_charge__lte=price)
+            elif price=='40000':
+                properties = properties.filter(rent_charge__lte=price)
+            elif price=='50000':
+                properties = properties.filter(rent_charge__lte=price)
+            elif price=='60000':
+                properties = properties.filter(rent_charge__lte=price)
+            elif price=='70000':
+                properties = properties.filter(rent_charge__lte=price)
+            elif price=='80000':
+                properties = properties.filter(rent_charge__lte=price)
+            elif price=='90000':
+                properties = properties.filter(rent_charge__lte=price)
+            elif price=='100000':
+                properties = properties.filter(rent_charge__lte=price)
+            elif price=='200000':
+                properties = properties.filter(rent_charge__lte=price)
+
+
+        if rent_for is not None and rent_for!='':
+            value['rent_for'] = rent_for
+            properties = properties.filter(rents_for=rent_for)
+
+
+        if sort_by is not None and sort_by!='':
+            value['sort_by'] = sort_by
+            if sort_by=='ne':
+                properties = properties.order_by('post_date')
+            elif sort_by=='od':
+                properties = properties.order_by('-post_date')
+            elif sort_by=='rd':
+                properties = properties.order_by('rent_charge')
+            elif sort_by=='rd2':
+                properties = properties.order_by('-rent_charge')
+                
+        
+        messages.success(request, 'Property Filtered')
+        print(value)
 
     context = {'pr':properties, 'pr_img': property_images, 'value':value}
 
