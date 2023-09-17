@@ -120,7 +120,7 @@ Online House Rental | {{ user.username }}
                                           class="row g-3 needs-validation-l" enctype='multipart/form-data' novalidate>
                                           {% csrf_token %}
                       
-                                          <div class="row g-2">
+                                          <div class="fir row g-2">
                                               <div class="col form-floating mb-3">
                                                   <input type="text" class="form-control" id="title" name="title" placeholder="title" value=""
                                                        maxlength="100" minlength="5" required>
@@ -131,20 +131,19 @@ Online House Rental | {{ user.username }}
                                               </div>
                                           </div>
                       
-                                          <div class="row g-2">
+                                          <div class="fir row g-2">
                                             <div class="col form-floating mb-3">
                                                 <textarea type="text" class="form-control" id="description" name="description" placeholder="description" value=""
-                                                     maxlength="1000" required></textarea>
+                                                    maxlength="1000" required style="height: 200px;"></textarea>
                                                 <label for="description">Description</label>
                                                 <div class="invalid-feedback">
                                                     This field is required.
                                                 </div>
                                             </div>
                                           </div>
+                                        
                     
-
-
-                                          <div class="row g-2">
+                                          <div class="fir row g-2">
                                             <div class="col form-floating mb-3">
                                                 <input type="text" class="form-control" id="street" name="street" placeholder="street" value=""
                                                     maxlength="100", minlength="10" required>
@@ -157,7 +156,7 @@ Online House Rental | {{ user.username }}
 
 
 
-                                          <div class="row g-3">
+                                          <div class="fir row g-3">
 
                       
                                               {% city_context as areaObj %}
@@ -201,7 +200,7 @@ Online House Rental | {{ user.username }}
                       
                       
                       
-                                          <div class="row g-2">
+                                          <div class="fir row g-2">
                                             <div class="col form-floating mb-3">
                                                 <input type="number" class="form-control" id="rent_charge" name="rent_charge" placeholder="rent_charge" max="500000" value="" required>
                                                 <label for="rent_charge">Rent Charge</label>
@@ -223,7 +222,7 @@ Online House Rental | {{ user.username }}
                                         </div>
                       
 
-                                        <div class="row g-3">
+                                        <div class="fir row g-3">
 
                                           <div class="col form-floating mb-3">
                                               <select type="text" class="form-control" id="no_of_beds" name="no_of_beds" placeholder="no_of_beds" value="" required>
@@ -271,7 +270,7 @@ Online House Rental | {{ user.username }}
 
 
 
-                                        <div class="row g-3">
+                                        <div class="fir row g-3">
 
                                           <div class="col form-floating mb-3">
                                               <select type="text" class="form-control" id="drawing_status" name="drawing_status" placeholder="drawing_status" value="" required>
@@ -313,7 +312,7 @@ Online House Rental | {{ user.username }}
                                     
 
                                           
-                                          <div class="row g-3">
+                                          <div class="fir row g-3">
 
                                             <div class="col form-floating mb-3">
                                                 <select type="text" class="form-control" id="electric_meter_type" name="electric_meter_type" placeholder="electric_meter_type" value="" required>
@@ -340,13 +339,10 @@ Online House Rental | {{ user.username }}
 
                                           </div>
                                           
-                                          <button type="button" name="extend" id="extend">Add Services</button>
+                                          <button type="button" class="fir btn btn-signup-custom btn-block" name="extend" id="extend">Add Services</button>
                                           <div id="extend_field"></div>
                                           
-
-
-
-
+                
                                         </div>
                                       </div>
                                     </div>
@@ -362,7 +358,7 @@ Online House Rental | {{ user.username }}
 
 
                                   <div class="card mb-3">
-                                       <div class="row g-0">
+                                       <div class="fir row g-0">
                                           <div class="col-md-8">
                                            <div class="card-body">
 
@@ -396,7 +392,7 @@ Online House Rental | {{ user.username }}
                                         <div class="card-body">
 
                                           <div class="form-group pt-1">
-                                            <button type="submit" class="btn btn-signup-custom btn-block" style="width:100%">Create a Post</button>
+                                            <button type="submit" class="fir btn btn-signup-custom btn-block" style="width:100%">Create a Post</button>
                                           </div>
 
 
