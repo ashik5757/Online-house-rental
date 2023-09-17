@@ -613,6 +613,11 @@ select.form-control:not([size]):not([multiple]) {
     margin-left: 15px
 }
 
+.cmnt-container{
+    width: 90%;
+    margin: 0 auto;
+}
+
 .timeline-comment-box {
     background: #f2f3f4;
     margin-left: -25px;
