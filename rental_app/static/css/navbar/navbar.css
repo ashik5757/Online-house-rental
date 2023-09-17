@@ -7,7 +7,9 @@
     color: #0dcaf0;
     border-color: #0dcaf0;
 }
-
+.logo{
+    width: 100px;
+}
 .navbar-brand,
 .nav-link {
     display: block;
