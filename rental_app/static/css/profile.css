@@ -1,5 +1,11 @@
 body{
     background:#eee;
+    font-family: 'Crimson Text', serif;
+    font-family: 'Josefin Sans', sans-serif;
+    font-family: 'Kanit', sans-serif;
+    font-family: 'Poppins', sans-serif;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-family: 'Ubuntu', sans-serif;
 }
 
 .profile-header {
@@ -33,26 +39,22 @@ body{
     padding: 25px
 }
 
-.profile-header-img {
+.profile-header-img img{
     float: left;
     width: 120px;
     height: 120px;
     overflow: hidden;
     position: relative;
     z-index: 10;
-    margin: 0 0 -20px;
     padding: 3px;
-    border-radius: 4px;
+    border-radius: 100%;
+    object-fit: cover;
     background: rgba(0, 0, 0, .75);
 }
 
-.profile-header-img img {
-    max-width: 100%;
-}
-
 .profile-header-info h4 {
-    font-weight: 500;
-    color: #fff
+    font-weight: bold;
+    color: #0dcaf0;
 }
 
 .profile-header-img+.profile-header-info {
@@ -61,7 +63,8 @@ body{
 
 .profile-header .profile-header-content,
 .profile-header .profile-header-tab {
-    position: relative
+    position: relative;
+    letter-spacing: 2px;
 }
 
 .b-minus-1,
@@ -181,6 +184,10 @@ body{
     color: #242a30
 }
 
+.profile-header .profile-header-tab>li>a:hover {
+    color: #0dcaf0;
+}
+
 .profile-content {
     padding: 25px;
     border-radius: 4px
@@ -214,9 +221,10 @@ body{
     text-align: center;
     font-size: 72px;
     margin-bottom: 10px;
-    border: 2px solid #E2E7EB;
+    border: 2px solid #0dcaf0;
     overflow: hidden;
-    border-radius: 4px
+    border-radius: 100%;
+    object-fit: cover;
 }
 
 .profile-image img {
@@ -639,3 +647,4 @@ select.form-control:not([size]):not([multiple]) {
 .text-danger, .text-red {
     color: #ff5b57!important;
 }
+

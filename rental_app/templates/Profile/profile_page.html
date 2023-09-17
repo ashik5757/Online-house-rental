@@ -7,6 +7,9 @@ Online House Rental | {{ user.username }}
 
 
 {% block more_link %}
+<style>
+   @import url('https://fonts.googleapis.com/css2?family=Crimson+Text&family=Josefin+Sans:wght@100;500&family=Kanit&family=Poppins:wght@100&family=Roboto+Condensed:wght@300;700&family=Ubuntu:wght@300&display=swap');
+ </style>
 <link href="{% static 'css/profile.css' %}" rel="stylesheet">
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 {% endblock more_link %}
@@ -61,8 +64,8 @@ Online House Rental | {{ user.username }}
                             UserID : {{user.id}}
                             
                         </p>
-                        <a href="{% url 'edit_profile_general' user.username %}" class="btn btn-outline-light btn-sm">Edit Profile</a>
-                        <a href="{% url 'create_post' user.username %}" class="btn btn-outline-light btn-sm">Create Post</a>
+                        <a href="{% url 'edit_profile_general' user.username %}" class="btn btn-outline-info btn-sm">Edit Profile</a>
+                        <a href="{% url 'create_post' user.username %}" class="btn btn-outline-info btn-sm">Create Post</a>
                      </div>
                      <!-- END profile-header-info -->
                   </div>
@@ -182,9 +185,9 @@ Online House Rental | {{ user.username }}
                                     <div class="input">
                                        <form action="">
                                        <div class="input-group">
-                                             <input type="text" class="form-control rounded-corner" placeholder="Write a comment...">
+                                             <input type="text" class="form-control rounded-corner me-3" placeholder="Write a comment...">
                                              <span class="input-group-btn p-l-10">
-                                             <button class="btn btn-primary f-s-12 rounded-corner" type="button">Comment</button>
+                                             <button class="btn btn-outline-info" type="button">Comment</button>
                                              </span>
                                        </div>
                                        </form>
