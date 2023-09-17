@@ -103,11 +103,13 @@ Online House Rental | {{ user.username }}
             <!-- begin profile-content -->
             <div class="profile-content">
                <!-- begin tab-content -->
+    
                <div class="tab-content p-0">
                   <!-- begin #profile-post tab -->
                   <div class="tab-pane fade active show" id="profile-post">
 
                            <div class="timeline-body">
+                              
                                  <div class="timeline-content">
 
                                   <div class="card mb-3">
@@ -115,7 +117,7 @@ Online House Rental | {{ user.username }}
                                        <div class="col-md-8">
                                         <div class="card-body">
 
-
+                                        <h4>Create Post</h4>  
                                         <form id="submitForm_create_post" action="{%url 'create_post' user.username %}" method="post"
                                           class="row g-3 needs-validation-l" enctype='multipart/form-data' novalidate>
                                           {% csrf_token %}
@@ -386,19 +388,8 @@ Online House Rental | {{ user.username }}
 
 
 
-                                  <div class="card mb-3">
-                                    <div class="row g-0">
-                                       <div class="col-md-8">
-                                        <div class="card-body">
-
-                                          <div class="form-group pt-1">
-                                            <button type="submit" class="fir btn btn-signup-custom btn-block" style="width:100%">Create a Post</button>
-                                          </div>
-
-
-                                        </div>
-                                      </div>
-                                    </div>
+                                  <div class="form-group pt-1">
+                                    <button type="submit" class="fir btn btn-signup-custom btn-block mb-5" style="width:66%">Create a Post</button>
                                   </div>
 
                                 </form>
@@ -442,7 +433,7 @@ Online House Rental | {{ user.username }}
       const dynamicFieldHTML = 
         
       
-        `<div class="row g-3">
+        `<div class="fir row g-3">
   
           <div class="col form-floating mb-3">
               <select type="text" class="form-control" id="service_type" name="service_type" placeholder="service_type" value="" required>
@@ -467,7 +458,7 @@ Online House Rental | {{ user.username }}
           </div>
   
           <div class="col remove-field">
-            <button>Remove</button>
+            <button style="border: none; background: none;"><img src="https://o.remove.bg/downloads/a4f1b3ba-542d-4e6b-aabb-1d5e4b40a3ff/image-removebg-preview.png"></button>
           </div>
   
         </div>`;
