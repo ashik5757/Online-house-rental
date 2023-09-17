@@ -109,6 +109,8 @@ def About(request):
 def Profile(request, username):
     
     user = User.objects.filter(username=username).first()
+    property_images = Property_Image.objects.all()
+
 
     if request.user.role == 'L':
         profile = Landlord.objects.filter(user=user).first()
@@ -119,7 +121,7 @@ def Profile(request, username):
     
 
     # print(properties)
-    context = {'p' : profile, 'pr':properties}
+    context = {'p' : profile, 'pr':properties, 'pr_img': property_images,}
 
     return render(request, 'Profile/profile_page.html', context=context)
 
@@ -295,7 +297,7 @@ def Edit_Profile(request, username):
 
 
         messages.success(request, 'Profile Uopdated')
-        return redirect('profile_post', {'p' : profile, 'pr':properties})
+        return redirect('profile_post', username=username)
         
         
     context = {'p' : profile, 'arealist': areaObj, 'distList': distObj}
