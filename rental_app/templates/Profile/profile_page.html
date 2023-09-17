@@ -66,7 +66,11 @@ Online House Rental | {{ user.username }}
                             
                         </p>
                         <a href="{% url 'edit_profile_general' user.username %}" class="btn btn-outline-info btn-sm">Edit Profile</a>
-                        <a href="{% url 'create_post' user.username %}" class="btn btn-outline-info btn-sm">Create Post</a>
+                        
+                        {% if user.role == 'L' %}
+                           <a href="{% url 'create_post' user.username %}" class="btn btn-outline-info btn-sm">Create Post</a>
+                        {% endif %}
+                           
                      </div>
                      <!-- END profile-header-info -->
                   </div>
@@ -115,48 +119,51 @@ Online House Rental | {{ user.username }}
                            <div class="timeline-body">
                                  <div class="timeline-header">
                                     <span class="userimage">
-                                       {% if p.profile_image.url is not None %}
-                                       <img src="{{p.profile_image.url}}" alt="{{p.first_name}}">
+                                       {% if i.Landlord.profile_image.url is not None %}
+                                       <img src="{{i.Landlord.profile_image.url}}" alt="{{p.first_name}}">
                                        {% else %}
                                           <img src="{% static 'images/blank_profile_image.png' %}" alt="{{p.first_name}}">
                                        {% endif %}
                                     </span>
-                                    <span class="username"><a href="">{{p.first_name}}</a> <small></small></span>
+                                    <span class="username"><a href="{% url 'profile_post' i.Landlord.user.username %}">{{i.Landlord.first_name}}</a> <small></small></span>
                                     <span class="pull-right text-muted">
-                                       <a href="javascript:;">#{{user.username}}</a>
+                                       <a href="{% url 'profile_post' i.Landlord.user.username %}">#{{i.Landlord.user.username}}</a>
                                     </span>
                                  </div>
+
                                  <div class="timeline-content">
-                                    <a href=" {% url 'profile_detail_post' user.username 'slug1212' %}" style="text-decoration: none;">
+                                    <a href=" {% url 'profile_detail_post' i.Landlord.user.username i.slug %}" style="text-decoration: none;">
                                     <div class="card mb-3" style="max-width: 740px;">
                                        <div class="row g-0">
                                          <div class="col-md-4">
                                            <!-- <img src="{% static 'images/blank_profile_image.png' %}" class="img-fluid rounded-start" alt="..."> -->
                                              <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
                                                 <div class="carousel-inner">
-                                                <div class="carousel-item active">
-                                                   <img src="{% static 'images/blank_profile_image.png' %}" class="d-block w-100" alt="...">
-                                                </div>
-                                                <div class="carousel-item">
-                                                   <img src="..." class="d-block w-100" alt="...">
-                                                </div>
-                                                <div class="carousel-item">
-                                                   <img src="{% static 'images/blank_profile_image.png' %}" class="d-block w-100" alt="...">
-                                                </div>
-                                                </div>
+                                                   {% for im in pr_img %}
+                                                   
+                                                   {% if i.id is im.Rental_Property.id %}
+                                                   <div class="carousel-item active">
+                                                       <img src="{{im.image.url}}" class="d-block w-100" alt="...">
+                                                   </div>
+                                                   {% endif %}
+                                                       
+
+                                                   {% endfor %}
+
+                                               </div>
                                              </div>
                                          </div>
                                          <div class="col-md-8">
-                                           <div class="card-body">
+                                          <div class="card-body">
                                              <h5 class="card-title">
-                                                <font style="font-size: small;">BDT</font> 21 Thousand <small style="font-size:x-small;">Available</small> 
+                                                <font style="font-size: small;">BDT</font> {{i.rent_charge}} TK <small style="font-size:x-small;">{{i.rental_status}}</small> 
                                              </h5>
 
-                                             For Rent | 4 Beds 4 Baths | Area : 1850 sqft
+                                             Rent for {{i.rents_for}} | {{i.numbers_of_beds}} Beds {{i.numbers_of_bath}} Baths | Area : {{i.apartment_area}} {{i.areunit}}
 
 
                                              <p class="card-text"><h6>{{i.title}}</h6></p>
-                                             <p class="card-text">Sector 6, Uttara, Dhaka</p>
+                                             <p class="card-text">{{i.street}} {{i.area}} {{i.city}}-{{i.zip}}</p>
                                              <p class="card-text"><small class="text-body-secondary">Last updated {{i.last_updated}}</small></p>
                                            </div>
                                          </div>
@@ -166,6 +173,7 @@ Online House Rental | {{ user.username }}
 
                                  </div>
                                  
+
                                  <div class="timeline-likes">
                                     <div class="stats-right">
                                        <span class="stats-text">21 Responses</span>

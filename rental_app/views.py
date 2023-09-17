@@ -194,9 +194,12 @@ def Create_post(request, username):
             imgObj.save()
 
         print(request.POST)
+
+        properties = Rental_Property.objects.filter(Landlord=profile)
+        context = {'p' : profile, 'pr':properties}
         
         messages.success(request, 'Property Created')
-        return redirect('profile_post', {'p' : profile})
+        return redirect('profile_post', context=context)
 
 
         
@@ -239,6 +242,8 @@ def Profile_detail_post(request, username, slug):
 
 @login_required(login_url="sign_in")
 def Edit_Profile(request, username):
+
+    user = User.objects.filter(username=username).first()
         
     areaObj = Area.objects.all()
     distObj = District.objects.all()
@@ -280,8 +285,17 @@ def Edit_Profile(request, username):
         print(request.POST)
         
         profile.save()
+        
+        if request.user.role == 'L':
+            profile = Landlord.objects.filter(user=user).first()
+            properties = Rental_Property.objects.filter(Landlord=profile) 
+        if request.user.role == 'R':
+            profile = Renter.objects.filter(user=user).first()
+            properties = Bookmark.objects.filter(Renter=profile)
+
+
         messages.success(request, 'Profile Uopdated')
-        return redirect('profile_post', {'p' : profile})
+        return redirect('profile_post', {'p' : profile, 'pr':properties})
         
         
     context = {'p' : profile, 'arealist': areaObj, 'distList': distObj}
