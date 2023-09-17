@@ -7,6 +7,9 @@ Online House Rental | {{ user.username }}
 
 
 {% block more_link %}
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Crimson+Text&family=Josefin+Sans:wght@100;500&family=Kanit&family=Poppins:wght@100&family=Roboto+Condensed:wght@300;700&family=Ubuntu:wght@300&display=swap');
+</style>
 <link href="{% static 'css/edit_profile.css' %}" rel="stylesheet">
 <!-- <link href="{% static 'css/profile.css' %}" rel="stylesheet"> -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
@@ -22,8 +25,8 @@ Online House Rental | {{ user.username }}
 
 
     <div class="row">
-        <div class="col">
-            <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4">
+        <div class="col pt-3">
+            <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-3">
             <ol class="breadcrumb mb-0">
                 <li class="breadcrumb-item"><a href="{% url 'home_page' %}">Home</a></li>
                 <li class="breadcrumb-item"><a href="{% url 'profile_post' user.username %}">Profile</a></li>
@@ -50,9 +53,9 @@ Online House Rental | {{ user.username }}
                                         <div class="user-profile">
                                             <div class="user-avatar">
                                                 {% if p.profile_image.url is not None %}
-                                                    <img src="{{p.profile_image.url}}" alt="{{p.first_name}}" style="width: 80px;">
+                                                    <img src="{{p.profile_image.url}}" alt="{{p.first_name}}" style="width: 100px;">
                                                 {% else %}
-                                                    <img src="{% static 'images/blank_profile_image.png' %}" alt="{{p.first_name}}" style="width: 80px;">
+                                                    <img src="{% static 'images/blank_profile_image.png' %}" alt="{{p.first_name}}" style="width: 100px;">
                                                 {% endif %}
                                             </div>
                                             <h5 class="user-name">{{p.first_name}}</h5>
@@ -95,16 +98,16 @@ Online House Rental | {{ user.username }}
 
                                         <!-- START User and Email -->
                                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                            <h6 class="mb-2 text-primary">Username and Email</h6>
+                                            <h6 class="mb-2 text-primary my-4">Username and Email</h6>
                                         </div>
                         
-                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mt-3">
                                             <div class="form-group">
                                                 <label for="username">Username</label>
                                                 <input type="text" class="form-control lower-case" id="username" name="username" value="{{user.username}}" placeholder="Enter a username" required>
                                             </div>
                                         </div>
-                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mt-3">
                                             <div class="form-group">
                                                 <label for="email">Email</label>
                                                 <input type="email" class="form-control lower-case" id="email" name="email" value="{{user.email}}" placeholder="Enter email ID" required>
@@ -114,7 +117,7 @@ Online House Rental | {{ user.username }}
                                         
 
                                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                            <h6 class="mb-2 text-primary">Current Password</h6>
+                                            <h6 class="mb-2 text-primary mt-4">Current Password</h6>
                                         </div>
                                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                             <div class="form-group">
@@ -131,9 +134,9 @@ Online House Rental | {{ user.username }}
 
                                     <div class="row gutters">
                                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                            <div class="text-right">
-                                                <button type="button" id="cancel" name="cancel" class="btn btn-secondary">Cancel</button>
-                                                <button type="submit" id="submit" class="btn btn-primary">Update</button>
+                                            <div class="text-right mt-3">
+                                                <button type="button" id="cancel" name="cancel" class="btn btn-outline-info btn-sm">Cancel</button>
+                                                <button type="submit" id="submit" class="btn btn-outline-info btn-sm ms-2">Update</button>
                                             </div>
                                         </div>
                                     </div>

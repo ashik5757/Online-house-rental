@@ -1,10 +1,21 @@
 body {
     margin: 0;
-    color: #2e323c;
-    background: #f5f6fa;
+    background: #eee;
     position: relative;
     height: 100%;
+
+    font-family: 'Crimson Text', serif;
+    font-family: 'Josefin Sans', sans-serif;
+    font-family: 'Kanit', sans-serif;
+    font-family: 'Poppins', sans-serif;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-family: 'Ubuntu', sans-serif;
 }
+
+a {
+    text-decoration: none;
+}
+
 .account-settings .user-profile {
     margin: 0 0 1rem 0;
     padding-bottom: 1rem;
@@ -14,11 +25,12 @@ body {
     margin: 0 0 1rem 0;
 }
 .account-settings .user-profile .user-avatar img {
-    width: 90px;
-    height: 90px;
+    width: 100px;
+    height: 100px;
     -webkit-border-radius: 100px;
     -moz-border-radius: 100px;
     border-radius: 100px;
+    object-fit: cover;
 }
 .account-settings .user-profile h5.user-name {
     margin: 0 0 0.5rem 0;
@@ -35,7 +47,7 @@ body {
 }
 .account-settings .about h5 {
     margin: 0 0 15px 0;
-    color: #007ae1;
+    color:#26B4FF;
 }
 .account-settings .about p {
     font-size: 0.825rem;
@@ -58,7 +70,6 @@ body {
     border: 0;
     margin-bottom: 1rem;
 }
-
 
 /* -------------------------------------------------------------------------------------------------------------------------------- */
 
@@ -121,7 +132,7 @@ label.btn {
 }
 .account-settings-links .list-group-item.active {
     font-weight: bold !important;
-    color: #000;
+    color:#26B4FF;
     background: transparent !important;
 }
 html:not(.dark-style) .account-settings-links .list-group-item.active {
