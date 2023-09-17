@@ -177,21 +177,8 @@ Online House Rental | {{ user.username }}
                                  </div>
                                  <div class="d-flex justify-content-evenly timeline-footer">
                                     <a href="javascript:;" class="m-r-15 text-inverse-lighter"><i class="face fa fa-bookmark fa-fw fa-lg m-r-3"></i> Save </a>
-                                    <a href="javascript:;" class="m-r-15 text-inverse-lighter"><i class="face fa fa-comments fa-fw fa-lg m-r-3"></i> Comment</a>
-                                    <a href="javascript:;" class="m-r-15 text-inverse-lighter"><i class="face fa fa-share fa-fw fa-lg m-r-3"></i> Share</a>
-                                 </div>
-                                 <div class="timeline-comment-box">
-                                    <div class="user"><img src="https://bootdey.com/img/Content/avatar/avatar2.png"></div>
-                                    <div class="input">
-                                       <form action="">
-                                       <div class="input-group">
-                                             <input type="text" class="form-control rounded-corner me-3" placeholder="Write a comment...">
-                                             <span class="input-group-btn p-l-10">
-                                             <button class="btn btn-outline-info" type="button">Comment</button>
-                                             </span>
-                                       </div>
-                                       </form>
-                                    </div>
+                                    <a href="javascript:;" class="m-r-15 text-inverse-lighter" data-bs-toggle="modal" data-bs-target="#comment"><i class="face fa fa-comments fa-fw fa-lg m-r-3"></i> Comment</a>
+                                    <a href="javascript:;" class="m-r-15 text-inverse-lighter" data-bs-toggle="modal" data-bs-target="#share"><i class="face fa fa-share fa-fw fa-lg m-r-3"></i> Share</a>
                                  </div>
                            </div>
                            <!-- end timeline-body -->
@@ -226,6 +213,41 @@ Online House Rental | {{ user.username }}
 
 
 
+
+
+<!-- Comment -->
+<div class="modal fade" id="comment" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="comment" aria-hidden="true">
+   <div class="modal-dialog">
+     <div class="modal-content">
+       <div class="modal-header">
+         <div class="p-2 ">
+           <h2>Comment</h2>
+       </div>
+         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+       </div>
+       <div class="modal-body">
+         {% include 'Profile/Modal/comment.html' %}
+       </div>
+     </div>
+   </div>
+ </div>
+
+ <!-- share -->
+ <div class="modal fade" id="share"  tabindex="-1" aria-labelledby="share" aria-hidden="true">
+   <div class="modal-dialog">
+     <div class="modal-content">
+       <div class="modal-header">
+         <div class="p-2 ">
+           <h2>Share Link</h2>
+       </div>
+         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+       </div>
+       <div class="modal-body">
+         {% include 'Profile/Modal/share_link.html' %}
+       </div>
+     </div>
+   </div>
+ </div>
 
 {% endblock home_content %}
 
