@@ -201,7 +201,7 @@ def Create_post(request, username):
         context = {'p' : profile, 'pr':properties}
         
         messages.success(request, 'Property Created')
-        return redirect('profile_post', context=context)
+        return redirect('profile_post', username=username)
 
 
         
@@ -333,7 +333,7 @@ def Edit_Profile_user_email(request, username):
                 try:
                     user.save()
                     messages.success(request, 'Information Updated')
-                    return redirect('profile_post', {'p' : profile})
+                    return redirect('profile_post', username=username)
                 except:
                     messages.error(request, 'Something is wrong')
         else:
@@ -372,7 +372,7 @@ def Edit_Profile_password(request, username):
                     user.save()
                     update_session_auth_hash(request, user)
                     messages.success(request, 'Information Updated')
-                    return redirect('profile_post', {'p' : profile})
+                    return redirect('profile_post', username-username)
                 except:
                     messages.error(request, 'Something was wrong')
 
