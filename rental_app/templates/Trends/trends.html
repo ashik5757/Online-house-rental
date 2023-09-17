@@ -2,20 +2,75 @@
 {% load static %}
 
 {% block title %}
-Online House Rental | Trends
+Home Rental | Trends
 {% endblock title %}
 
-{% block  home_content %}
+{% block more_link %}
+<link rel="stylesheet" href="{% static 'css/index.css' %}">
+{% endblock more_link %}
+
+{% block home_content %}
+
+<div class="home-container">
+    <div class="home-title">
+
+        <h1>
+            Trends and Apertments
+        </h1>
+        <!-- <div class="home-btns">
+            <button class="learn-btn">
+                Learn More
+            </button>
+            <button class="contact-btn">
+                Contact us
+            </button>
+        </div> -->
+    </div>
 
 
-<div align="center" class="container-fluid">
+    <div class="home-posts">
+        
+        <div class="home-post">
+            <div class="post-image">
+                <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="post-image">
+            </div>
+            <div class="post-content">
+                <h1>Lorem, ipsum.</h1>
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Necessitatibus placeat natus, atque laboriosam ex iste.</p>
+                <button class="learn-btn">
+                    Read More
+                </button>
+            </div>
+        </div>
 
-    <br><br>
+        <div class="home-post">
+            <div class="post-image">
+                <img src="https://images.unsplash.com/photo-1501183638710-841dd1904471?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="post-image">
+            </div>
+            <div class="post-content">
+                <h1>Lorem, ipsum.</h1>
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Necessitatibus placeat natus, atque laboriosam ex iste.</p>
+                <button class="learn-btn">
+                    Read More
+                </button>
+            </div>
+        </div>
 
-    <h1> Trends Page </h1>
+        <div class="home-post">
+            <div class="post-image">
+                <img src="https://images.unsplash.com/photo-1505691723518-36a5ac3be353?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="post-image">
+            </div>
+            <div class="post-content">
+                <h1>Lorem, ipsum.</h1>
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Necessitatibus placeat natus, atque laboriosam ex iste.</p>
+                <button class="learn-btn">
+                    Read More
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
 
-</div> 
 
 {% endblock home_content %}
-
 
