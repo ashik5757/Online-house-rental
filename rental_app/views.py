@@ -14,9 +14,24 @@ def Homepage(request):
 @login_required(login_url='sign_in')
 def Apartments(request):
 
-    properties = Rental_Property.objects.all() 
+    properties = Rental_Property.objects.all()
+    property_images = Property_Image.objects.all()
+    value = {'city':''}
 
-    context = {'pr':properties}
+    if request.method=='POST':
+        city = request.POST.get('city')
+        
+        if city is not None and city!='':
+            value['city'] = city
+            properties = Rental_Property.objects.filter(city=city)
+            context = {'pr':properties, 'pr_img': property_images, 'value':value}
+        
+            messages.success(request, 'Property Filtered')
+            print(value)
+            # return redirect('apartments', context=context)
+
+
+    context = {'pr':properties, 'pr_img': property_images, 'value':value}
 
     return render(request, 'Apartments/apartments.html', context=context)
 
@@ -31,11 +46,13 @@ def About(request):
 @login_required(login_url="sign_in")
 def Profile(request, username):
     
+    user = User.objects.filter(username=username).first()
+
     if request.user.role == 'L':
-        profile = Landlord.objects.filter(user=request.user).first()
+        profile = Landlord.objects.filter(user=user).first()
         properties = Rental_Property.objects.filter(Landlord=profile) 
     if request.user.role == 'R':
-        profile = Renter.objects.filter(user=request.user).first()
+        profile = Renter.objects.filter(user=user).first()
         properties = Bookmark.objects.filter(Renter=profile)
     
 
@@ -141,11 +158,13 @@ def Create_post(request, username):
 
 @login_required(login_url="sign_in")
 def Profile_detail_post(request, username, slug):
+
+    user = User.objects.filter(username=username).first()
     
     if request.user.role == 'L':
-        profile = Landlord.objects.filter(user=request.user).first()
+        profile = Landlord.objects.filter(user=user).first()
     if request.user.role == 'R':
-        profile = Renter.objects.filter(user=request.user).first()
+        profile = Renter.objects.filter(user=user).first()
 
 
     return render(request, 'Profile/profile_detail_post.html', {'p' : profile})

@@ -99,8 +99,8 @@ class Renter(models.Model):
 
 class Rental_Property(models.Model):
 
-    title = models.CharField(max_length=300)
-    slug = models.SlugField(default="", blank=True, editable=False, null=False)
+    title = models.CharField(max_length=500)
+    slug = models.SlugField(default="", max_length=500, blank=True, editable=False, null=False)
     description = models.TextField()
     street = models.CharField(max_length=255)
     area = models.CharField(max_length=200)
