@@ -5,18 +5,80 @@
 Online House Rental | About
 {% endblock title %}
 
-{% block  home_content %}
+{% block home_content %}
 
 
-<div align="center" class="container-fluid">
+<!-- <div align="center" class="container-fluid">
 
     <br><br>
 
     <h1> About Page </h1>
 
-</div>
+</div> -->
 
+<html>
+
+<head>
+    <title>About Page</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/about/about.css' %}">
+</head>
+
+<body>
+
+    <section class="about-section">
+        <!-- <div class="heading">
+                <h1>About Us</h1>
+            </div> -->
+        <div class="about-container">
+            <div class="about-content">
+                <h2>About Us</h2>
+                <p>Thank you for considering Home Rental for your next adventure. We look forward to being a part of
+                    your journey and helping you find the perfect home for your travels. Welcome to a world of comfort,
+                    convenience, and unforgettable experiences.</p>
+                <!-- <button class="cta-button">More</button> -->
+            </div>
+            <div class="about-image">
+                <img src="{% static 'css/about/about-us.jpg' %}" alt="about-image">
+            </div>
+        </div>
+        <div class="about-icon">
+            <!-- Facebook Icon -->
+            <div class="icon fb">
+                <i class="fa-brands fa-facebook-f"></i>
+                <span>Facebook</span>
+            </div>
+    
+            <!-- Twitter Icon -->
+            <div class="icon twt">
+                <i class="fa-brands fa-twitter"></i>
+                <span>Twitter</span>
+            </div>
+    
+            <!-- Linkedin Icon -->
+            <div class="icon lnk">
+                <i class="fa-brands fa-linkedin-in"></i>
+                <span>Linkedin</span>
+            </div>
+    
+            <!-- GitHub Icon -->
+            <div class="icon git">
+                <i class="fa-brands fa-github"></i>
+                <span>GitHub</span>
+            </div>
+    
+            <!-- Gmail Icon -->
+            <div class="icon gm">
+                <i class="fa-solid fa-envelope"></i>
+                <span>Email</span>
+            </div>
+        </div>
+    </section>
+
+</body>
+
+</html>
 
 {% endblock home_content %}
-
-
