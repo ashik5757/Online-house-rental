@@ -61,7 +61,12 @@ Online House Rental | {{ user.username }}
                             Email : {{user.email}}  <br>
                             <!-- will use if else -->
                             Mobile : {{p.phone_number}} <br>
-                            UserType : {{user.role}} <br>
+                            {% if user.role == 'L' %}
+                            UserType : Landlord <br>
+                            {% else %}
+                            UserType : Renter <br>
+                            {% endif %}
+                            
                             UserID : {{user.id}}
                             
                         </p>
