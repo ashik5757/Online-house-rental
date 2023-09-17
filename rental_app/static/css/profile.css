@@ -735,11 +735,11 @@ img {
     margin-right: 292px;
 }
 
-
-.tm {
-    padding-right: 350px;
+.btn-outline-info:hover {
+    color: white;
 }
 
-.p {
-    padding-right: 350px;
+.iz {
+    height: 30px;
+    width: 200px;
 }
