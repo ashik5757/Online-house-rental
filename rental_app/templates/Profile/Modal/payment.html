@@ -1,0 +1,44 @@
+<style>
+    .payment-container{
+        width: 90%;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        padding: 15px 10px;
+    }
+
+    .payment-method{
+        width: 100%;
+        background-color: black;
+        color: white;
+        padding: 15px 10px;
+
+    }
+    .payment-input{
+        width: 80%;
+        display: flex;
+        gap: 20px;
+    }
+
+    .payment-input input{
+        width: 40%;
+    }
+    .payment-container > input{
+        width: 80%;
+    }
+</style>
+<div>
+    <div class="payment-container">
+        <div class="payment-method">Google Pay</div>
+        <div class="payment-method">Bkash</div>
+        <input type="text" name="" id="" placeholder="Card Number">
+        <div class="payment-input"> 
+            <input type="text" name="" id="" placeholder="mm/dd">
+            <input type="text" name="" id="" placeholder="cvv">
+        </div>
+    </div>
+    <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#payment_alert" >Make Payment</button>
+</div>
+
+
