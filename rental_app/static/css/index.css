@@ -54,13 +54,24 @@ img{
     border-radius: 10px;
 }
 
+.learn-btn:hover{
+    border-color: #0dcaf0;
+    background-color: white;
+    color: #0dcaf0;
+}
+
 .contact-btn{
     background-color: rgb(255, 255, 255);
-    color: #000000;
+    color: #0dcaf0;
     padding: 10px 15px;
     border-radius: 10px;
 }
 
+.contact-btn:hover{
+    border-color: #0dcaf0;
+    background-color: #0dcaf0;
+    color: white;
+}
 
 .booking{
     width: 30%;
@@ -90,7 +101,14 @@ img{
 }
 
 .book-btn{
+    border: 1px solid #0dcaf0;
     padding: 10px 0;
+}
+
+.book-btn:hover{
+    border: 1px solid #0dcaf0;
+    background-color: #ffffff;
+    color: #0dcaf0;
 }
 
 .home-posts{
@@ -110,6 +128,20 @@ img{
     padding: 15px;
     box-shadow: 0 0 4px rgba(0, 0, 0, 0.8);
     background-color: white;
+}
+
+.post-btn{
+    border:1px solid #0dcaf0;
+    background-color: #0dcaf0;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 10px;
+}
+
+.post-btn:hover{
+    border:1px solid #0dcaf0;
+    background-color: white;
+    color: #0dcaf0;
 }
 
 
