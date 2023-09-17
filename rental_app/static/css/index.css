@@ -50,11 +50,15 @@ img{
 .learn-btn{
     background-color: #0dcaf0;
     color: white;
+    padding: 10px 15px;
+    border-radius: 10px;
 }
 
 .contact-btn{
     background-color: rgb(255, 255, 255);
     color: #000000;
+    padding: 10px 15px;
+    border-radius: 10px;
 }
 
 
