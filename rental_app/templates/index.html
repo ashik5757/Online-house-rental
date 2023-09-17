@@ -29,25 +29,92 @@ Online House Rental | Homepage
         </div>
     </div>
     <div class="booking">
-        <h2>
-            Book Your Apartment
-        </h2>
+        <h3>
+            Search Your Apartment
+        </h3>
         <form class="form">
-            <input class="full-name" type="text" placeholder="Full Name">
-            <div class="input-container">
-                <input class="input-class" type="text" placeholder="Phone">
-                <input class="input-class" type="text" placeholder="Gender">
+            <div class="g-2 row">
+            <div class="col-lg-4">
+                <div class="filler-job-form">
+                    <input type="text" class="form-select" id="city" name="city" list="city_list" placeholder="City" value="{{value.city}}">
+                    <datalist id="city_list">
+                        {% for a in distObj %}
+                            <option value="{{a.name}}">
+                        {% endfor %}
+                    </datalist>
+                </div>
             </div>
-            <div class="input-container">
-                <input class="input-class" type="text" placeholder="Age">
-                <input class="input-class" type="text" placeholder="Person">
+            <div class="col-lg-4">
+                <div class="filler-job-form">
+                    <input type="text" class="form-select" id="area" name="area" list="area_list" placeholder="Area" >
+                    <datalist id="area_list">
+                        {% for a in areaObj %}
+                            <option value="{{a.name}}">
+                        {% endfor %}
+                    </datalist>
+                </div>
             </div>
-            <!-- <div class="input-container">
-                <input class="input-class" type="text" placeholder="check-in">
-                <input class="input-class" type="text" placeholder="check-out">
-            </div> -->
+            <div class="col-lg-4">
+                <div class="filler-job-form">
+                    <i class="uil uil-clipboard-notes"></i>
+                    <select class="form-select selectForm__inner" id="no_of_beds" name="no_of_beds">
+                        <option value="" disabled selected>Beds</option>
+                        <option value="">Any</option>
+                        <option value="1">1 Bed</option>
+                        <option value="2">2 Beds</option>
+                        <option value="3">3 Beds</option>
+                        <option value="4">4 Beds</option>
+                        <option value="5">5 Beds</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="filler-job-form">
+                    <i class="uil uil-clipboard-notes"></i>
+                    <select class="form-select selectForm__inner" id="no_of_baths" name="no_of_baths">
+                        <option value="" disabled selected>Baths</option>
+                        <option value="">Any</option>
+                        <option value="1">1 Bath</option>
+                        <option value="2">2 Baths</option>
+                        <option value="3">3 Baths</option>
+                        <option value="4">4 Baths</option>
+                        <option value="5">5 Baths</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="filler-job-form">
+                    <select class="form-select selectForm__inner" id="price" name="price">
+                        <option value="" disabled selected>Price(BDT)</option>
+                        <option value="">Any</option>
+                        <option value="10000">< 10,000 TK</option>
+                        <option value="20000">< 20,000 TK</option>
+                        <option value="30000">< 30,000 TK</option>
+                        <option value="40000">< 40,000 TK</option>
+                        <option value="50000">< 50,000 TK</option>
+                        <option value="60000">< 60,000 TK</option>
+                        <option value="70000">< 70,000 TK</option>
+                        <option value="80000">< 80,000 TK</option>
+                        <option value="90000">< 90,000 TK</option>
+                        <option value="100000">< 100,000 TK</option>
+                        <option value="200000">< 200,000 TK</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="filler-job-form">
+                    <i class="uil uil-clipboard-notes"></i>
+                    <select class="form-select selectForm__inner" id="rent_for" name="rent_for">
+                        <option value="" disabled selected>Rent For</option>
+                        <option value="Family">Family</option>
+                        <option value="Bachelors">Bachelors</option>
+                        <option value="Office">Office</option>
+                    </select>
+                </div>
+            </div>
+            </div>
             <button class="learn-btn book-btn">
-                Book Apartment
+                Filter
             </button>
         </form>
     </div>
