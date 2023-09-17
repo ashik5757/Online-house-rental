@@ -8,6 +8,9 @@ Online House Rental | {{ user.username }}
 
 
 {% block more_link %}
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Crimson+Text&family=Josefin+Sans:wght@100;500&family=Kanit&family=Poppins:wght@100&family=Roboto+Condensed:wght@300;700&family=Ubuntu:wght@300&display=swap');
+</style>
 <link href="{% static 'css/create_post.css' %}" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 {% endblock more_link %}
@@ -24,7 +27,7 @@ Online House Rental | {{ user.username }}
 <div class="container">
 
 
-    <div class="row">
+    <div class="row pt-3">
         <div class="col">
             <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4">
             <ol class="breadcrumb mb-0">
@@ -100,11 +103,13 @@ Online House Rental | {{ user.username }}
             <!-- begin profile-content -->
             <div class="profile-content">
                <!-- begin tab-content -->
+    
                <div class="tab-content p-0">
                   <!-- begin #profile-post tab -->
                   <div class="tab-pane fade active show" id="profile-post">
 
                            <div class="timeline-body">
+                              
                                  <div class="timeline-content">
 
                                   <div class="card mb-3">
@@ -112,12 +117,12 @@ Online House Rental | {{ user.username }}
                                        <div class="col-md-8">
                                         <div class="card-body">
 
-
+                                        <h4>Create Post</h4>  
                                         <form id="submitForm_create_post" action="{%url 'create_post' user.username %}" method="post"
                                           class="row g-3 needs-validation-l" enctype='multipart/form-data' novalidate>
                                           {% csrf_token %}
                       
-                                          <div class="row g-2">
+                                          <div class="fir row g-2">
                                               <div class="col form-floating mb-3">
                                                   <input type="text" class="form-control" id="title" name="title" placeholder="title" value=""
                                                        maxlength="100" minlength="5" required>
@@ -128,20 +133,19 @@ Online House Rental | {{ user.username }}
                                               </div>
                                           </div>
                       
-                                          <div class="row g-2">
+                                          <div class="fir row g-2">
                                             <div class="col form-floating mb-3">
                                                 <textarea type="text" class="form-control" id="description" name="description" placeholder="description" value=""
-                                                     maxlength="1000" required></textarea>
+                                                    maxlength="1000" required style="height: 200px;"></textarea>
                                                 <label for="description">Description</label>
                                                 <div class="invalid-feedback">
                                                     This field is required.
                                                 </div>
                                             </div>
                                           </div>
+                                        
                     
-
-
-                                          <div class="row g-2">
+                                          <div class="fir row g-2">
                                             <div class="col form-floating mb-3">
                                                 <input type="text" class="form-control" id="street" name="street" placeholder="street" value=""
                                                     maxlength="100", minlength="10" required>
@@ -154,7 +158,7 @@ Online House Rental | {{ user.username }}
 
 
 
-                                          <div class="row g-3">
+                                          <div class="fir row g-3">
 
                       
                                               {% city_context as areaObj %}
@@ -198,7 +202,7 @@ Online House Rental | {{ user.username }}
                       
                       
                       
-                                          <div class="row g-2">
+                                          <div class="fir row g-2">
                                             <div class="col form-floating mb-3">
                                                 <input type="number" class="form-control" id="rent_charge" name="rent_charge" placeholder="rent_charge" max="500000" value="" required>
                                                 <label for="rent_charge">Rent Charge</label>
@@ -220,7 +224,7 @@ Online House Rental | {{ user.username }}
                                         </div>
                       
 
-                                        <div class="row g-3">
+                                        <div class="fir row g-3">
 
                                           <div class="col form-floating mb-3">
                                               <select type="text" class="form-control" id="no_of_beds" name="no_of_beds" placeholder="no_of_beds" value="" required>
@@ -268,7 +272,7 @@ Online House Rental | {{ user.username }}
 
 
 
-                                        <div class="row g-3">
+                                        <div class="fir row g-3">
 
                                           <div class="col form-floating mb-3">
                                               <select type="text" class="form-control" id="drawing_status" name="drawing_status" placeholder="drawing_status" value="" required>
@@ -310,7 +314,7 @@ Online House Rental | {{ user.username }}
                                     
 
                                           
-                                          <div class="row g-3">
+                                          <div class="fir row g-3">
 
                                             <div class="col form-floating mb-3">
                                                 <select type="text" class="form-control" id="electric_meter_type" name="electric_meter_type" placeholder="electric_meter_type" value="" required>
@@ -337,13 +341,10 @@ Online House Rental | {{ user.username }}
 
                                           </div>
                                           
-                                          <button type="button" name="extend" id="extend">Add Services</button>
+                                          <button type="button" class="fir btn btn-signup-custom btn-block" name="extend" id="extend">Add Services</button>
                                           <div id="extend_field"></div>
                                           
-
-
-
-
+                
                                         </div>
                                       </div>
                                     </div>
@@ -359,7 +360,7 @@ Online House Rental | {{ user.username }}
 
 
                                   <div class="card mb-3">
-                                       <div class="row g-0">
+                                       <div class="fir row g-0">
                                           <div class="col-md-8">
                                            <div class="card-body">
 
@@ -387,19 +388,8 @@ Online House Rental | {{ user.username }}
 
 
 
-                                  <div class="card mb-3">
-                                    <div class="row g-0">
-                                       <div class="col-md-8">
-                                        <div class="card-body">
-
-                                          <div class="form-group pt-1">
-                                            <button type="submit" class="btn btn-signup-custom btn-block" style="width:100%">Create a Post</button>
-                                          </div>
-
-
-                                        </div>
-                                      </div>
-                                    </div>
+                                  <div class="form-group pt-1">
+                                    <button type="submit" class="fir btn btn-signup-custom btn-block mb-5" style="width:66%">Create a Post</button>
                                   </div>
 
                                 </form>
@@ -443,7 +433,7 @@ Online House Rental | {{ user.username }}
       const dynamicFieldHTML = 
         
       
-        `<div class="row g-3">
+        `<div class="fir row g-3">
   
           <div class="col form-floating mb-3">
               <select type="text" class="form-control" id="service_type" name="service_type" placeholder="service_type" value="" required>
@@ -468,7 +458,7 @@ Online House Rental | {{ user.username }}
           </div>
   
           <div class="col remove-field">
-            <button>Remove</button>
+            <button style="border: none; background: none;"><img src="https://o.remove.bg/downloads/a4f1b3ba-542d-4e6b-aabb-1d5e4b40a3ff/image-removebg-preview.png"></button>
           </div>
   
         </div>`;
