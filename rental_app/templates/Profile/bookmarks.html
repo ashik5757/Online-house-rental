@@ -17,101 +17,122 @@ Online House Rental | Bookmarks
 
 
 <div align="center" class="container-fluid">
-    {% for i in "x"|rjust:"10" %}
-    <li>
-        <!-- begin timeline-time -->
-        <div class="timeline-time">
-            <span class="date">today</span>
-            <span class="time">04:20</span>
-        </div>
-        <!-- end timeline-time -->
-        <!-- begin timeline-icon -->
-        <div class="timeline-icon">
-            <a href="javascript:;">&nbsp;</a>
-        </div>
-        <!-- end timeline-icon -->
-        <!-- begin timeline-body -->
-        <div class="timeline-body">
-            <div class="timeline-header">
-                <span class="userimage">
-                    {% if p.profile_image.url is not None %}
-                    <img src="{{p.profile_image.url}}" alt="{{p.first_name}}">
-                    {% else %}
-                    <img src="{% static 'images/blank_profile_image.png' %}" alt="{{p.first_name}}">
-                    {% endif %}
-                </span>
-                <span class="username"><a href="javascript:;">#{{user.username}}</a> <small></small></span>
-                <span class="p pull-right text-muted">
-                    <a href="">18 Reviews</a>
-                </span>
-            </div>
-            <div class="timeline-content">
-                <a href=" {% url 'profile_detail_post' user.username 'slug1212' %}" style="text-decoration: none;">
-                    <div class="card mb-3" style="max-width: 740px;">
-                        <div class="row g-0">
-                            <div class="col-md-4">
-                                <!-- <img src="{% static 'images/blank_profile_image.png' %}" class="img-fluid rounded-start" alt="..."> -->
-                                <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
-                                    <div class="carousel-inner">
-                                        <div class="carousel-item active">
-                                            <img src="{% static 'images/blank_profile_image.png' %}"
-                                                class="d-block w-100" alt="...">
-                                        </div>
-                                        <div class="carousel-item">
-                                            <img src="..." class="d-block w-100" alt="...">
-                                        </div>
-                                        <div class="carousel-item">
-                                            <img src="{% static 'images/blank_profile_image.png' %}"
-                                                class="d-block w-100" alt="...">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-8">
-                                <div class="card-body">
-                                    <h5 class="card-title">
-                                        <font style="font-size: small;">BDT</font> 21 Thousand <small
-                                            style="font-size:x-small;">Available</small>
-                                    </h5>
+    <div class="profile-content">
+        <!-- begin tab-content -->
+        <div class="tab-content p-0">
+           <!-- begin #profile-post tab -->
+           <div class="tab-pane fade active show" id="profile-post">
+              <!-- begin timeline -->
+              <ul class="timeline">
 
-                                    For Rent | 4 Beds 4 Baths | Area : 1850 sqft
-
-
-                                    <p class="card-text">
-                                    <h6>An Apartment Is Ready For Rent At Uttara</h6>
-                                    </p>
-                                    <p class="card-text">Sector 6, Uttara, Dhaka</p>
-                                    <p class="card-text"><small class="text-body-secondary">Last updated 3 mins
-                                            ago</small></p>
-                                </div>
-                            </div>
-                        </div>
+                 
+                 {% for i in "x"|rjust:"10" %}
+                 <li>
+                    <!-- begin timeline-time -->
+                    <div class="timeline-time">
+                          <span class="date">today</span>
+                          <span class="time">04:20</span>
                     </div>
-                </a>
+                    <!-- end timeline-time -->
+                    <!-- begin timeline-icon -->
+                    <div class="timeline-icon">
+                          <a href="javascript:;">&nbsp;</a>
+                    </div>
+                    <!-- end timeline-icon -->
+                    <!-- begin timeline-body -->
+                    <div class="timeline-body">
+                          <div class="timeline-header">
+                             <span class="userimage">
+                                {% if p.profile_image.url is not None %}
+                                <img src="{{p.profile_image.url}}" alt="{{p.first_name}}">
+                                {% else %}
+                                   <img src="{% static 'images/blank_profile_image.png' %}" alt="{{p.first_name}}">
+                                {% endif %}
+                             </span>
+                             <span class="username"><a href="javascript:;">#{{user.username}}</a> <small></small></span>
+                             <span class="pull-right text-muted">
+                                <a href="">18 Reviews</a>
+                             </span>
+                          </div>
+                          <div class="timeline-content">
+                             <a href=" {% url 'profile_detail_post' user.username 'slug1212' %}" style="text-decoration: none;">
+                             <div class="card mb-3" style="max-width: 740px;">
+                                <div class="row g-0">
+                                  <div class="col-md-4">
+                                    <!-- <img src="{% static 'images/blank_profile_image.png' %}" class="img-fluid rounded-start" alt="..."> -->
+                                      <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+                                         <div class="carousel-inner">
+                                         <div class="carousel-item active">
+                                            <img src="{% static 'images/blank_profile_image.png' %}" class="d-block w-100" alt="...">
+                                         </div>
+                                         <div class="carousel-item">
+                                            <img src="..." class="d-block w-100" alt="...">
+                                         </div>
+                                         <div class="carousel-item">
+                                            <img src="{% static 'images/blank_profile_image.png' %}" class="d-block w-100" alt="...">
+                                         </div>
+                                         </div>
+                                      </div>
+                                  </div>
+                                  <div class="col-md-8">
+                                    <div class="card-body">
+                                      <h5 class="card-title">
+                                         <font style="font-size: small;">BDT</font> 21 Thousand <small style="font-size:x-small;">Available</small> 
+                                      </h5>
 
-            </div>
+                                      For Rent | 4 Beds 4 Baths | Area : 1850 sqft
 
-            <div class="tm timeline-likes">
-                <div class="stats-right">
-                    <span class="stats-text">259 Shares</span>
-                    <span class="stats-text">21 Comments</span>
-                </div>
-                <div class="stats">
-                    <span class="stats-total">4.3k</span>
-                </div>
-            </div>
-            <div class="like d-flex justify-content-evenly timeline-footer">
-                <a href="javascript:;" class="m-r-15 text-inverse-lighter my-2"><i
-                        class="face fa fa-bookmark fa-fw fa-lg m-r-3"></i> Save </a>
-                <a href="javascript:;" class="m-r-15 text-inverse-lighter my-2" data-bs-toggle="modal"
-                    data-bs-target="#comment"><i class="face fa fa-comments fa-fw fa-lg m-r-3"></i> Comment</a>
-                <a href="javascript:;" class="m-r-15 text-inverse-lighter my-2" data-bs-toggle="modal"
-                    data-bs-target="#share"><i class="face fa fa-share fa-fw fa-lg m-r-3"></i> Share</a>
-            </div>
+
+                                      <p class="card-text"><h6>An Apartment Is Ready For Rent At Uttara</h6></p>
+                                      <p class="card-text">Sector 6, Uttara, Dhaka</p>
+                                      <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                             </a>
+
+                          </div>
+                          
+                          <div class="timeline-likes">
+                             <div class="stats-right">
+                                <span class="stats-text">259 Shares</span>
+                                <span class="stats-text">21 Comments</span>
+                             </div>
+                             <div class="stats">
+                                <span class="stats-total">4.3k</span>
+                             </div>
+                          </div>
+                          <div class="d-flex justify-content-evenly timeline-footer">
+                             <a href="javascript:;" class="m-r-15 text-inverse-lighter"><i class="face fa fa-bookmark fa-fw fa-lg m-r-3"></i> Save </a>
+                             <a href="javascript:;" class="m-r-15 text-inverse-lighter" data-bs-toggle="modal" data-bs-target="#comment"><i class="face fa fa-comments fa-fw fa-lg m-r-3"></i> Comment</a>
+                             <a href="javascript:;" class="m-r-15 text-inverse-lighter" data-bs-toggle="modal" data-bs-target="#share"><i class="face fa fa-share fa-fw fa-lg m-r-3"></i> Share</a>
+                          </div>
+                    </div>
+                    <!-- end timeline-body -->
+                 </li>
+                 {% endfor %}
+                    
+
+
+                 <!-- begin timeline-icon -->
+                 <div class="timeline-icon">
+                       <a href="javascript:;">&nbsp;</a>
+                 </div>
+                 <!-- end timeline-icon -->
+                 <!-- begin timeline-body -->
+                 <div class="timeline-body">
+                       Loading...
+                 </div>
+                 <!-- begin timeline-body -->
+                 </li>
+              </ul>
+              <!-- end timeline -->
+           </div>
+           <!-- end #profile-post tab -->
         </div>
-        <!-- end timeline-body -->
-    </li>
-    {% endfor %}
+        <!-- end tab-content -->
+     </div>
 
 </div>
 
