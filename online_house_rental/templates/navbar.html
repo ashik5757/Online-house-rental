@@ -7,7 +7,9 @@
 
 <nav class="navbar navbar-expand-lg ps-5 pe-5 sticky-sm-top" data-bs-theme="dark">
   <div class="container-fluid">
-    <a class="navbar-brand" href="{% url 'home_page' %}">LOGO</a>
+    <a class="navbar-brand" href="{% url 'home_page' %}">
+      <img class="logo" src="{% static 'css/navbar/Logo.png' %}" alt="Logo">
+    </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -73,7 +75,6 @@
           </a>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="{% url 'profile_post' user.username %}">Profile</a></li>
-            <li><a class="dropdown-item" href="{% url 'notification' %}">Notification</a></li>
             <li><a class="dropdown-item" href="{% url 'bookmarks' %}">Bookmarks</a></li>
             <li><a class="dropdown-item" href="{% url 'settings' %}">Settings</a></li>
             <li><hr class="dropdown-divider"></li>
@@ -176,7 +177,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        {% include 'profile/notification.html' %}
+        {% include 'Profile/Modal/notification.html' %}
       </div>
     </div>
   </div>
@@ -196,7 +197,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        {% include 'Signin/forgot_password.html' %}
+        {% include 'Signin/Modal/forgot_password.html' %}
       </div>
     </div>
   </div>
@@ -214,8 +215,11 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        {% include 'Signin/password_reset.html' %}
+        {% include 'Signin/Modal/password_reset.html' %}
       </div>
     </div>
   </div>
 </div>
+
+
+
