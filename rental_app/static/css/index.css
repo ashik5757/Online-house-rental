@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-h1 {
-    color: red;
-=======
 button{
     border: none;
     border-radius: 5px;
@@ -180,5 +176,6 @@ img{
     .home-post p {
         font-size: 14px;
     }
->>>>>>> d3dde7b5fe1df26da2930322cbaea1c1523d8b45
+
+
 }
