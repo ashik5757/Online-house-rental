@@ -1,6 +1,16 @@
+body{
+  background:#eee;
+  font-family: 'Crimson Text', serif;
+  font-family: 'Josefin Sans', sans-serif;
+  font-family: 'Kanit', sans-serif;
+  font-family: 'Poppins', sans-serif;
+  font-family: 'Roboto Condensed', sans-serif;
+  font-family: 'Ubuntu', sans-serif;
+}
 
-
-
+a {
+  text-decoration: none;
+}
 
 .upload__img-wrap {
   display: flex;
@@ -40,6 +50,23 @@
   background-size: cover;
   position: relative;
   padding-bottom: 100%;
+}
+
+.fir {
+  margin-left: 180px;
+  margin-right: 100px;
+}
+
+h4 {
+  color: #0dcaf0;
+  margin-left: 180px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+img {
+  height: 40px;
+  width: 40px;
 }
 
 
