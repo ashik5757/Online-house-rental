@@ -70,3 +70,17 @@ img {
 }
 
 
+.post-btn{
+  border:1px solid #0dcaf0;
+  background-color: #0dcaf0;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 10px;
+  text-decoration: none;
+}
+
+.post-btn:hover{
+  border:1px solid #0dcaf0;
+  background-color: white;
+  color: #0dcaf0;
+}

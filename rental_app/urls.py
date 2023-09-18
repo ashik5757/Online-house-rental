@@ -18,6 +18,8 @@ urlpatterns = [
     path('<str:username>/photos/', views.Profile, name='profile_photos'),
     path('<str:username>/videos/', views.Profile, name='profile_videos'),
     path('<str:username>/create-post/', views.Create_post, name='create_post'),
+    path('<str:username>/edit-post/', views.Edit_post, name='edit_post'),
+
 
 
 
