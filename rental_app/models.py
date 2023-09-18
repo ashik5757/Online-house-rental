@@ -107,7 +107,7 @@ class Rental_Property(models.Model):
     city = models.CharField(max_length=200)
     zip = models.CharField(max_length=20, null=True)
     rent_charge = models.PositiveIntegerField(default=0)
-    rents_for = MultiSelectField(max_length=10, default='FAMILY')   # BACHELORS, OFFICE
+    rents_for = models.CharField(max_length=10, default='FAMILY')   # BACHELORS, OFFICE
     numbers_of_beds = models.PositiveSmallIntegerField()
     numbers_of_bath = models.PositiveSmallIntegerField()
     apartment_area = models.PositiveIntegerField(default=1)

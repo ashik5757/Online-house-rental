@@ -212,9 +212,9 @@ Online House Rental | {{ user.username }}
                                             </div>
                                             <div class="col form-floating mb-3">
                                                 <select type="text" class="form-control" id="rent_for" name="rent_for" placeholder="rent_for" value="" required>
-                                                  <option>Family</option>
-                                                  <option>Bachelors</option>
-                                                  <option>Office</option>
+                                                  <option value="Family">Family</option>
+                                                  <option value="Bachelors">Bachelors</option>
+                                                  <option value="Office">Office</option>
                                                 </select>
                                               <label for="rent_for">Rent For</label>
                                               <div class="invalid-feedback">
@@ -258,8 +258,8 @@ Online House Rental | {{ user.username }}
                                               <input type="number" class="form-control" id="area_size" name="area_size" placeholder="area_size" max="10000" value="" required>
                                               <label for="area_size">Area(Size)</label>
                                               <select type="text" class="form-control" id="unit" name="unit" placeholder="unit" value="" required>
-                                                <option>sq-ft</option>
-                                                <option>sq-meter</option>
+                                                <option value="sq-ft">sq-ft</option>
+                                                <option value="sq-meter">sq-meter</option>
                                               </select>
                                               <div class="invalid-feedback">
                                                 This field is required.

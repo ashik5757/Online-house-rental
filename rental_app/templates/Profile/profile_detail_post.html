@@ -9,6 +9,26 @@ Online House Rental | {{ user.username }}
 {% block more_link %}
 <style>
    @import url('https://fonts.googleapis.com/css2?family=Crimson+Text&family=Josefin+Sans:wght@100;500&family=Kanit&family=Poppins:wght@100&family=Roboto+Condensed:wght@300;700&family=Ubuntu:wght@300&display=swap');
+
+
+  table {
+    border-collapse: collapse;
+    width: 70%;
+    margin: 0 auto;
+  }
+
+  td {
+    border-bottom: 1px solid #eeecec;
+    padding: 15px;
+    text-align: left;
+    font-size: medium;
+  }
+
+  td:nth-child(odd) {
+    background-color: #ffffff;
+  }
+
+
 </style>
 <link href="{% static 'css/profile.css' %}" rel="stylesheet">
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
@@ -127,7 +147,7 @@ Online House Rental | {{ user.username }}
                                  <div class="timeline-content">
                                     <div class="card mb-3">
                                        <div class="row g-0">
-                                          <div class="col-md-8">
+                                          <div class="col-md-12">
                                            <div class="card-body">
                                              <p class="card-text"><small class="text-body-secondary">{{pr.post_date}}</small>
                                                 <span class="pull-right text-muted">
@@ -152,11 +172,11 @@ Online House Rental | {{ user.username }}
                                                 </span>
                                              </p>
 
-                                             <h4 class="card-title">
+                                             <h3 class="card-title">
                                                 <font style="font-size: small;">BDT</font> {{pr.rent_charge}} TK<small style="font-size:x-small;">  {{pr.rental_status}}</small>
+                                             </h3>
 
-                                             </h4>
-
+                                            <h5>{{pr.street}}, {{pr.area}}, {{pr.city}}-{{pr.zip}}</h5><br>
                                           
                                              <h6>Rents For : {{pr.rents_for}} | {{pr.numbers_of_beds }} Beds {{pr.numbers_of_bath }} Baths | Area : {{pr.apartment_area }} {{pr.area_unit}}</h6>
 
@@ -166,33 +186,55 @@ Online House Rental | {{ user.username }}
                                              <p class="card-text">{{pr.description}}</p>
 
 
-                                             
+                                             <br><br>
                                     
 
-                                             <h5>Property Information</h5>
-                                             <p class="card-text">Monthly Rent : {{pr.rent_charge}} TK</p>
-                                             <p class="card-text">Rent For : {{pr.rents_for}} </p>
-                                             <p class="card-text">Area : {{pr.apartment_area }} {{pr.area_unit}}</p>
-                                             <p class="card-text">Numbers of Beds : {{pr.numbers_of_beds }}</p>
-                                             <p class="card-text">Numbers of Bath : {{pr.numbers_of_bath }}</p>
-                                             <p class="card-text">Drawing Room Status : {{pr.drawing_room_status }}</p>
-                                             <p class="card-text">Dinning Room Status : {{pr.dining_room_status }}</p>
-                                             <p class="card-text">Kitchen Room Status : {{pr.kitchen_status}}</p>
-                                             <p class="card-text">Electric Meter Type : {{pr.electric_meter_type}}</p>
-                                             <p class="card-text">Gass Line Type : {{pr.gass_type}} </p>
+                                             <h4 style="margin-left: 35%;"><b>Property Information</b></h4>
 
-                                       
-                                             <h5 class="card-title">
-                                                Service Charge
-                                             </h5>
+                                             <table>
+                                              <tr>
+                                                <td><b>Monthly Rent </b>: {{pr.rent_charge}} TK</td>
+                                                <td><b>Rent For</b> : {{pr.rents_for}}</td>
+                                              </tr>
+                                              <tr>
+                                                
+                                              </tr>
+                                              <tr>
+                                                <td><b>Number of Beds</b> : {{pr.numbers_of_beds}}</td>
+                                                <td><b>Number of Baths</b> : {{pr.numbers_of_bath}}</td>
+                                              </tr>
+
+                                              <tr>
+                                                <td><b>Drawing Room Status</b> : {{pr.drawing_room_status}}</td>
+                                                <td><b>Dining Room Status</b> : {{pr.dining_room_status}}</td>
+                                              </tr>
+
+                                              <tr>
+                                                <td><b>Kitchen Room Status</b> : {{pr.kitchen_status}}</td>
+                                                <td><b>Apartment Area</b> : {{pr.apartment_area}} {{pr.area_unit}}</td>
+                                              </tr>
+                                              <tr>
+                                                <td><b>Electric Meter Type</b> : {{pr.electric_meter_type}}</td>
+                                                <td><b>Gas Line Type</b> : {{pr.gass_type}}</td>
+                                              </tr>
+
+                                            </table>
+                                            
+                                            <br><br><br>
+                                    
+
+
+                                            <h5 style="margin-left: 40%;"><b>Service Charge</b></h5>
+
+                                            <table style="width: 50%;">
 
                                              {% for s in srv %}
-                                                <p class="card-text"> {{s.service_type}} Bill : {{s.service_charge}} TK </p>
+                                              <tr>
+                                                <td><b>{{s.service_type}} Bill</b> : {{s.service_charge}} TK </td>
+                                              </tr>
                                              {% endfor %}
 
-                                             <h6></h6>
-                                             <h6></h6>
-                                             <h6></h6>
+                                             </table><br><br>
 
                                              <p class="card-text"><small>Last updated 3 mins ago</small></p>
                                            </div>

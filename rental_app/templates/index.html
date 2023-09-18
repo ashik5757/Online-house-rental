@@ -120,44 +120,55 @@ Online House Rental | Homepage
     </div>
 
     <div class="home-posts">
-        <div class="home-post">
-            <div class="post-image">
-                <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="post-image">
-            </div>
-            <div class="post-content">
-                <h1>Lorem, ipsum.</h1>
-                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Necessitatibus placeat natus, atque laboriosam ex iste.</p>
-                <button class="post-btn">
-                    Read More
-                </button>
-            </div>
-        </div>
+
+        {% for i in pr %}
+          
+        
 
         <div class="home-post">
             <div class="post-image">
-                <img src="https://images.unsplash.com/photo-1501183638710-841dd1904471?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="post-image">
-            </div>
-            <div class="post-content">
-                <h1>Lorem, ipsum.</h1>
-                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Necessitatibus placeat natus, atque laboriosam ex iste.</p>
-                <button class="post-btn">
-                    Read More
-                </button>
-            </div>
-        </div>
+                <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        {% for im in pr_img %}
+                        
+                            {% if i.id is im.Rental_Property.id %}
+                            <div class="carousel-item active">
+                                <img src="{{im.image.url}}" class="d-block w-100" alt="...">
+                            </div>
+                            {% endif %}
 
-        <div class="home-post">
-            <div class="post-image">
-                <img src="https://images.unsplash.com/photo-1505691723518-36a5ac3be353?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="post-image">
+                        {% endfor %}
+
+                    </div>
+                 </div>
             </div>
+
             <div class="post-content">
-                <h1>Lorem, ipsum.</h1>
-                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Necessitatibus placeat natus, atque laboriosam ex iste.</p>
-                <button class="post-btn">
+                
+                
+                 <p class="card-text"><h5>{{i.title}}</h5></p>
+
+                 <p style="font-size: small;">Rent for {{i.rents_for}} | {{i.numbers_of_beds}} Beds | {{i.numbers_of_bath}} Baths | Area : {{i.apartment_area}} {{i.area_unit}}</p>
+                 
+                 
+                 <p style="font-size: smaller;">{{i.description | truncatewords:30}}</p>
+
+                
+                 {% if request.user.is_authenticated %}
+                    <a class="post-btn" href="{% url 'profile_detail_post' i.Landlord.user.username i.slug %}"> Read More </a>
+                {% else %}
+                <button class="post-btn" data-bs-toggle="modal" data-bs-target="#signinModal" href="{% url 'sign_in' %}"">
                     Read More
                 </button>
+                {% endif %}
+                    
+
             </div>
         </div>
+        
+        {% endfor %}
+
+
     </div>
 </div>
 

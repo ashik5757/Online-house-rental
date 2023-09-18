@@ -123,6 +123,23 @@ img{
 }
 
 
+
+.post-btn{
+    border:1px solid #0dcaf0;
+    background-color: #0dcaf0;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 10px;
+}
+
+.post-btn:hover{
+    border:1px solid #0dcaf0;
+    background-color: white;
+    color: #0dcaf0;
+}
+
+
+
 @media (max-width: 768px) {
     .home-container {
         flex-direction: column;
@@ -155,6 +172,9 @@ img{
         width: 100%;
     }
 }
+
+
+
 
 @media (max-width: 576px) {
     .home-title h1 {

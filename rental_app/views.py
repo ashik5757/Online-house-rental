@@ -9,7 +9,17 @@ from django.views import View
 
 
 def Homepage(request):
-    return render(request, 'index.html')
+
+    properties = Rental_Property.objects.order_by('post_date')[:3]
+    property_images = Property_Image.objects.all()
+
+
+    print(properties)
+
+    context = {'pr':properties, 'pr_img':property_images}
+
+
+    return render(request, 'index.html', context=context)
 
 @login_required(login_url='sign_in')
 def Apartments(request):
@@ -100,7 +110,16 @@ def Apartments(request):
 
 @login_required(login_url="sign_in")
 def Trends(request):
-    return render(request, 'Trends/trends.html')
+
+    properties = Rental_Property.objects.order_by('post_date')[:6]
+    property_images = Property_Image.objects.all()
+
+
+    print(properties)
+
+    context = {'pr':properties, 'pr_img':property_images}
+
+    return render(request, 'Trends/trends.html', context=context)
 
 def About(request):
     return render(request, 'About/about.html')
@@ -216,11 +235,14 @@ def Create_post(request, username):
 @login_required(login_url="sign_in")
 def Profile_detail_post(request, username, slug):
 
+    
+
     user = User.objects.filter(username=username).first()
     property = Rental_Property.objects.filter(slug=slug).first()
     property_images = Property_Image.objects.filter(Rental_Property=property)
     services = Services.objects.filter(Rental_Property=property)
 
+    print(property.rents_for)
     
     if request.user.role == 'L':
         profile = Landlord.objects.filter(user=user).first()
