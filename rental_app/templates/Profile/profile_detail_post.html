@@ -31,8 +31,8 @@ Online House Rental | {{ user.username }}
             <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4">
             <ol class="breadcrumb mb-0">
                 <li class="breadcrumb-item"><a href="{% url 'home_page' %}">Home</a></li>
-                <li class="breadcrumb-item active" aria-current="page"><a href="{% url 'profile_post' user.username %}">Profile</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Zakir Hossain Housing Society, South Khulshi, Khulshi, Chattogram</li>
+                <li class="breadcrumb-item active" aria-current="page"><a href="{% url 'profile_post' pr.Landlord.user.username %}">Profile</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{pr.title}}</li>
             </ol>
             </nav>
         </div>
@@ -99,55 +99,22 @@ Online House Rental | {{ user.username }}
             {% endcomment %}    
 
             <div class="grid">
-               <div class="item1">
-                 <img
-                   class="grid-image"
-                   src="https://images-cdn.bproperty.com/thumbnails/1571217-800x600.webp"
-                   alt="image 1"
-                 />
-               </div>
-               <div class="item2">
-                 <img
-                   class="grid-image"
-                   src="https://images-cdn.bproperty.com/thumbnails/1571221-800x600.webp"
-                   alt="image 2"
-                 />
-               </div>
-               <div class="item3">
-                 <img
-                   class="grid-image"
-                   src="https://images-cdn.bproperty.com/thumbnails/1571222-800x600.webp"
-                   alt="image 3"
-                 />
-               </div>
-               <div class="item4">
-                 <img
-                   class="grid-image"
-                   src="https://images-cdn.bproperty.com/thumbnails/1571217-800x600.webp"
-                   alt="image 4"
-                 />
-               </div>
-               <div class="item5">
-                 <img
-                   class="grid-image"
-                   src="https://images-cdn.bproperty.com/thumbnails/1571225-800x600.webp"
-                   alt="image 5"
-                 />
-               </div>
-               <div class="item6">
-                 <img
-                   class="grid-image"
-                   src="https://images-cdn.bproperty.com/thumbnails/1571226-800x600.webp"
-                   alt="image 6"
-                 />
-               </div>
-               <div class="item7">
-                 <img
-                   class="grid-image"
-                   src="https://images-cdn.bproperty.com/thumbnails/1571219-800x600.webp"
-                   alt="image 7"
-                 />
-               </div>
+
+              {% for i in pr_img %}
+
+              <div class="item{{forloop.counter}}">
+                <img
+                  class="grid-image"
+                  src="{{ i.image.url }}"
+                  alt="image 1"
+                />
+              </div>
+                
+              {% endfor %}
+
+
+
+
              </div>
             <!-- begin profile-content -->
             <div class="profile-content">
@@ -162,59 +129,72 @@ Online House Rental | {{ user.username }}
                                        <div class="row g-0">
                                           <div class="col-md-8">
                                            <div class="card-body">
-                                             <p class="card-text"><small class="text-body-secondary">Post Date : 24-Jan-2023</small>
+                                             <p class="card-text"><small class="text-body-secondary">{{pr.post_date}}</small>
                                                 <span class="pull-right text-muted">
-                                                   <button type="button" class="btn btn-outline-info">Save</button>
-                                                   <button type="button" class="btn btn-outline-info">Response</button>
-                                                   <button type="button" class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#payment" >$ Payment</button>
 
+                                                  {% if pr.Landlord.user == user %}
+                                                  <button type="button" class="btn btn-outline-info"> Edit </button>
+                                                  <button type="button" class="btn btn-outline-info">See Response</button>
+                                                  {% else %}
+                                                  <button type="button" class="btn btn-outline-info"> Save </button>
+                                                  {% endif %}
+                                                  
+                                                  {% if user.role == 'R' %}
+                                                  <button type="button" class="btn btn-outline-info">Response</button>
+                                                  {% endif %}
+
+                                                  
+                                                  {% if user.role == 'R' %}
+                                                  <button type="button" class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#payment" >$ Payment</button>
+                                                  {% endif %}
+                                                   
+                                                   
                                                 </span>
                                              </p>
 
-                                             <h5 class="card-title">
-                                                <font style="font-size: small;">BDT</font> 21 Thousand <small style="font-size:x-small;">Available</small>
+                                             <h4 class="card-title">
+                                                <font style="font-size: small;">BDT</font> {{pr.rent_charge}} TK<small style="font-size:x-small;">  {{pr.rental_status}}</small>
 
-                                             </h5>
+                                             </h4>
 
                                           
-                                             <h6>For Rent | 4 Beds 4 Baths | Area : 1850 sqft</h6>
+                                             <h6>Rents For : {{pr.rents_for}} | {{pr.numbers_of_beds }} Beds {{pr.numbers_of_bath }} Baths | Area : {{pr.apartment_area }} {{pr.area_unit}}</h6>
 
-                                             <p class="card-text"><h5>An Apartment Is Ready For Rent At Uttara</h5></p>
+                                             <p class="card-text"><h5>{{pr.title}}</h5></p>
 
                                              
-                                             <p class="card-text">With several noteworthy facilities, this vacant flat assures all time water, gas and electricity. 
-                                                An active elevator takes you to this floor in that building right to this flat. The interior is well maintained and bears the look which appeals to inhabitants.
-                                                 A large number of groceries, school, colleges and Universities are located in the nearby area. The location is very pleasant to settle in with your family.  </p>
+                                             <p class="card-text">{{pr.description}}</p>
 
 
                                              
                                     
 
                                              <h5>Property Information</h5>
-                                             <p class="card-text">Monthly Rent : 21000 TK</p>
-                                             <p class="card-text">Rent For : Family, Bachelor</p>
-                                             <p class="card-text">Area : 1850 sqft</p>
-                                             <p class="card-text">Numbers of Beds : 4</p>
-                                             <p class="card-text">Numbers of Bath : 4</p>
-                                             <p class="card-text">Drawing Room Status : Not Available</p>
-                                             <p class="card-text">Dinning Room Status : Available</p>
-                                             <p class="card-text">Kitchen Room Status : Available</p>
-                                             <p class="card-text">Electric Meter Type : Post-Paid</p>
-                                             <p class="card-text">Gass Line Type : Pre-Paid </p>
+                                             <p class="card-text">Monthly Rent : {{pr.rent_charge}} TK</p>
+                                             <p class="card-text">Rent For : {{pr.rents_for}} </p>
+                                             <p class="card-text">Area : {{pr.apartment_area }} {{pr.area_unit}}</p>
+                                             <p class="card-text">Numbers of Beds : {{pr.numbers_of_beds }}</p>
+                                             <p class="card-text">Numbers of Bath : {{pr.numbers_of_bath }}</p>
+                                             <p class="card-text">Drawing Room Status : {{pr.drawing_room_status }}</p>
+                                             <p class="card-text">Dinning Room Status : {{pr.dining_room_status }}</p>
+                                             <p class="card-text">Kitchen Room Status : {{pr.kitchen_status}}</p>
+                                             <p class="card-text">Electric Meter Type : {{pr.electric_meter_type}}</p>
+                                             <p class="card-text">Gass Line Type : {{pr.gass_type}} </p>
 
                                        
                                              <h5 class="card-title">
                                                 Service Charge
                                              </h5>
 
-                                             <p class="card-text">Gas Bill : 600 TK</p>
-                                             <p class="card-text">Water Bill : 500 TK</p>
-                                             <p class="card-text">Utility Bill : 2000 TK </p>
+                                             {% for s in srv %}
+                                                <p class="card-text"> {{s.service_type}} Bill : {{s.service_charge}} TK </p>
+                                             {% endfor %}
+
                                              <h6></h6>
                                              <h6></h6>
                                              <h6></h6>
 
-                                             <p class="card-text"><small class="btn btn-outline-info btn-sm">Last updated 3 mins ago</small></p>
+                                             <p class="card-text"><small>Last updated 3 mins ago</small></p>
                                            </div>
                                          </div>
                                        </div>

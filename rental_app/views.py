@@ -204,18 +204,8 @@ def Create_post(request, username):
         return redirect('profile_post', username=username)
 
 
-        
-
-    # print(service_type, service_charge, image_files)
-
-
 
     return render(request, 'Profile/create_post.html', {'p' : profile})
-
-
-
-
-
 
 
 
@@ -227,14 +217,19 @@ def Create_post(request, username):
 def Profile_detail_post(request, username, slug):
 
     user = User.objects.filter(username=username).first()
+    property = Rental_Property.objects.filter(slug=slug).first()
+    property_images = Property_Image.objects.filter(Rental_Property=property)
+    services = Services.objects.filter(Rental_Property=property)
+
     
     if request.user.role == 'L':
         profile = Landlord.objects.filter(user=user).first()
     if request.user.role == 'R':
         profile = Renter.objects.filter(user=user).first()
 
+    context = {'p' : profile, 'pr':property, 'pr_img': property_images, 'srv':services}
 
-    return render(request, 'Profile/profile_detail_post.html', {'p' : profile})
+    return render(request, 'Profile/profile_detail_post.html', context=context)
 
 
 
