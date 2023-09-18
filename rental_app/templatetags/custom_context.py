@@ -27,3 +27,8 @@ def profile_context(user):
     if user.role == 'R':
         profile = Renter.objects.filter(user=user).first()
     return profile
+
+
+@register.filter()
+def to_int(value):
+    return int(value)

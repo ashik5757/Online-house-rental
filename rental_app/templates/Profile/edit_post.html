@@ -118,13 +118,13 @@ Online House Rental | {{ user.username }}
                                         <div class="card-body">
 
                                         <h4>Edit Post</h4>  
-                                        <form id="submitForm_create_post" action="{%url 'create_post' user.username %}" method="post"
+                                        <form id="submitForm_create_post" action="{%url 'edit_post' user.username pr.slug %}" method="post"
                                           class="row g-3 needs-validation-l" enctype='multipart/form-data' novalidate>
                                           {% csrf_token %}
                       
                                           <div class="fir row g-2">
                                               <div class="col form-floating mb-3">
-                                                  <input type="text" class="form-control" id="title" name="title" placeholder="title" value=""
+                                                  <input type="text" class="form-control" id="title" name="title" placeholder="title" value="{{pr.title}}"
                                                        maxlength="100" minlength="5" required>
                                                   <label for="title">Title</label>
                                                   <div class="invalid-feedback">
@@ -135,8 +135,8 @@ Online House Rental | {{ user.username }}
                       
                                           <div class="fir row g-2">
                                             <div class="col form-floating mb-3">
-                                                <textarea type="text" class="form-control" id="description" name="description" placeholder="description" value=""
-                                                    maxlength="1000" required style="height: 200px;"></textarea>
+                                                <textarea type="text" class="form-control" id="description" name="description" placeholder="description"
+                                                    maxlength="1000" required style="height: 200px;">{{pr.description}}</textarea>
                                                 <label for="description">Description</label>
                                                 <div class="invalid-feedback">
                                                     This field is required.
@@ -147,7 +147,7 @@ Online House Rental | {{ user.username }}
                     
                                           <div class="fir row g-2">
                                             <div class="col form-floating mb-3">
-                                                <input type="text" class="form-control" id="street" name="street" placeholder="street" value=""
+                                                <input type="text" class="form-control" id="street" name="street" placeholder="street" value="{{pr.street}}"
                                                     maxlength="100", minlength="10" required>
                                                 <label for="street">Street Address</label>
                                                 <div class="invalid-feedback">
@@ -164,7 +164,7 @@ Online House Rental | {{ user.username }}
                                               {% city_context as areaObj %}
                       
                                               <div class="col form-floating">
-                                                  <input type="text" class="form-select" id="area" name="area" list="area_list" placeholder="Enter your Area" required>
+                                                  <input type="text" class="form-select" id="area" name="area" list="area_list" placeholder="Enter your Area" value="{{pr.area}}" required>
                                                   <datalist id="area_list">
                                                       {% for a in areaObj %}
                                                           <option value="{{a.name}}">
@@ -177,7 +177,7 @@ Online House Rental | {{ user.username }}
                                               </div>
 
                                               <div class="col form-floating">
-                                                <input type="text" class="form-select" id="city" name="city" list="area_list" placeholder="Enter your Area" required>
+                                                <input type="text" class="form-select" id="city" name="city" list="area_list" placeholder="Enter your City" value="{{pr.city}}" required>
                                                 <datalist id="area_list">
                                                     {% for a in areaObj %}
                                                         <option value="{{a.name}}">
@@ -190,7 +190,7 @@ Online House Rental | {{ user.username }}
                                             </div>
                                             
                                               <div class="col form-floating mb-3">
-                                                <input type="text" class="form-control" id="zip" name="zip" placeholder="zip" value=""
+                                                <input type="text" class="form-control" id="zip" name="zip" placeholder="zip" value="{{pr.zip}}"
                                                     pattern="^\d{4}$" required>
                                                 <label for="zip">Zip</label>
                                                 <div class="invalid-feedback">
@@ -204,14 +204,14 @@ Online House Rental | {{ user.username }}
                       
                                           <div class="fir row g-2">
                                             <div class="col form-floating mb-3">
-                                                <input type="number" class="form-control" id="rent_charge" name="rent_charge" placeholder="rent_charge" max="500000" value="" required>
+                                                <input type="number" class="form-control" id="rent_charge" name="rent_charge" placeholder="rent_charge" max="500000" value="{{pr.rent_charge}}" required>
                                                 <label for="rent_charge">Rent Charge</label>
                                                 <div class="invalid-feedback">
                                                     This field is required.
                                                 </div>
                                             </div>
                                             <div class="col form-floating mb-3">
-                                                <select type="text" class="form-control" id="rent_for" name="rent_for" placeholder="rent_for" value="" required>
+                                                <select type="text" class="form-control" id="rent_for" name="rent_for" placeholder="rent_for" value="{{pr.rents_for}}" required>
                                                   <option value="Family">Family</option>
                                                   <option value="Bachelors">Bachelors</option>
                                                   <option value="Office">Office</option>
@@ -227,7 +227,7 @@ Online House Rental | {{ user.username }}
                                         <div class="fir row g-3">
 
                                           <div class="col form-floating mb-3">
-                                              <select type="text" class="form-control" id="no_of_beds" name="no_of_beds" placeholder="no_of_beds" value="" required>
+                                              <select type="text" class="form-control" id="no_of_beds" name="no_of_beds" placeholder="no_of_beds" value="{{pr.numbers_of_beds}}" required>
                                                 <option>1</option>
                                                 <option>2</option>
                                                 <option>3</option>
@@ -241,7 +241,7 @@ Online House Rental | {{ user.username }}
                                           </div>
                                           
                                           <div class="col form-floating mb-3">
-                                            <select type="text" class="form-control" id="no_of_baths" name="no_of_baths" placeholder="no_of_baths" value="" required>
+                                            <select type="text" class="form-control" id="no_of_baths" name="no_of_baths" placeholder="no_of_baths" value="{{pr.numbers_of_bath}}" required>
                                               <option>1</option>
                                               <option>2</option>
                                               <option>3</option>
@@ -257,7 +257,7 @@ Online House Rental | {{ user.username }}
                                             <div class="input-group col form-floating mb-3">
                                               <input type="number" class="form-control" id="area_size" name="area_size" placeholder="area_size" max="10000" value="" required>
                                               <label for="area_size">Area(Size)</label>
-                                              <select type="text" class="form-control" id="unit" name="unit" placeholder="unit" value="" required>
+                                              <select type="text" class="form-control" id="unit" name="unit" placeholder="unit" value="{{pr.area_unit|floatformat:'0' }}" required>
                                                 <option value="sq-ft">sq-ft</option>
                                                 <option value="sq-meter">sq-meter</option>
                                               </select>
@@ -275,7 +275,7 @@ Online House Rental | {{ user.username }}
                                         <div class="fir row g-3">
 
                                           <div class="col form-floating mb-3">
-                                              <select type="text" class="form-control" id="drawing_status" name="drawing_status" placeholder="drawing_status" value="" required>
+                                              <select type="text" class="form-control" id="drawing_status" name="drawing_status" placeholder="drawing_status" value="{{pr.drawing_room_status}}" required>
                                                 <option>YES</option>
                                                 <option>NO</option>
                                               </select>
@@ -286,7 +286,7 @@ Online House Rental | {{ user.username }}
                                           </div>
                                           
                                           <div class="col form-floating mb-3">
-                                            <select type="text" class="form-control" id="dinning_status" name="dinning_status" placeholder="dinning_status" value="" required>
+                                            <select type="text" class="form-control" id="dinning_status" name="dinning_status" placeholder="dinning_status" value="{{pr.dining_room_status}}" required>
                                               <option>YES</option>
                                               <option>NO</option>
                                             </select>
@@ -297,7 +297,7 @@ Online House Rental | {{ user.username }}
                                           </div>
 
                                           <div class="col form-floating mb-3">
-                                            <select type="text" class="form-control" id="kitchen_status" name="kitchen_status" placeholder="kitchen_status" value="" required>
+                                            <select type="text" class="form-control" id="kitchen_status" name="kitchen_status" placeholder="kitchen_status" value="{{pr.kitchen_status}}" required>
                                               <option>YES</option>
                                               <option>NO</option>
                                             </select>
@@ -317,7 +317,7 @@ Online House Rental | {{ user.username }}
                                           <div class="fir row g-3">
 
                                             <div class="col form-floating mb-3">
-                                                <select type="text" class="form-control" id="electric_meter_type" name="electric_meter_type" placeholder="electric_meter_type" value="" required>
+                                                <select type="text" class="form-control" id="electric_meter_type" name="electric_meter_type" placeholder="electric_meter_type" value="{{pr.electric_meter_type}}" required>
                                                   <option>Pre-paid Meter</option>
                                                   <option>Post-paid Meter</option>
                                                 </select>
@@ -328,7 +328,7 @@ Online House Rental | {{ user.username }}
                                             </div>
                                             
                                             <div class="col form-floating mb-3">
-                                              <select type="text" class="form-control" id="gas_type" name="gas_type" placeholder="gas_type" value="" required>
+                                              <select type="text" class="form-control" id="gas_type" name="gas_type" placeholder="gas_type" value="{{pr.gass_type}}" required>
                                                 <option>Sylinder</option>
                                                 <option>Line Gas</option>
                                                 <option>Pre-paid Gas Meter</option>
@@ -389,12 +389,13 @@ Online House Rental | {{ user.username }}
 
 
                                   <div class="form-group pt-1">
-                                    <button type="submit" class="fir btn btn-signup-custom btn-block mb-5" style="width:66%">Create a Post</button>
+                                    <button type="submit" class="fir btn btn-signup-custom btn-block mb-5" style="width:66%">Save</button>
                                   </div>
-
                                 </form>
 
+                                <a class="fir btn btn-outline-danger mb-5" style="width:66%" href="{% url 'delete_post' user.username pr.slug %}"> Delete Post </a>
 
+                  
 
 
                                  </div>
@@ -458,7 +459,7 @@ Online House Rental | {{ user.username }}
           </div>
   
           <div class="col remove-field">
-            <button style="border: none; background: none;"><img src="https://o.remove.bg/downloads/a4f1b3ba-542d-4e6b-aabb-1d5e4b40a3ff/image-removebg-preview.png"></button>
+            <button style="border: none; background: none;"><img src="{% static 'images/trash.png' %}"></button>
           </div>
   
         </div>`;

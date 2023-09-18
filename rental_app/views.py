@@ -266,32 +266,32 @@ def Edit_post(request, username, slug):
 
 
 
-        aProperty = Rental_Property()
-        aProperty.title = title
-        aProperty.description = description
-        aProperty.street = street
-        aProperty.area = area
-        aProperty.city = city
-        aProperty.zip = zip
-        aProperty.rent_charge = rent_charge
-        aProperty.rents_for = rent_for
-        aProperty.numbers_of_beds = no_of_beds
-        aProperty.numbers_of_bath = no_of_baths
-        aProperty.apartment_area = area_size
-        aProperty.area_unit = unit
-        aProperty.drawing_room_status = drawing_status
-        aProperty.dining_room_status = dinning_status
-        aProperty.kitchen_status = kitchen_status
-        aProperty.electric_meter_type = electric_meter_type
-        aProperty.gass_type = gas_type
-        aProperty.Landlord = profile
+       
+        property.title = title
+        property.description = description
+        property.street = street
+        property.area = area
+        property.city = city
+        property.zip = zip
+        property.rent_charge = rent_charge
+        property.rents_for = rent_for
+        property.numbers_of_beds = no_of_beds
+        property.numbers_of_bath = no_of_baths
+        property.apartment_area = area_size
+        property.area_unit = unit
+        property.drawing_room_status = drawing_status
+        property.dining_room_status = dinning_status
+        property.kitchen_status = kitchen_status
+        property.electric_meter_type = electric_meter_type
+        property.gass_type = gas_type
+        property.Landlord = profile
 
 
-        aProperty.save()
+        property.save()
 
         for i in range(len(service_type)):
             service = Services()
-            service.Rental_Property = aProperty
+            service.Rental_Property = property
             service.service_type = service_type[i]
             service.service_charge = service_charge[i]
             service.save()
@@ -299,7 +299,7 @@ def Edit_post(request, username, slug):
         for img in image_files:
             imgObj = Property_Image()
             imgObj.image = img
-            imgObj.Rental_Property = aProperty
+            imgObj.Rental_Property = property
             imgObj.save()
 
         print(request.POST)
@@ -307,13 +307,37 @@ def Edit_post(request, username, slug):
         properties = Rental_Property.objects.filter(Landlord=profile)
         context = {'p' : profile, 'pr':properties}
         
-        messages.success(request, 'Property Created')
+        messages.success(request, 'Property Edited')
         return redirect('profile_post', username=username)
 
 
+    context = {'p' : profile, 'pr': property}
 
-    return render(request, 'Profile/edit_post.html', {'p' : profile})
+    return render(request, 'Profile/edit_post.html', context=context)
 
+
+
+@login_required(login_url="sign_in")
+def Delete_post(request, username, slug):
+    
+    profile = Landlord.objects.filter(user=request.user).first()
+
+    user = User.objects.filter(username=username).first()
+    property = Rental_Property.objects.filter(slug=slug).first()
+    property_images = Property_Image.objects.filter(Rental_Property=property)
+    services = Services.objects.filter(Rental_Property=property)
+
+
+    for pr_img in property_images:
+        pr_img.delete()
+    
+    for s in services:
+        s.delete()
+
+    property.delete()
+
+    messages.success(request, 'Property Deleted')
+    return redirect('profile_post', username=username)
 
 
 
