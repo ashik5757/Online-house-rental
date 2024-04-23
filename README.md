@@ -1,5 +1,5 @@
 # Online-house-rental
-This is a DJango based website for online rental system where a landrord can post about their houses and renters can buy or rent the house from the website.
+This is a Django based website for online rental system where a landrord can post about their houses and renters can buy or rent the house from the website.
 
 
 <br>
@@ -16,7 +16,7 @@ This is a DJango based website for online rental system where a landrord can pos
 
 ## Tools Used :
 
-- DJango
+- Django
 - MySQL Workbench
 
 <br>
